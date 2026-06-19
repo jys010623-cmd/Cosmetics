@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKINLAB — 제품 상세</title>
+    <meta name="description" content="SKINLAB 제품 상세. 성분, 사용법, 다정한 고객 리뷰를 확인하고 장바구니에 담아보세요.">
+    <meta name="theme-color" content="#FBF8F3">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%2710%27%20fill%3D%27%238FA382%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2722%27%20font-family%3D%27Arial%27%20font-weight%3D%27700%27%20font-size%3D%2716%27%20fill%3D%27%23fff%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .detail-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,4vw,60px);padding-top:clamp(16px,3vw,32px)}
+        .detail-imgs{display:flex;flex-direction:column;gap:16px}
+        .main-img{aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:var(--sage-bg);box-shadow:var(--sh)}
+        .thumb-list{display:flex;gap:12px}
+        .thumb{width:84px;height:84px;border-radius:var(--r-sm);overflow:hidden;cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--line);transition:.25s;background:var(--sage-bg)}
+        .thumb.active,.thumb:hover{box-shadow:inset 0 0 0 2.5px var(--sage)}
+        .info-box{position:sticky;top:100px;height:fit-content}
+        .brand-tag{font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--sage);text-transform:uppercase}
+        .info-box h1{font-family:var(--disp);font-weight:600;font-size:clamp(24px,3vw,34px);line-height:1.25;margin:10px 0 12px}
+        .stars{color:var(--blush);font-size:14px;letter-spacing:.1em;margin-bottom:18px}
+        .stars span{color:var(--soft);margin-left:8px;letter-spacing:0}
+        .price-detail{font-family:var(--disp);font-weight:600;font-size:30px;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:26px}
+        .meta-list{margin-bottom:28px}
+        .meta-item{display:flex;font-size:14px;margin-bottom:10px}
+        .meta-item .lbl{width:96px;color:var(--soft);font-weight:500}
+        .opt-row{margin-bottom:22px}
+        .opt-row label{display:block;font-family:var(--disp);font-size:13px;font-weight:500;color:var(--soft);margin-bottom:8px}
+        .opt-row select{width:100%;border:none;box-shadow:inset 0 0 0 1.5px var(--line);background:#fff;padding:14px 16px;border-radius:14px;font:inherit;font-size:14.5px;outline:none;cursor:pointer}
+        .opt-row select:focus{box-shadow:inset 0 0 0 1.5px var(--sage)}
+        .qty-box{display:flex;align-items:center;background:#fff;box-shadow:inset 0 0 0 1.5px var(--line);width:fit-content;border-radius:999px;overflow:hidden}
+        .qty-box button{width:46px;height:46px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--ink);transition:.2s}
+        .qty-box button:hover{background:var(--sage-bg)}
+        .qty-box input{width:54px;height:46px;border:none;text-align:center;background:none;font-family:var(--disp);font-weight:600;font-size:15px}
+        .total-row{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--line);margin:30px 0 24px;font-family:var(--disp);font-weight:600}
+        .total-row .t-price{font-size:30px;color:var(--sage)}
+        .action-btns{display:flex;gap:14px}
+        .action-btns .pill{flex:1.4;justify-content:center}
+        .btn-cart{flex:1;justify-content:center;background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+        .btn-cart:hover{background:var(--sage-bg);box-shadow:inset 0 0 0 1.5px var(--sage)}
+        .desc-sec{margin-top:clamp(50px,7vw,80px);border-top:1px solid var(--line);padding-top:clamp(36px,5vw,50px)}
+        .desc-tabs{display:flex;justify-content:center;gap:clamp(20px,4vw,50px);border-bottom:1px solid var(--line);margin-bottom:clamp(36px,5vw,56px);flex-wrap:wrap}
+        .desc-tabs button{background:none;border:none;font-family:var(--disp);font-size:15px;font-weight:600;padding-bottom:16px;cursor:pointer;color:var(--soft);border-bottom:2px solid transparent;transition:.25s}
+        .desc-tabs button.active{color:var(--ink);border-bottom-color:var(--sage)}
+        .desc-body{max-width:1000px;margin:0 auto}
+        .desc-body .lead{font-family:var(--disp);font-weight:500;font-size:clamp(18px,2.2vw,24px);color:var(--ink);text-align:center;line-height:1.7;margin-bottom:clamp(30px,4vw,46px)}
+        .desc-banner{aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+        @media(max-width:900px){.detail-wrap{grid-template-columns:1fr;gap:36px}.info-box{position:static}}
+    </style>
+</head>
+<body>
+    <a class="skip" href="#main">본문 바로가기</a>
+    <header id="hd">
+        <div class="nav">
+            <a class="brand" href="index.html">SKIN<span>LAB</span></a>
+            <nav class="menu" aria-label="주요 메뉴">
+                <a href="sub_category.html?type=skincare">스킨케어</a>
+                <a href="sub_category.html?type=line">라인</a>
+                <a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a>
+                <a href="sub_brand.html">브랜드</a>
+                <a href="sub_category.html?type=promotion">기획전</a>
+            </nav>
+            <div class="util">
+                <button type="button" onclick="openModal('login')">로그인</button>
+                <a class="cart" href="sub_cart.html">장바구니 0</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+    <section style="padding-top:clamp(28px,4vw,44px)">
+        <div class="wrap">
+            <div class="detail-wrap">
+                <div class="detail-imgs reveal">
+                    <div class="main-img"><img id="main-target-img" src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=800" alt="하이드로 수분 코어 토너 메인 이미지"></div>
+                    <div class="thumb-list">
+                        <div class="thumb active" onclick="changeImg(this,'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=800')"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=150" loading="lazy" alt="제품 썸네일 1"></div>
+                        <div class="thumb" onclick="changeImg(this,'https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=800')"><img src="https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=150" loading="lazy" alt="제품 썸네일 2"></div>
+                        <div class="thumb" onclick="changeImg(this,'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=800')"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=150" loading="lazy" alt="제품 썸네일 3"></div>
+                    </div>
+                </div>
+
+                <div class="info-box reveal">
+                    <span class="brand-tag">SKINLAB SKINCARE</span>
+                    <h1>하이드로 수분 코어 토너 (200ml)</h1>
+                    <div class="stars">★★★★★ <span>4.9 (230)</span></div>
+                    <p class="price-detail">23,000원</p>
+
+                    <div class="meta-list">
+                        <div class="meta-item"><span class="lbl">피부 타입</span><span>모든 피부 (특히 건성 추천)</span></div>
+                        <div class="meta-item"><span class="lbl">배송 정보</span><span>3만원 이상 구매 시 무료배송</span></div>
+                    </div>
+
+                    <div class="opt-row">
+                        <label for="opt-vol">용량 선택</label>
+                        <select id="opt-vol" onchange="toast('<b>옵션 변경</b><br>'+this.value+' 옵션을 선택했어요.')">
+                            <option>200ml (본품)</option>
+                            <option>400ml 대용량 (+12,000원)</option>
+                        </select>
+                    </div>
+
+                    <div class="opt-row">
+                        <label>수량</label>
+                        <div class="qty-box">
+                            <button type="button" aria-label="수량 줄이기" onclick="updateQty(-1)">-</button>
+                            <input type="text" id="product-quantity" value="1" readonly aria-label="수량">
+                            <button type="button" aria-label="수량 늘리기" onclick="updateQty(1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="total-row">
+                        <span>총 주문 금액</span>
+                        <span class="t-price" id="total-price-display">23,000원</span>
+                    </div>
+
+                    <div class="action-btns">
+                        <a href="sub_cart.html" class="pill btn-cart" onclick="toast('<b>장바구니 담기 완료</b><br>하이드로 수분 코어 토너가 장바구니에 담겼어요 💛')">장바구니 담기</a>
+                        <a href="sub_cart.html" class="pill" onclick="toast('<b>바로 구매</b><br>주문 페이지로 안내해 드릴게요.')">바로 구매하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="desc-sec reveal">
+                <div class="desc-tabs">
+                    <button class="active" onclick="switchDesc(this)">상세 정보</button>
+                    <button onclick="switchDesc(this)">전성분 안내</button>
+                    <button onclick="switchDesc(this)">사용 방법</button>
+                    <button onclick="switchDesc(this)">상품 리뷰 (230)</button>
+                </div>
+                <div class="desc-body">
+                    <p class="lead">병풀 추출물과 판테놀 성분이 밀착되어 지친 장벽을 건강하게 진정시켜요.</p>
+                    <div class="desc-banner"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=1000" loading="lazy" alt="제품 상세 배너 이미지"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="f-top">
+            <div>
+                <div class="f-brand">SKIN<span>LAB</span></div>
+                <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>1644-1234 · cs@skinlab.co.kr</p>
+            </div>
+            <div class="f-col"><h4>Shop</h4><a href="sub_category.html?type=skincare">스킨케어</a><a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a><a href="sub_category.html?type=promotion">기획전</a></div>
+            <div class="f-col"><h4>Support</h4><a href="sub_cs.html?tab=faq">자주 묻는 질문</a><a href="sub_cs.html?tab=delivery">배송 · 교환/반품</a><a href="sub_cs.html?tab=qna">1:1 문의</a></div>
+        </div>
+        <div class="f-bot">© 2026 SKINLAB. 다정한 클린 뷰티.</div>
+    </footer>
+
+    <div class="ov" id="ov" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입">
+            <button class="x" aria-label="닫기" onclick="closeModal()">&times;</button>
+            <h3>반가워요 👋</h3><p class="sub">스킨랩에 오신 걸 환영해요</p>
+            <div class="tabs"><button class="tab" id="t-login" onclick="switchTab('login')">로그인</button><button class="tab" id="t-join" onclick="switchTab('join')">회원가입</button></div>
+            <div class="pane" id="p-login">
+                <label>이메일</label><input type="email" placeholder="example@skinlab.com">
+                <label>비밀번호</label><input type="password" placeholder="••••••••">
+                <button class="pill go" onclick="fakeLogin()">로그인</button>
+            </div>
+            <div class="pane" id="p-join">
+                <label>이름</label><input type="text" placeholder="홍길동">
+                <label>이메일</label><input type="email" placeholder="example@skinlab.com">
+                <label>비밀번호</label><input type="password" placeholder="영문, 숫자 포함 8자 이상">
+                <button class="pill go" onclick="fakeJoin()">가입하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><div class="th"><span>SKINLAB 알림</span><span>방금 전</span></div><div class="tb" id="toast-body">[Web발신]</div></div>
+
+    <script>
+        var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+        document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(Math.min(i%3,2)*80)+'ms';io.observe(el)});
+        var last=window.scrollY,hd=document.getElementById('hd');
+        addEventListener('scroll',function(){var y=window.scrollY;hd.style.transform=(y>last&&y>200)?'translateY(-100%)':'translateY(0)';last=y});
+        function openModal(m){document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';switchTab(m)}
+        function closeModal(){document.getElementById('ov').classList.remove('on');document.body.style.overflow=''}
+        function switchTab(m){['login','join'].forEach(function(k){document.getElementById('t-'+k).classList.toggle('on',k===m);document.getElementById('p-'+k).classList.toggle('on',k===m)})}
+        function toast(msg){var t=document.getElementById('toast');document.getElementById('toast-body').innerHTML='[Web발신]<br>'+msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3400)}
+        function fakeLogin(){closeModal();setTimeout(function(){toast('<b>로그인 성공</b><br>회원님, 반가워요! 맞춤 케어를 만나보세요.')},350)}
+        function fakeJoin(){closeModal();setTimeout(function(){toast('<b>가입 완료</b><br>스킨랩 패밀리가 되신 것을 환영해요. 10% 웰컴 쿠폰 지급 💛')},350)}
+        function subscribe(e){e.preventDefault();e.target.reset();toast('<b>구독 완료</b><br>산뜻한 소식을 가장 먼저 전해드릴게요.')}
+
+        /* ===== 페이지 전용: 수량/총액 · 썸네일 전환 · 상세 탭 ===== */
+        var basePrice=23000;
+        var qtyInput=document.getElementById('product-quantity');
+        var priceDisplay=document.getElementById('total-price-display');
+        function updateQty(val){
+            var q=parseInt(qtyInput.value)+val;
+            if(q<1) q=1;
+            qtyInput.value=q;
+            priceDisplay.innerText=(basePrice*q).toLocaleString()+'원';
+            toast('<b>수량 변경</b><br>현재 '+q+'개 · 총 '+(basePrice*q).toLocaleString()+'원');
+        }
+        function changeImg(el,url){
+            document.getElementById('main-target-img').src=url;
+            document.querySelectorAll('.thumb').forEach(function(t){t.classList.remove('active')});
+            el.classList.add('active');
+        }
+        function switchDesc(btn){
+            document.querySelectorAll('.desc-tabs button').forEach(function(b){b.classList.remove('active')});
+            btn.classList.add('active');
+            toast('<b>'+btn.innerText+'</b><br>탭 내용을 불러왔어요.');
+        }
+    </script>
+</body>
+</html>

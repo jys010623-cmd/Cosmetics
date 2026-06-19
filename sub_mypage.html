@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKINLAB | MY PAGE</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="SKINLAB 마이페이지. 주문 내역, 쿠폰, 적립금, 회원정보를 관리하세요.">
+    <meta name="author" content="SKINLAB">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SKINLAB">
+    <meta property="og:title" content="SKINLAB | 마이페이지">
+    <meta property="og:description" content="SKINLAB 마이페이지. 주문 내역, 쿠폰, 적립금, 회원정보를 관리하세요.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=1200">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SKINLAB | 마이페이지">
+    <meta name="twitter:description" content="SKINLAB 마이페이지. 주문 내역, 쿠폰, 적립금, 회원정보를 관리하세요.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%277%27%20fill%3D%27%231a1a1a%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2723%27%20font-family%3D%27Arial%2CHelvetica%2Csans-serif%27%20font-size%3D%2719%27%20font-weight%3D%27700%27%20fill%3D%27%23c8a27b%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
     <style>
         /* ==========================================
            MY PAGE & COUPON & REVIEW ZONE STYLES
@@ -135,6 +152,7 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">본문 바로가기</a>
 
     <!-- COMPONENT: HEADER -->
     <header id="main-header">
@@ -182,11 +200,13 @@
             <div class="header-util">
                 <button type="button" onclick="openAuthModal('login')">LOGIN</button>
                 <button type="button" onclick="openAuthModal('join')">JOIN</button>
-                <a href="sub_mypage.html" style="font-weight: bold; color: var(--point-color);">MY PAGE</a>
+                <a href="sub_mypage.html">MY PAGE</a>
                 <a href="sub_cart.html">CART (0)</a>
             </div>
         </div>
     </header>
+    <a id="main-content" tabindex="-1"></a>
+    <h1 class="sr-only sr-only-h1">마이페이지</h1>
 
     <div class="container mypage-wrapper">
         <!-- 왼쪽 사이드바 대시보드 메뉴 (구조 정상 복구 마감) -->
@@ -294,14 +314,14 @@
                 <div class="review-manager-box">
                     <div class="review-history-item">
                         <div class="prod-thumb img-box">
-                            <img src="https://images.pexels.com/photos/3762466/pexels-photo-3762466.jpeg?auto=compress&cs=tinysrgb&w=150" alt="review product">
+                            <img src="https://images.pexels.com/photos/3762466/pexels-photo-3762466.jpeg?auto=compress&cs=tinysrgb&w=150" alt="review product" loading="lazy" decoding="async">
                         </div>
                         <div class="review-history-contents">
                             <div class="top-meta">
                                 <span class="prod-title">비타 루미너스 인텐시브 세럼 50ml</span>
                                 <div class="review-action-btn-group">
-                                    <button type="button" onclick="alert('수정 화면으로 연결됩니다.')">수정</button>
-                                    <button type="button" onclick="if(confirm('리뷰를 삭제하시겠습니까?')) alert('삭제되었습니다.')">삭제</button>
+                                    <button type="button" onclick="showSmsToast('<b>리뷰 수정</b><br>리뷰 수정 화면으로 연결됩니다.')">수정</button>
+                                    <button type="button" onclick="if(confirm('리뷰를 삭제하시겠습니까?')) showSmsToast('<b>리뷰 삭제 완료</b><br>작성하신 리뷰가 삭제되었습니다.')">삭제</button>
                                 </div>
                             </div>
                             <div class="stars-score">★★★★★ 5.0</div>
@@ -328,7 +348,7 @@
                         <label>연락처</label>
                         <input type="text" value="010-1234-5678">
                     </div>
-                    <button type="button" class="btn-filled" style="width: 100%; max-width: 200px; margin-top: 10px;" onclick="alert('회원 정보가 성공적으로 변경되었습니다.')">정보 수정 완료</button>
+                    <button type="button" class="btn-filled" style="width: 100%; max-width: 200px; margin-top: 10px;" onclick="showSmsToast('<b>회원정보 변경 완료</b><br>회원 정보가 성공적으로 변경되었습니다.')">정보 수정 완료</button>
                 </div>
             </div>
         </main>
@@ -336,8 +356,8 @@
 
     <!-- AUTH MODAL COMPONENT -->
     <div class="modal-overlay" id="auth-modal-overlay" onclick="closeAuthModal()">
-        <div class="auth-modal" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+        <div class="auth-modal" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입" onclick="event.stopPropagation()">
+            <button type="button" class="modal-close" aria-label="닫기" onclick="closeAuthModal()">&times;</button>
             <div class="modal-tabs">
                 <div class="modal-tab-btn" id="tab-login" onclick="switchAuthTab('login')">로그인</div>
                 <div class="modal-tab-btn" id="tab-join" onclick="switchAuthTab('join')">회원가입</div>
@@ -369,8 +389,40 @@
             <div class="footer-inner">
                 <div class="footer-info">
                     <div class="footer-logo">SKINLAB</div>
-                    <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>cs@skinlab.co.kr</p>
+                    <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>대표번호: 1644-1234<br>cs@skinlab.co.kr</p>
                 </div>
+                <div class="footer-links">
+                    <h4>SHOPPING</h4>
+                    <ul>
+                        <li><a href="sub_category.html?type=skincare">스킨케어</a></li>
+                        <li><a href="sub_category.html?type=bodyhair">바디 & 헤어</a></li>
+                        <li><a href="sub_category.html?type=promotion">기획전 컬렉션</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>SUPPORT</h4>
+                    <ul>
+                        <li><a href="sub_cs.html?tab=qna">1:1 문의하기</a></li>
+                        <li><a href="sub_cs.html?tab=delivery">배송 및 교환/반품</a></li>
+                        <li><a href="sub_cs.html?tab=faq">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>NEWSLETTER</h4>
+                    <p>정기 뉴스레터를 구독하고 스페셜 소식을 받아보세요.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="이메일 주소 입력">
+                        <button type="button">구독</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-policies">
+                    <a href="sub_cs.html?tab=terms">이용약관</a>
+                    <a href="sub_cs.html?tab=privacy"><b>개인정보처리방침</b></a>
+                    <a href="sub_cs.html?tab=store">매장안내</a>
+                </div>
+                <p>&copy; 2026 SKINLAB. All rights reserved.</p>
             </div>
         </div>
     </footer>

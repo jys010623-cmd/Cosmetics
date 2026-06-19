@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKINLAB — Order Complete</title>
+    <meta name="description" content="SKINLAB 주문이 정상 접수되었습니다. 주문 내역과 배송 정보를 확인하세요.">
+    <meta name="theme-color" content="#0E0E0E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20fill%3D%27%230E0E0E%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2723%27%20font-family%3D%27Arial%20Black%2CArial%27%20font-weight%3D%27900%27%20font-size%3D%2719%27%20fill%3D%27%231F4D3A%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .order{padding:calc(68px + clamp(50px,7vw,100px)) var(--pad) clamp(60px,8vw,120px)}
+        .order-wrap{max-width:1100px;margin:0 auto}
+        .order-success{text-align:center;border-bottom:1px solid var(--line);padding-bottom:clamp(40px,5vw,64px);margin-bottom:clamp(40px,5vw,64px)}
+        .order-success .ico{width:84px;height:84px;border:2px solid var(--green-bright);color:var(--green-bright);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:42px;margin:0 auto 28px;font-family:var(--disp);font-weight:900}
+        .order-success h1{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(28px,4.6vw,60px);line-height:1.02;margin-bottom:16px}
+        .order-success p{color:var(--mut);font-size:15px;max-width:520px;margin:0 auto}
+
+        .order-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:clamp(40px,5vw,64px)}
+        .order-card{background:#161616;border:1px solid var(--line);padding:clamp(26px,3vw,38px)}
+        .order-card h3{font-family:var(--disp);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-bright);border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:22px}
+        .order-row{display:flex;gap:16px;font-size:14px;margin-bottom:14px;color:#d7d4cd}
+        .order-row .lbl{width:108px;flex-shrink:0;color:var(--mut);font-family:var(--disp);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding-top:2px}
+        .order-row.grand{border-top:1px solid var(--line);padding-top:16px;margin-top:6px;align-items:baseline}
+        .order-row.grand .lbl{color:#fff}
+        .order-row.grand .val{color:var(--green-bright);font-family:var(--disp);font-weight:900;font-size:24px}
+        .order-cta{text-align:center}
+        @media(max-width:760px){.order-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <a class="skip" href="#main">본문 바로가기</a>
+    <header id="hd">
+        <div class="nav">
+            <a class="brand" href="index.html">SKINLAB</a>
+            <nav class="menu" aria-label="주요 메뉴">
+                <a href="sub_category.html?type=skincare">Skincare</a>
+                <a href="sub_category.html?type=line">Lines</a>
+                <a href="sub_category.html?type=bodyhair">Body</a>
+                <a href="sub_brand.html">Brand</a>
+                <a href="sub_category.html?type=promotion">Shop</a>
+            </nav>
+            <div class="util">
+                <button type="button" onclick="openModal('login')">Login</button>
+                <a href="sub_mypage.html">Account</a>
+                <a href="sub_cart.html">Cart(0)</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+    <section class="order">
+        <div class="order-wrap">
+            <div class="order-success reveal">
+                <div class="ico" aria-hidden="true">✓</div>
+                <h1>주문이 정상적으로<br>접수되었습니다</h1>
+                <p>스킨랩을 이용해 주셔서 감사합니다. 안전하게 패킹하여 발송해 드리겠습니다.</p>
+            </div>
+
+            <div class="order-grid">
+                <div class="order-card reveal">
+                    <h3>배송지 정보</h3>
+                    <div class="order-row"><span class="lbl">수령인</span><span class="val">홍길동</span></div>
+                    <div class="order-row"><span class="lbl">연락처</span><span class="val">010-1234-5678</span></div>
+                    <div class="order-row"><span class="lbl">배송지 주소</span><span class="val">서울특별시 강남구 테헤란로 456 스킨랩타워 7층</span></div>
+                    <div class="order-row"><span class="lbl">요청사항</span><span class="val">문 앞에 놓아주세요.</span></div>
+                </div>
+
+                <div class="order-card reveal">
+                    <h3>최종 결제 내역</h3>
+                    <div class="order-row"><span class="lbl">주문 상품</span><span class="val">하이드로 수분 코어 토너 200ml 외 1건</span></div>
+                    <div class="order-row"><span class="lbl">결제 일시</span><span class="val">2026-06-02 20:20</span></div>
+                    <div class="order-row"><span class="lbl">결제 수단</span><span class="val">신용카드 (현대카드 / 일시불)</span></div>
+                    <div class="order-row grand"><span class="lbl">총 결제 금액</span><span class="val">26,000원</span></div>
+                </div>
+            </div>
+
+            <div class="order-cta reveal">
+                <a href="index.html" class="btn fill">쇼핑 계속하기 →</a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="f-top">
+            <div>
+                <div class="f-brand">SKINLAB</div>
+                <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>1644-1234 · cs@skinlab.co.kr</p>
+            </div>
+            <div class="f-col"><h4>Shop</h4><a href="sub_category.html?type=skincare">스킨케어</a><a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a><a href="sub_category.html?type=promotion">기획전</a></div>
+            <div class="f-col"><h4>Support</h4><a href="sub_cs.html?tab=faq">FAQ</a><a href="sub_cs.html?tab=delivery">배송 · 교환/반품</a><a href="sub_cs.html?tab=qna">1:1 문의</a></div>
+        </div>
+        <div class="f-bot"><span>© 2026 SKINLAB</span><span>Clean · Vegan · Proven</span></div>
+    </footer>
+
+    <div class="ov" id="ov" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입">
+            <button class="x" aria-label="닫기" onclick="closeModal()">&times;</button>
+            <h3>SKINLAB</h3><p class="sub">Welcome to the lab</p>
+            <div class="tabs"><button class="tab" id="t-login" onclick="switchTab('login')">로그인</button><button class="tab" id="t-join" onclick="switchTab('join')">회원가입</button></div>
+            <div class="pane" id="p-login">
+                <label>Email</label><input type="email" placeholder="example@skinlab.com">
+                <label>Password</label><input type="password" placeholder="••••••••">
+                <button class="btn fill go" onclick="fakeLogin()">로그인</button>
+            </div>
+            <div class="pane" id="p-join">
+                <label>이름</label><input type="text" placeholder="홍길동">
+                <label>Email</label><input type="email" placeholder="example@skinlab.com">
+                <label>Password</label><input type="password" placeholder="영문, 숫자 포함 8자 이상">
+                <button class="btn fill go" onclick="fakeJoin()">가입하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><div class="th"><span>SKINLAB</span><span>방금 전</span></div><div class="tb" id="toast-body">[Web발신]</div></div>
+
+    <script>
+        var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+        document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(Math.min(i%4,3)*65)+'ms';io.observe(el)});
+        var last=window.scrollY,hd=document.getElementById('hd');
+        addEventListener('scroll',function(){var y=window.scrollY;hd.style.transform=(y>last&&y>240)?'translateY(-100%)':'translateY(0)';last=y});
+        function openModal(m){document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';switchTab(m)}
+        function closeModal(){document.getElementById('ov').classList.remove('on');document.body.style.overflow=''}
+        function switchTab(m){['login','join'].forEach(function(k){document.getElementById('t-'+k).classList.toggle('on',k===m);document.getElementById('p-'+k).classList.toggle('on',k===m)})}
+        function toast(msg){var t=document.getElementById('toast');document.getElementById('toast-body').innerHTML='[Web발신]<br>'+msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3400)}
+        function fakeLogin(){closeModal();setTimeout(function(){toast('<b>로그인 성공</b><br>회원님, 반가워요. 맞춤 케어를 만나보세요.')},350)}
+        function fakeJoin(){closeModal();setTimeout(function(){toast('<b>가입 완료</b><br>스킨랩 패밀리가 되신 것을 환영합니다. 10% 웰컴 쿠폰 지급.')},350)}
+        function subscribe(e){e.preventDefault();e.target.reset();toast('<b>구독 완료</b><br>가장 먼저 소식을 전해드릴게요.')}
+
+        /* order page: welcome toast on load */
+        window.addEventListener('load',function(){setTimeout(function(){toast('<b>주문 접수 완료</b><br>주문번호 SL-20260602-0420. 배송 시작 시 다시 알려드릴게요.')},700)});
+    </script>
+</body>
+</html>

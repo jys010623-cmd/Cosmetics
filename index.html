@@ -4,14 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKINLAB | Premium Clean Cosmetics</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="제주 유기농 병풀과 클린 천연 원료로 완성한 무자극 비건 스킨케어 브랜드 SKINLAB. 수분·진정·브라이트닝 라인과 베스트셀러를 만나보세요.">
+    <meta name="author" content="SKINLAB">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SKINLAB">
+    <meta property="og:title" content="SKINLAB | Premium Clean Cosmetics">
+    <meta property="og:description" content="제주 유기농 병풀과 클린 천연 원료로 완성한 무자극 비건 스킨케어 브랜드 SKINLAB. 수분·진정·브라이트닝 라인과 베스트셀러를 만나보세요.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=1200">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SKINLAB | Premium Clean Cosmetics">
+    <meta name="twitter:description" content="제주 유기농 병풀과 클린 천연 원료로 완성한 무자극 비건 스킨케어 브랜드 SKINLAB. 수분·진정·브라이트닝 라인과 베스트셀러를 만나보세요.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%277%27%20fill%3D%27%231a1a1a%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2723%27%20font-family%3D%27Arial%2CHelvetica%2Csans-serif%27%20font-size%3D%2719%27%20font-weight%3D%27700%27%20fill%3D%27%23c8a27b%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         .hero-container { margin-top: 85px; position: relative; }
         .swiper { width: 100%; height: 720px; }
         .swiper-slide { position: relative; background-color: #f2efea; display: flex; align-items: center; }
         .hero-text-wrap { position: absolute; left: var(--container-padding); max-width: 650px; z-index: 10; }
-        .hero-text-wrap h2 { font-size: var(--fs-h1); font-weight: var(--fw-bold); line-height: 1.22; margin-bottom: 24px; }
+        .hero-text-wrap h2 { font-family: var(--font-display); font-size: calc(var(--fs-h1) + 8px); font-weight: 600; line-height: 1.18; margin-bottom: 24px; letter-spacing: 0.005em; }
         .hero-text-wrap p { font-size: var(--fs-h3); color: var(--sub-color); margin-bottom: 35px; }
         .hero-img-side { position: absolute; right: 0; top: 0; width: 50%; height: 100%; border-radius: 0; }
         .swiper-pagination-progressbar { bottom: 0 !important; top: auto !important; height: 6px !important; background-color: rgba(0,0,0,0.06) !important; }
@@ -77,6 +94,7 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">본문 바로가기</a>
 
     <header id="main-header">
         <div class="header-inner">
@@ -128,6 +146,8 @@
             </div>
         </div>
     </header>
+    <a id="main-content" tabindex="-1"></a>
+    <h1 class="sr-only sr-only-h1">SKINLAB 클린 코스메틱 공식 스토어</h1>
 
     <section class="hero-container">
         <div class="swiper">
@@ -139,7 +159,7 @@
                         <a href="sub_category.html?type=promotion&cat=new" class="btn-filled" style="width: fit-content;">신제품 체험하기</a>
                     </div>
                     <div class="hero-img-side img-box">
-                        <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80" alt="Cosmetic Hero 1">
+                        <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80" alt="피부에 닿는 맑고 온전한 자연 - SKINLAB 신제품 비주얼" loading="eager" fetchpriority="high" decoding="async">
                     </div>
                 </div>
                 <div class="swiper-slide">
@@ -149,7 +169,7 @@
                         <a href="sub_category.html" class="btn-filled" style="width: fit-content;">자세히 보기</a>
                     </div>
                     <div class="hero-img-side img-box">
-                        <img src="https://images.pexels.com/photos/4041391/pexels-photo-4041391.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Cosmetic Hero 2">
+                        <img src="https://images.pexels.com/photos/4041391/pexels-photo-4041391.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="시네라리아의 생명력 - SKINLAB 탄력 보습 비주얼" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -164,19 +184,19 @@
         </div>
         <div class="routine-grid">
             <div class="routine-item">
-                <div class="img-box"><a href="sub_category.html?type=skincare&cat=cleansing"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=500" alt="Cleansing"></a></div>
+                <div class="img-box"><a href="sub_category.html?type=skincare&cat=cleansing"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=500" alt="Cleansing" loading="lazy" decoding="async"></a></div>
                 <h3>클렌징</h3><p>Cleansing</p>
             </div>
             <div class="routine-item">
-                <div class="img-box"><a href="sub_category.html?type=skincare&cat=toner"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=500" alt="Toner"></a></div>
+                <div class="img-box"><a href="sub_category.html?type=skincare&cat=toner"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=500" alt="Toner" loading="lazy" decoding="async"></a></div>
                 <h3>토너 & 에센스</h3><p>Toner & Essence</p>
             </div>
             <div class="routine-item">
-                <div class="img-box"><a href="sub_category.html?type=skincare&cat=serum"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=500" alt="Serum"></a></div>
+                <div class="img-box"><a href="sub_category.html?type=skincare&cat=serum"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=500" alt="Serum" loading="lazy" decoding="async"></a></div>
                 <h3>세럼</h3><p>Serum</p>
             </div>
             <div class="routine-item">
-                <div class="img-box"><a href="sub_category.html?type=skincare&cat=cream"><img src="https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&fit=crop&q=80&w=500" alt="Cream"></a></div>
+                <div class="img-box"><a href="sub_category.html?type=skincare&cat=cream"><img src="https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&fit=crop&q=80&w=500" alt="Cream" loading="lazy" decoding="async"></a></div>
                 <h3>크림</h3><p>Cream</p>
             </div>
         </div>
@@ -185,7 +205,7 @@
     <section class="lines-sec container gsap-reveal">
         <div class="lines-grid">
             <div class="line-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&q=80&w=800" alt="Moisture"></div>
+                <div class="img-box"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&q=80&w=800" alt="Moisture" loading="lazy" decoding="async"></div>
                 <div class="line-info">
                     <span>AQUA DEEP</span>
                     <h3>수분 집중 공급 히알루론 라인</h3>
@@ -194,7 +214,7 @@
                 </div>
             </div>
             <div class="line-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&q=80&w=800" alt="Calming"></div>
+                <div class="img-box"><img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&q=80&w=800" alt="Calming" loading="lazy" decoding="async"></div>
                 <div class="line-info">
                     <span>CALMING ESSENCE</span>
                     <h3>민감성 피부를 위한 시카 진정 라인</h3>
@@ -212,17 +232,17 @@
         </div>
         <div class="ing-grid">
             <div class="ing-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=500" alt="Centella"></div>
+                <div class="img-box"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=500" alt="Centella" loading="lazy" decoding="async"></div>
                 <h3>제주 유기농 병풀</h3>
                 <p>청정 제주에서 자라나 뛰어난 진정 및 장벽 치유 효과를 발휘합니다.</p>
             </div>
             <div class="ing-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=500" alt="Camellia"></div>
+                <div class="img-box"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=500" alt="Camellia" loading="lazy" decoding="async"></div>
                 <h3>천연 동백 오일</h3>
                 <p>피부 유수분 밸런스를 고정하여 산뜻하면서도 깊은 영양감을 부여합니다.</p>
             </div>
             <div class="ing-card">
-                <div class="img-box"><img src="https://images.pexels.com/photos/8154944/pexels-photo-8154944.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Birch"></div>
+                <div class="img-box"><img src="https://images.pexels.com/photos/8154944/pexels-photo-8154944.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Birch" loading="lazy" decoding="async"></div>
                 <h3>인제 자작나무 수액</h3>
                 <p>아미노산이 풍부하여 탈수를 예방하고 맑은 투명도를 선사합니다.</p>
             </div>
@@ -237,7 +257,7 @@
         <div class="best-grid">
             <div class="prod-item">
                 <span class="badge-best">BEST 01</span>
-                <div class="img-box"><a href="sub_detail.html"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=500" alt="Toner"></a></div>
+                <div class="img-box"><a href="sub_detail.html"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=500" alt="Toner" loading="lazy" decoding="async"></a></div>
                 <div class="prod-details">
                     <h3><a href="sub_detail.html">하이드로 수분 코어 토너 200ml</a></h3>
                     <p class="price">23,000원</p>
@@ -245,7 +265,7 @@
             </div>
             <div class="prod-item">
                 <span class="badge-best">BEST 02</span>
-                <div class="img-box"><a href="sub_detail.html"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=500" alt="Serum"></a></div>
+                <div class="img-box"><a href="sub_detail.html"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=500" alt="Serum" loading="lazy" decoding="async"></a></div>
                 <div class="prod-details">
                     <h3><a href="sub_detail.html">비타 루미너스 인텐시브 세럼 50ml</a></h3>
                     <p class="price">28,000원</p>
@@ -253,7 +273,7 @@
             </div>
             <div class="prod-item">
                 <span class="badge-best">BEST 03</span>
-                <div class="img-box"><a href="sub_detail.html"><img src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cream"></a></div>
+                <div class="img-box"><a href="sub_detail.html"><img src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cream" loading="lazy" decoding="async"></a></div>
                 <div class="prod-details">
                     <h3><a href="sub_detail.html">세라맥스 인텐스 인리치드 크림 80ml</a></h3>
                     <p class="price">26,000원</p>
@@ -270,7 +290,7 @@
                 <p>피부 건강의 핵심은 클렌징 단계의 자극 최소화입니다. SKINLAB 클린 랩 연구팀이 제안하는 무자극 약산성 세안법 가이드를 만나보세요.</p>
                 <a href="#" class="btn-underline" style="width:fit-content;">가이드 매거진 읽기 &rarr;</a>
             </div>
-            <div class="img-box"><img src="https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&q=80&w=800" alt="Face Care"></div>
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&q=80&w=800" alt="Face Care" loading="lazy" decoding="async"></div>
         </div>
     </section>
 
@@ -305,8 +325,8 @@
     </section>
 
     <div class="modal-overlay" id="auth-modal-overlay" onclick="closeAuthModal()">
-        <div class="auth-modal" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+        <div class="auth-modal" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입" onclick="event.stopPropagation()">
+            <button type="button" class="modal-close" aria-label="닫기" onclick="closeAuthModal()">&times;</button>
             <div class="modal-tabs">
                 <div class="modal-tab-btn" id="tab-login" onclick="switchAuthTab('login')">로그인</div>
                 <div class="modal-tab-btn" id="tab-join" onclick="switchAuthTab('join')">회원가입</div>

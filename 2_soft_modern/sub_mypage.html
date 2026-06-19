@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKINLAB — 마이페이지</title>
+    <meta name="description" content="SKINLAB 마이페이지. 주문 내역, 보유 쿠폰, 적립금, 나의 리뷰, 회원 정보를 다정하게 관리하세요.">
+    <meta name="theme-color" content="#FBF8F3">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%2710%27%20fill%3D%27%238FA382%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2722%27%20font-family%3D%27Arial%27%20font-weight%3D%27700%27%20font-size%3D%2716%27%20fill%3D%27%23fff%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .mp-head{text-align:center;padding-bottom:0}
+        .mp-wrap{display:grid;grid-template-columns:240px 1fr;gap:clamp(24px,4vw,50px);max-width:1100px;margin:0 auto;align-items:start}
+        .mp-menu{background:var(--paper);border-radius:var(--r);padding:18px;box-shadow:0 10px 30px -24px rgba(90,80,60,.5)}
+        .mp-menu h3{font-family:var(--disp);font-weight:600;font-size:16px;margin:8px 8px 14px}
+        .mp-menu-list li{list-style:none;padding:12px 14px;border-radius:14px;color:var(--soft);font-size:14.5px;font-weight:500;cursor:pointer;transition:.25s}
+        .mp-menu-list li:hover{background:var(--sage-bg);color:var(--ink)}
+        .mp-menu-list li.active{background:var(--sage);color:#fff}
+
+        .profile-card{background:var(--paper);border-radius:var(--r);padding:30px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:34px;box-shadow:0 10px 30px -24px rgba(90,80,60,.5)}
+        .profile-info h2{font-family:var(--disp);font-weight:600;font-size:22px;margin-bottom:6px}
+        .profile-info p{font-size:13.5px;color:var(--soft)}
+        .profile-info b{color:var(--ink)}
+        .profile-stats{display:flex;gap:14px}
+        .stat-item{background:var(--sage-bg);border-radius:var(--r-sm);padding:16px 22px;text-align:center;cursor:pointer;min-width:88px;transition:.25s}
+        .stat-item:hover{background:var(--sage);color:#fff}
+        .stat-item .num{display:block;font-family:var(--disp);font-weight:600;font-size:24px}
+        .stat-item .label{font-size:12px}
+
+        .mp-panel{display:none}.mp-panel.active{display:block}
+        .panel-title{font-family:var(--disp);font-weight:600;font-size:clamp(20px,2.6vw,26px);margin-bottom:8px}
+        .panel-desc{color:var(--soft);font-size:14px;margin-bottom:20px}
+
+        .order-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+        .order-table th{text-align:left;padding:14px 12px;border-bottom:2px solid var(--sage);font-family:var(--disp);font-weight:600;font-size:13px}
+        .order-table td{padding:18px 12px;border-bottom:1px solid var(--line);color:var(--soft)}
+        .order-table .pn{color:var(--ink);font-weight:500}
+        .badge-st{display:inline-block;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;background:var(--sage-bg);color:var(--sage)}
+
+        .coupon-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+        .coupon-card{background:var(--paper);border-radius:var(--r);display:flex;overflow:hidden;box-shadow:0 10px 30px -24px rgba(90,80,60,.5)}
+        .coupon-left{background:var(--blush-bg);padding:26px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;min-width:120px;text-align:center}
+        .coupon-left .disc{font-family:var(--disp);font-weight:600;font-size:30px;color:#b06a55;line-height:1}
+        .coupon-left .disc small{font-size:16px}
+        .coupon-left .tag{font-size:10px;letter-spacing:.1em;color:var(--soft);margin-top:6px}
+        .coupon-right{padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;flex-grow:1}
+        .coupon-right h4{font-family:var(--disp);font-weight:600;font-size:15px}
+        .coupon-right p{font-size:12.5px;color:var(--soft)}
+        .coupon-right .date{font-size:12px;color:#b3aea3}
+        .coupon-right .apply{margin-top:6px;align-self:flex-start;padding:9px 18px;font-size:12.5px}
+
+        .empty-box{background:var(--paper);border-radius:var(--r);padding:44px;text-align:center;color:var(--soft);box-shadow:inset 0 0 0 1.5px var(--line)}
+
+        .review-item{background:var(--paper);border-radius:var(--r);padding:22px;display:flex;gap:20px;position:relative;box-shadow:0 10px 30px -24px rgba(90,80,60,.5)}
+        .review-thumb{width:84px;height:96px;border-radius:var(--r-sm);overflow:hidden;flex-shrink:0;background:var(--blush-bg)}
+        .review-body{flex-grow:1}
+        .review-body .pt{font-family:var(--disp);font-weight:600;font-size:14.5px}
+        .review-body .stars{color:var(--blush);font-size:14px;letter-spacing:.1em;margin:6px 0}
+        .review-body .txt{font-size:13.5px;color:var(--soft);line-height:1.6;margin-bottom:8px}
+        .review-body .stamp{font-size:12px;color:#b3aea3}
+        .review-actions{position:absolute;top:22px;right:22px;display:flex;gap:8px}
+        .review-actions button{font-size:12px;border:none;background:var(--sage-bg);color:var(--ink);padding:6px 14px;border-radius:999px;cursor:pointer;transition:.2s;font-family:var(--disp);font-weight:500}
+        .review-actions button:hover{background:var(--sage);color:#fff}
+
+        .edit-box{background:var(--paper);border-radius:var(--r);padding:30px;box-shadow:0 10px 30px -24px rgba(90,80,60,.5);max-width:520px}
+        .edit-box label{display:block;font-family:var(--disp);font-size:12.5px;font-weight:500;color:var(--soft);margin:0 0 6px 4px}
+        .edit-box input{width:100%;border:none;border-radius:14px;background:var(--cream);padding:13px 16px;font:inherit;font-size:15px;outline:none;margin-bottom:16px;box-shadow:inset 0 0 0 1.5px var(--line)}
+        .edit-box input:focus{box-shadow:inset 0 0 0 1.5px var(--sage)}
+        .edit-box input[readonly]{background:#efece5;color:var(--soft)}
+        .edit-box .pill{justify-content:center;width:100%;max-width:220px;margin-top:6px}
+
+        @media(max-width:820px){
+            .mp-wrap{grid-template-columns:1fr;gap:24px}
+            .mp-menu-list{display:flex;flex-wrap:wrap;gap:8px}
+            .mp-menu-list li{border-radius:999px}
+            .profile-card{flex-direction:column;text-align:center}
+            .coupon-grid{grid-template-columns:1fr}
+            .review-item{flex-direction:column}
+            .review-actions{position:static;margin-top:8px}
+        }
+    </style>
+</head>
+<body>
+    <a class="skip" href="#main">본문 바로가기</a>
+    <header id="hd">
+        <div class="nav">
+            <a class="brand" href="index.html">SKIN<span>LAB</span></a>
+            <nav class="menu" aria-label="주요 메뉴">
+                <a href="sub_category.html?type=skincare">스킨케어</a>
+                <a href="sub_category.html?type=line">라인</a>
+                <a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a>
+                <a href="sub_brand.html">브랜드</a>
+                <a href="sub_category.html?type=promotion">기획전</a>
+            </nav>
+            <div class="util">
+                <button type="button" onclick="openModal('login')">로그인</button>
+                <a class="cart" href="sub_cart.html">장바구니 0</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+    <section>
+        <div class="wrap">
+            <div class="shead mp-head reveal"><span class="eyebrow">My Page</span><h1>나의 스킨랩 에센셜 💛</h1><p>주문과 혜택을 한눈에 살펴보세요</p></div>
+
+            <div class="mp-wrap reveal">
+                <aside class="mp-menu">
+                    <h3>마이 에센셜</h3>
+                    <ul class="mp-menu-list">
+                        <li id="menu-dash" class="active" onclick="switchMyTab('dash')">마이페이지 홈</li>
+                        <li id="menu-coupon" onclick="switchMyTab('coupon')">보유 쿠폰함</li>
+                        <li id="menu-history" onclick="switchMyTab('history')">주문/배송 조회</li>
+                        <li id="menu-review" onclick="switchMyTab('review')">나의 리뷰 관리</li>
+                        <li id="menu-edit" onclick="switchMyTab('edit')">회원 정보 수정</li>
+                    </ul>
+                </aside>
+
+                <div class="mp-content">
+                    <div class="profile-card">
+                        <div class="profile-info">
+                            <h2>홍길동 님, 안녕하세요 🌿</h2>
+                            <p>등급: <b>SKIN-MATE (일반회원)</b> · 피부타입: <b>민감성 복합 스킨</b></p>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="stat-item" onclick="switchMyTab('coupon')"><span class="num">2</span><span class="label">쿠폰</span></div>
+                            <div class="stat-item" onclick="switchMyTab('dash')"><span class="num">3,500P</span><span class="label">적립금</span></div>
+                            <div class="stat-item" onclick="switchMyTab('review')"><span class="num">1</span><span class="label">나의리뷰</span></div>
+                        </div>
+                    </div>
+
+                    <div class="mp-panel active" id="panel-dash">
+                        <h2 class="panel-title">최근 주문 내역</h2>
+                        <p class="panel-desc">가장 최근 주문의 진행 상태를 확인하실 수 있어요.</p>
+                        <table class="order-table">
+                            <thead>
+                                <tr><th>주문일자</th><th>주문번호</th><th>상품명</th><th>결제금액</th><th>주문상태</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-06-02</td>
+                                    <td>SL-20260602-091</td>
+                                    <td class="pn">하이드로 수분 코어 토너 200ml</td>
+                                    <td>26,000원</td>
+                                    <td><span class="badge-st">배송 준비중</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mp-panel" id="panel-coupon">
+                        <h2 class="panel-title">나의 보유 쿠폰</h2>
+                        <p class="panel-desc">주문 결제 단계에서 바로 적용해 할인 혜택을 받으실 수 있어요.</p>
+                        <div class="coupon-grid">
+                            <div class="coupon-card">
+                                <div class="coupon-left">
+                                    <span class="disc">10<small>%</small></span>
+                                    <span class="tag">WELCOME</span>
+                                </div>
+                                <div class="coupon-right">
+                                    <div>
+                                        <h4>스킨랩 가족 합류 비건 웰컴 쿠폰</h4>
+                                        <p>기초 루틴 정착 시 10% 즉시 할인 (최대 5,000원)</p>
+                                    </div>
+                                    <span class="date">만료일자: 2026-07-02 까지</span>
+                                    <button type="button" class="pill apply" onclick="toast('<b>쿠폰 적용 준비 완료</b><br>웰컴 쿠폰이 장바구니에 담겼어요. 결제 시 할인이 적용됩니다.')">쿠폰 적용</button>
+                                </div>
+                            </div>
+                            <div class="coupon-card">
+                                <div class="coupon-left" style="background:var(--butter)">
+                                    <span class="disc" style="color:#9a7a3e">무료</span>
+                                    <span class="tag">DELIVERY</span>
+                                </div>
+                                <div class="coupon-right">
+                                    <div>
+                                        <h4>클린 뷰티 첫 구매 감사 무료배송 쿠폰</h4>
+                                        <p>금액 조건 없는 전 상품 무료 배송 서비스</p>
+                                    </div>
+                                    <span class="date">만료일자: 2026-06-30 까지</span>
+                                    <button type="button" class="pill apply" onclick="toast('<b>쿠폰 적용 준비 완료</b><br>무료배송 쿠폰이 적용 대기 중이에요. 결제 시 배송비가 면제됩니다.')">쿠폰 적용</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mp-panel" id="panel-history">
+                        <h2 class="panel-title">전체 주문 및 배송 현황</h2>
+                        <p class="panel-desc">최근 3개월간의 주문 내역을 안내해드려요.</p>
+                        <div class="empty-box">최근 3개월간 주문하신 내역이 정상 반영되어 있어요. 🌿</div>
+                    </div>
+
+                    <div class="mp-panel" id="panel-review">
+                        <h2 class="panel-title">나의 리뷰 관리</h2>
+                        <p class="panel-desc">구매 후 작성하신 리얼 스킨 피드백 내역이에요.</p>
+                        <div class="review-item">
+                            <div class="review-thumb"><img src="https://images.pexels.com/photos/3762466/pexels-photo-3762466.jpeg?auto=compress&cs=tinysrgb&w=150" alt="비타 루미너스 인텐시브 세럼" loading="lazy"></div>
+                            <div class="review-body">
+                                <span class="pt">비타 루미너스 인텐시브 세럼 50ml</span>
+                                <div class="stars">★★★★★ 5.0</div>
+                                <p class="txt">"끈적임 없이 피부에 싹 스며드는데 다음 날 아침 피부 결이 눈에 띄게 맑아진 게 느껴져서 너무 좋아요. 다 쓰면 재구매 의사 100%입니다!"</p>
+                                <span class="stamp">작성일자: 2026.05.28</span>
+                            </div>
+                            <div class="review-actions">
+                                <button type="button" onclick="toast('<b>리뷰 수정</b><br>리뷰 수정 화면으로 연결됩니다.')">수정</button>
+                                <button type="button" onclick="toast('<b>리뷰 삭제 완료</b><br>작성하신 리뷰가 삭제되었어요.')">삭제</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mp-panel" id="panel-edit">
+                        <h2 class="panel-title">회원 정보 수정</h2>
+                        <p class="panel-desc">소중한 정보를 안전하게 관리해드릴게요.</p>
+                        <div class="edit-box">
+                            <label>이메일 주소 (수정 불가)</label>
+                            <input type="email" value="example@skinlab.com" readonly>
+                            <label>새 비밀번호</label>
+                            <input type="password" placeholder="변경할 비밀번호 입력">
+                            <label>연락처</label>
+                            <input type="text" value="010-1234-5678">
+                            <button type="button" class="pill" onclick="toast('<b>회원정보 변경 완료</b><br>회원 정보가 성공적으로 변경되었어요.')">정보 수정 완료</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="f-top">
+            <div>
+                <div class="f-brand">SKIN<span>LAB</span></div>
+                <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>1644-1234 · cs@skinlab.co.kr</p>
+            </div>
+            <div class="f-col"><h4>Shop</h4><a href="sub_category.html?type=skincare">스킨케어</a><a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a><a href="sub_category.html?type=promotion">기획전</a></div>
+            <div class="f-col"><h4>Support</h4><a href="sub_cs.html?tab=faq">자주 묻는 질문</a><a href="sub_cs.html?tab=delivery">배송 · 교환/반품</a><a href="sub_cs.html?tab=qna">1:1 문의</a></div>
+        </div>
+        <div class="f-bot">© 2026 SKINLAB. 다정한 클린 뷰티.</div>
+    </footer>
+
+    <div class="ov" id="ov" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입">
+            <button class="x" aria-label="닫기" onclick="closeModal()">&times;</button>
+            <h3>반가워요 👋</h3><p class="sub">스킨랩에 오신 걸 환영해요</p>
+            <div class="tabs"><button class="tab" id="t-login" onclick="switchTab('login')">로그인</button><button class="tab" id="t-join" onclick="switchTab('join')">회원가입</button></div>
+            <div class="pane" id="p-login">
+                <label>이메일</label><input type="email" placeholder="example@skinlab.com">
+                <label>비밀번호</label><input type="password" placeholder="••••••••">
+                <button class="pill go" onclick="fakeLogin()">로그인</button>
+            </div>
+            <div class="pane" id="p-join">
+                <label>이름</label><input type="text" placeholder="홍길동">
+                <label>이메일</label><input type="email" placeholder="example@skinlab.com">
+                <label>비밀번호</label><input type="password" placeholder="영문, 숫자 포함 8자 이상">
+                <button class="pill go" onclick="fakeJoin()">가입하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><div class="th"><span>SKINLAB 알림</span><span>방금 전</span></div><div class="tb" id="toast-body">[Web발신]</div></div>
+
+    <script>
+        var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+        document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(Math.min(i%3,2)*80)+'ms';io.observe(el)});
+        var last=window.scrollY,hd=document.getElementById('hd');
+        addEventListener('scroll',function(){var y=window.scrollY;hd.style.transform=(y>last&&y>200)?'translateY(-100%)':'translateY(0)';last=y});
+        function openModal(m){document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';switchTab(m)}
+        function closeModal(){document.getElementById('ov').classList.remove('on');document.body.style.overflow=''}
+        function switchTab(m){['login','join'].forEach(function(k){document.getElementById('t-'+k).classList.toggle('on',k===m);document.getElementById('p-'+k).classList.toggle('on',k===m)})}
+        function toast(msg){var t=document.getElementById('toast');document.getElementById('toast-body').innerHTML='[Web발신]<br>'+msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3400)}
+        function fakeLogin(){closeModal();setTimeout(function(){toast('<b>로그인 성공</b><br>회원님, 반가워요! 맞춤 케어를 만나보세요.')},350)}
+        function fakeJoin(){closeModal();setTimeout(function(){toast('<b>가입 완료</b><br>스킨랩 패밀리가 되신 것을 환영해요. 10% 웰컴 쿠폰 지급 💛')},350)}
+        function subscribe(e){e.preventDefault();e.target.reset();toast('<b>구독 완료</b><br>산뜻한 소식을 가장 먼저 전해드릴게요.')}
+
+        /* ===== 마이페이지 탭 전환 ===== */
+        function switchMyTab(tabId){
+            document.querySelectorAll('.mp-menu-list li').forEach(function(li){li.classList.remove('active')});
+            document.querySelectorAll('.mp-panel').forEach(function(p){p.classList.remove('active')});
+            var menu=document.getElementById('menu-'+tabId), panel=document.getElementById('panel-'+tabId);
+            if(menu) menu.classList.add('active');
+            if(panel) panel.classList.add('active');
+        }
+    </script>
+</body>
+</html>

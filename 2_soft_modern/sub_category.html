@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKINLAB — 컬렉션</title>
+    <meta name="description" content="SKINLAB 전체 컬렉션. 스킨케어, 라인, 바디·헤어 제품과 기획전을 순한 클린 뷰티로 만나보세요.">
+    <meta name="theme-color" content="#FBF8F3">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%2710%27%20fill%3D%27%238FA382%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2722%27%20font-family%3D%27Arial%27%20font-weight%3D%27700%27%20font-size%3D%2716%27%20fill%3D%27%23fff%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .col-banner{background:var(--sage-bg);border-radius:clamp(28px,5vw,52px);margin:clamp(16px,3vw,28px) var(--pad) 0;padding:clamp(40px,6vw,72px) var(--pad);text-align:center}
+        .col-banner h1{font-family:var(--disp);font-weight:600;font-size:clamp(30px,4.4vw,52px);line-height:1.12;margin-top:10px}
+        .col-banner p{color:var(--soft);margin-top:12px;max-width:50ch;margin-left:auto;margin-right:auto}
+        .shop-layout{display:grid;grid-template-columns:240px 1fr;gap:clamp(24px,4vw,50px)}
+        .shop-layout.hide{display:none}
+        .filter-side .fg{background:var(--paper);border-radius:var(--r);padding:22px 24px;box-shadow:0 10px 30px -24px rgba(90,80,60,.5);margin-bottom:18px}
+        .filter-side h4{font-family:var(--disp);font-weight:600;font-size:14px;margin-bottom:14px}
+        .filter-side ul{list-style:none}
+        .filter-side .cat-list li{font-size:14px;color:var(--soft);padding:8px 12px;border-radius:999px;cursor:pointer;margin-bottom:4px;transition:.25s}
+        .filter-side .cat-list li.active,.filter-side .cat-list li:hover{background:var(--sage-bg);color:var(--ink);font-weight:500}
+        .filter-side .skin-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--soft);margin-bottom:10px;cursor:pointer}
+        .filter-side input[type=checkbox]{accent-color:var(--sage);width:16px;height:16px}
+        .list-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;font-size:14px;color:var(--soft)}
+        .list-controls select{border:none;box-shadow:inset 0 0 0 1.5px var(--line);background:#fff;padding:10px 18px;border-radius:999px;font:inherit;font-size:13.5px;outline:none;cursor:pointer}
+        .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+        .pagination{display:flex;justify-content:center;gap:10px;margin-top:clamp(40px,6vw,60px)}
+        .pagination button{width:40px;height:40px;border:none;box-shadow:inset 0 0 0 1.5px var(--line);background:#fff;border-radius:999px;font-family:var(--disp);font-size:14px;cursor:pointer;transition:.25s}
+        .pagination button.active,.pagination button:hover{background:var(--sage);color:#fff;box-shadow:none}
+        .promo-view{display:none}
+        .promo-view.active{display:block}
+        .promo-tabs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:clamp(28px,4vw,44px)}
+        .promo-tab{background:#fff;border:none;box-shadow:inset 0 0 0 1.5px var(--line);padding:11px 22px;border-radius:999px;font-family:var(--disp);font-size:13.5px;font-weight:500;color:var(--soft);cursor:pointer;transition:.25s}
+        .promo-tab.active,.promo-tab:hover{background:var(--ink);color:#fff;box-shadow:none}
+        .promo-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:22px;margin-bottom:22px}
+        .promo-grid.reverse{grid-template-columns:1fr 1.4fr}
+        .promo-big{background:var(--paper);border-radius:var(--r);overflow:hidden;display:flex;box-shadow:0 12px 34px -24px rgba(90,80,60,.5)}
+        .promo-big .txt{flex:1;padding:clamp(28px,3vw,42px);display:flex;flex-direction:column;justify-content:center;gap:10px}
+        .promo-big .tag{display:inline-block;width:fit-content;background:var(--blush-bg);color:#b06a55;font-family:var(--disp);font-size:11.5px;font-weight:600;letter-spacing:.06em;padding:6px 14px;border-radius:999px;margin-bottom:4px}
+        .promo-big .txt h2{font-family:var(--disp);font-weight:600;font-size:clamp(22px,2.4vw,30px);line-height:1.2}
+        .promo-big .txt p{color:var(--soft);font-size:14.5px;margin-bottom:8px}
+        .promo-big .go{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--sage)}
+        .promo-big .go:hover{color:var(--blush)}
+        .promo-big .imgw{flex:1;position:relative;min-height:240px}
+        .promo-big.single{flex-direction:column}
+        .promo-big.single .imgw{min-height:200px}
+        .sale-badge{position:absolute;top:18px;right:18px;z-index:2;background:#fff;color:var(--sage);font-family:var(--disp);font-weight:600;font-size:11px;text-align:center;line-height:1.2;padding:12px;border-radius:999px;box-shadow:var(--sh)}
+        .sale-badge b{display:block;font-size:18px}
+        .sale-badge.green{background:var(--sage);color:#fff}
+        .sale-badge.blush{background:var(--blush);color:#fff}
+        .promo-rec-title{font-family:var(--disp);font-weight:600;font-size:clamp(22px,2.6vw,30px);text-align:center;margin:clamp(36px,5vw,56px) 0 clamp(24px,4vw,36px)}
+        .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+        @media(max-width:1100px){.grid4{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:900px){.shop-layout{grid-template-columns:1fr}.filter-side{display:flex;gap:16px;flex-wrap:wrap}.filter-side .fg{flex:1;min-width:180px}.promo-grid,.promo-grid.reverse{grid-template-columns:1fr}.promo-big{flex-direction:column}}
+        @media(max-width:720px){.grid3{grid-template-columns:1fr}.grid4{grid-template-columns:1fr}.filter-side{display:none}}
+    </style>
+</head>
+<body>
+    <a class="skip" href="#main">본문 바로가기</a>
+    <header id="hd">
+        <div class="nav">
+            <a class="brand" href="index.html">SKIN<span>LAB</span></a>
+            <nav class="menu" aria-label="주요 메뉴">
+                <a href="sub_category.html?type=skincare">스킨케어</a>
+                <a href="sub_category.html?type=line">라인</a>
+                <a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a>
+                <a href="sub_brand.html">브랜드</a>
+                <a href="sub_category.html?type=promotion">기획전</a>
+            </nav>
+            <div class="util">
+                <button type="button" onclick="openModal('login')">로그인</button>
+                <a class="cart" href="sub_cart.html">장바구니 0</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+    <section class="col-banner reveal">
+        <span class="eyebrow">Collection</span>
+        <h1 id="page-main-title">SHOP</h1>
+        <p id="page-sub-desc">스킨랩의 엄선된 맞춤형 솔루션을 다정하게 제안해요.</p>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="shop-layout" id="standard-shop-area">
+                <aside class="filter-side reveal">
+                    <div class="fg">
+                        <h4>카테고리</h4>
+                        <ul class="cat-list" id="sidebar-cat-list"></ul>
+                    </div>
+                    <div class="fg">
+                        <h4>피부 타입</h4>
+                        <ul class="skin-list">
+                            <li><input type="checkbox" id="sk1"><label for="sk1">모든 피부</label></li>
+                            <li><input type="checkbox" id="sk2"><label for="sk2">건성 피부</label></li>
+                            <li><input type="checkbox" id="sk3"><label for="sk3">민감성 스킨</label></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="reveal">
+                    <div class="list-controls">
+                        <span>전체 아이템 목록</span>
+                        <select aria-label="정렬">
+                            <option>추천순</option>
+                            <option>신상품순</option>
+                            <option>낮은가격순</option>
+                        </select>
+                    </div>
+                    <div class="prods grid3">
+                        <a class="prod" href="sub_detail.html"><div class="ph"><img src="https://images.pexels.com/photos/3373746/pexels-photo-3373746.jpeg?auto=compress&cs=tinysrgb&w=600" alt="하이드로 수분 코어 토너" loading="lazy"></div><h3>하이드로 수분 코어 토너 200ml</h3><p class="price">23,000원</p></a>
+                        <a class="prod" href="sub_detail.html"><div class="ph"><img src="https://images.pexels.com/photos/3762466/pexels-photo-3762466.jpeg?auto=compress&cs=tinysrgb&w=600" alt="비타 루미너스 인텐시브 세럼" loading="lazy"></div><h3>비타 루미너스 인텐시브 세럼 50ml</h3><p class="price">28,000원</p></a>
+                        <a class="prod" href="sub_detail.html"><div class="ph"><img src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="세라맥스 인텐스 인리치드 크림" loading="lazy"></div><h3>세라맥스 인텐스 인리치드 크림 80ml</h3><p class="price">26,000원</p></a>
+                        <a class="prod" href="sub_detail.html"><div class="ph"><img src="https://images.pexels.com/photos/3616876/pexels-photo-3616876.jpeg?auto=compress&cs=tinysrgb&w=600" alt="시카 카밍 리프레시 배리어 에센스" loading="lazy"></div><h3>시카 카밍 리프레시 배리어 에센스</h3><p class="price">32,000원</p></a>
+                        <a class="prod" href="sub_detail.html"><div class="ph"><img src="https://images.pexels.com/photos/3785147/pexels-photo-3785147.jpeg?auto=compress&cs=tinysrgb&w=600" alt="티트리 퓨리파잉 폼 클렌저" loading="lazy"></div><h3>티트리 퓨리파잉 폼 클렌저</h3><p class="price">18,000원</p></a>
+                        <a class="prod" href="sub_detail.html"><div class="ph"><img src="https://images.pexels.com/photos/4041391/pexels-photo-4041391.jpeg?auto=compress&cs=tinysrgb&w=600" alt="오가닉 클렌징 오일 마일드" loading="lazy"></div><h3>오가닉 클렌징 오일 마일드</h3><p class="price">24,000원</p></a>
+                    </div>
+                    <div class="pagination">
+                        <button class="active" onclick="toast('1페이지를 보고 계세요 💛')">1</button>
+                        <button onclick="toast('다음 페이지는 준비 중이에요. 곧 채워둘게요!')">2</button>
+                        <button onclick="toast('다음 페이지는 준비 중이에요. 곧 채워둘게요!')">3</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promo-view" id="promotion-view-area">
+                <div class="promo-tabs reveal">
+                    <button class="promo-tab active" onclick="switchPromoTab(this,'전체')">전체</button>
+                    <button class="promo-tab" onclick="switchPromoTab(this,'베스트셀러')">베스트셀러</button>
+                    <button class="promo-tab" onclick="switchPromoTab(this,'신제품')">신제품</button>
+                    <button class="promo-tab" onclick="switchPromoTab(this,'시즌 프로모션')">시즌 프로모션</button>
+                    <button class="promo-tab" onclick="switchPromoTab(this,'한정판 &amp; 기프트')">한정판 &amp; 기프트</button>
+                </div>
+
+                <div class="promo-grid reveal">
+                    <div class="promo-big">
+                        <div class="txt">
+                            <span class="tag">베스트셀러</span>
+                            <h2>스테디 셀러<br>베스트 모음전</h2>
+                            <p>고객님들의 사랑을 받는 인기 제품을 특별한 혜택으로 만나보세요.</p>
+                            <a href="sub_detail.html" class="go">자세히 보기 &rarr;</a>
+                        </div>
+                        <div class="imgw">
+                            <span class="sale-badge">UP TO<b>30%</b></span>
+                            <img src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="베스트셀러 기획전" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="promo-big single">
+                        <div class="imgw">
+                            <span class="sale-badge green">10%<b style="font-size:12px;font-weight:600">쿠폰</b></span>
+                            <img src="https://images.pexels.com/photos/4041391/pexels-photo-4041391.jpeg?auto=compress&cs=tinysrgb&w=600" alt="신제품 출시" loading="lazy">
+                        </div>
+                        <div class="txt">
+                            <span class="tag">신제품</span>
+                            <h2 style="font-size:20px">NEW 신제품 출시</h2>
+                            <p style="font-size:13.5px">자연에서 찾은 새로운 성분으로 피부 본연의 힘을 깨워보세요.</p>
+                            <a href="sub_detail.html" class="go" style="font-size:13.5px">자세히 보기 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="promo-grid reverse reveal">
+                    <div class="promo-big single">
+                        <div class="imgw">
+                            <span class="sale-badge blush">UP TO<b>25%</b></span>
+                            <img src="https://images.pexels.com/photos/3616876/pexels-photo-3616876.jpeg?auto=compress&cs=tinysrgb&w=600" alt="시즌 프로모션" loading="lazy">
+                        </div>
+                        <div class="txt">
+                            <span class="tag">시즌 프로모션</span>
+                            <h2 style="font-size:20px">봄맞이 스킨케어 루틴</h2>
+                            <p style="font-size:13.5px">건조하고 민감해진 피부를 위한 수분 진정 케어 제안.</p>
+                            <a href="sub_detail.html" class="go" style="font-size:13.5px">자세히 보기 &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="promo-big">
+                        <div class="txt">
+                            <span class="tag">한정판 &amp; 기프트</span>
+                            <h2>감사의 마음을 담은<br>기프트 세트</h2>
+                            <p>소중한 사람에게 전하는 특별한 뷰티 선물, 정성스러운 포장 서비스를 더해드려요.</p>
+                            <a href="sub_detail.html" class="go">자세히 보기 &rarr;</a>
+                        </div>
+                        <div class="imgw">
+                            <span class="sale-badge" style="background:var(--ink);color:#fff">GIFT<b style="font-size:13px;font-weight:600">특별포장</b></span>
+                            <img src="https://images.pexels.com/photos/3785147/pexels-photo-3785147.jpeg?auto=compress&cs=tinysrgb&w=600" alt="기프트 세트" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="promo-rec-title reveal">기획전 추천 제품</h3>
+                <div class="prods grid4 reveal">
+                    <a class="prod" href="sub_detail.html"><div class="ph"><img src="https://images.pexels.com/photos/3373746/pexels-photo-3373746.jpeg?auto=compress&cs=tinysrgb&w=600" alt="HST 수분 진정 토너" loading="lazy"></div><h3>HST 수분 진정 토너</h3><p class="price">23,000원</p></a>
+                    <a class="prod" href="sub_detail.html"><div class="ph"><img src="https://images.pexels.com/photos/3762466/pexels-photo-3762466.jpeg?auto=compress&cs=tinysrgb&w=600" alt="HST 비타C 잡티 세럼" loading="lazy"></div><h3>HST 비타C 잡티 세럼</h3><p class="price">28,000원</p></a>
+                    <a class="prod" href="sub_detail.html"><div class="ph"><img src="https://images.pexels.com/photos/3616876/pexels-photo-3616876.jpeg?auto=compress&cs=tinysrgb&w=600" alt="HST 시카 진정 앰플" loading="lazy"></div><h3>HST 시카 진정 앰플</h3><p class="price">28,000원</p></a>
+                    <a class="prod" href="sub_detail.html"><div class="ph"><img src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="HST 수분 크림" loading="lazy"></div><h3>HST 수분 크림</h3><p class="price">26,000원</p></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="f-top">
+            <div>
+                <div class="f-brand">SKIN<span>LAB</span></div>
+                <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>1644-1234 · cs@skinlab.co.kr</p>
+            </div>
+            <div class="f-col"><h4>Shop</h4><a href="sub_category.html?type=skincare">스킨케어</a><a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a><a href="sub_category.html?type=promotion">기획전</a></div>
+            <div class="f-col"><h4>Support</h4><a href="sub_cs.html?tab=faq">자주 묻는 질문</a><a href="sub_cs.html?tab=delivery">배송 · 교환/반품</a><a href="sub_cs.html?tab=qna">1:1 문의</a></div>
+        </div>
+        <div class="f-bot">© 2026 SKINLAB. 다정한 클린 뷰티.</div>
+    </footer>
+
+    <div class="ov" id="ov" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입">
+            <button class="x" aria-label="닫기" onclick="closeModal()">&times;</button>
+            <h3>반가워요 👋</h3><p class="sub">스킨랩에 오신 걸 환영해요</p>
+            <div class="tabs"><button class="tab" id="t-login" onclick="switchTab('login')">로그인</button><button class="tab" id="t-join" onclick="switchTab('join')">회원가입</button></div>
+            <div class="pane" id="p-login">
+                <label>이메일</label><input type="email" placeholder="example@skinlab.com">
+                <label>비밀번호</label><input type="password" placeholder="••••••••">
+                <button class="pill go" onclick="fakeLogin()">로그인</button>
+            </div>
+            <div class="pane" id="p-join">
+                <label>이름</label><input type="text" placeholder="홍길동">
+                <label>이메일</label><input type="email" placeholder="example@skinlab.com">
+                <label>비밀번호</label><input type="password" placeholder="영문, 숫자 포함 8자 이상">
+                <button class="pill go" onclick="fakeJoin()">가입하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><div class="th"><span>SKINLAB 알림</span><span>방금 전</span></div><div class="tb" id="toast-body">[Web발신]</div></div>
+
+    <script>
+        var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+        document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(Math.min(i%3,2)*80)+'ms';io.observe(el)});
+        var last=window.scrollY,hd=document.getElementById('hd');
+        addEventListener('scroll',function(){var y=window.scrollY;hd.style.transform=(y>last&&y>200)?'translateY(-100%)':'translateY(0)';last=y});
+        function openModal(m){document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';switchTab(m)}
+        function closeModal(){document.getElementById('ov').classList.remove('on');document.body.style.overflow=''}
+        function switchTab(m){['login','join'].forEach(function(k){document.getElementById('t-'+k).classList.toggle('on',k===m);document.getElementById('p-'+k).classList.toggle('on',k===m)})}
+        function toast(msg){var t=document.getElementById('toast');document.getElementById('toast-body').innerHTML='[Web발신]<br>'+msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3400)}
+        function fakeLogin(){closeModal();setTimeout(function(){toast('<b>로그인 성공</b><br>회원님, 반가워요! 맞춤 케어를 만나보세요.')},350)}
+        function fakeJoin(){closeModal();setTimeout(function(){toast('<b>가입 완료</b><br>스킨랩 패밀리가 되신 것을 환영해요. 10% 웰컴 쿠폰 지급 💛')},350)}
+        function subscribe(e){e.preventDefault();e.target.reset();toast('<b>구독 완료</b><br>산뜻한 소식을 가장 먼저 전해드릴게요.')}
+
+        /* ===== 페이지 전용: URL 파라미터 기반 카테고리/기획전 분기 ===== */
+        var params=new URLSearchParams(window.location.search);
+        var type=params.get('type')||'skincare';
+        var titles={
+            skincare:{main:'SKINCARE',sub:'자연의 고농축 포뮬러가 선사하는 피부 본연의 변화',list:['전체보기','클렌징','토너 & 에센스','세럼','크림']},
+            line:{main:'LINE SPECIAL',sub:'피부 고민별 최적화된 시그니처 맞춤 테라피 라인',list:['전체보기','수분 케어','진정 케어','브라이트닝']},
+            bodyhair:{main:'BODY & HAIR',sub:'감각적인 향과 식물성 케어로 완성하는 바디&헤어 루틴',list:['전체보기','바디케어','헤어케어']},
+            promotion:{main:'PROMOTION',sub:'특별한 순간을 위한 스킨랩 다정한 기획전',list:[]}
+        };
+        var data=titles[type]||titles.skincare;
+        document.getElementById('page-main-title').innerText=data.main;
+        document.getElementById('page-sub-desc').innerText=data.sub;
+        if(type==='promotion'){
+            document.getElementById('standard-shop-area').classList.add('hide');
+            document.getElementById('promotion-view-area').classList.add('active');
+        }else{
+            var lc=document.getElementById('sidebar-cat-list');
+            data.list.forEach(function(item,i){
+                var li=document.createElement('li');
+                if(i===0) li.className='active';
+                li.innerText=item;
+                li.onclick=function(){
+                    lc.querySelectorAll('li').forEach(function(x){x.classList.remove('active')});
+                    li.classList.add('active');
+                    toast('<b>'+item+'</b><br>해당 카테고리 제품을 불러왔어요.');
+                };
+                lc.appendChild(li);
+            });
+        }
+        function switchPromoTab(btn,name){
+            document.querySelectorAll('.promo-tab').forEach(function(b){b.classList.remove('active')});
+            btn.classList.add('active');
+            toast('<b>'+name+'</b><br>기획전을 필터링했어요.');
+        }
+    </script>
+</body>
+</html>

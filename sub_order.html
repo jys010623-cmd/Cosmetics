@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKINLAB | ORDER CONFIRMATION</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="SKINLAB 주문이 정상 접수되었습니다. 주문 내역과 배송 정보를 확인하세요.">
+    <meta name="author" content="SKINLAB">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SKINLAB">
+    <meta property="og:title" content="SKINLAB | 주문 완료">
+    <meta property="og:description" content="SKINLAB 주문이 정상 접수되었습니다. 주문 내역과 배송 정보를 확인하세요.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=1200">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SKINLAB | 주문 완료">
+    <meta name="twitter:description" content="SKINLAB 주문이 정상 접수되었습니다. 주문 내역과 배송 정보를 확인하세요.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%277%27%20fill%3D%27%231a1a1a%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2723%27%20font-family%3D%27Arial%2CHelvetica%2Csans-serif%27%20font-size%3D%2719%27%20font-weight%3D%27700%27%20fill%3D%27%23c8a27b%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">본문 바로가기</a>
 
     <!-- COMPONENT: HEADER -->
     <header id="main-header">
@@ -14,20 +32,53 @@
             <div class="logo"><a href="index.html">SKINLAB</a></div>
             <nav class="gnb">
                 <ul>
-                    <li><a href="sub_category.html?type=skincare">스킨케어</a></li>
-                    <li><a href="sub_category.html?type=line">라인별 제품</a></li>
-                    <li><a href="sub_category.html?type=bodyhair">바디 & 헤어</a></li>
-                    <li><a href="sub_brand.html">브랜드 스토리</a></li>
-                    <li><a href="sub_category.html?type=promotion">기획전</a></li>
+                    <li><a href="sub_category.html?type=skincare">스킨케어</a>
+                        <ul class="dropdown">
+                            <li><a href="sub_category.html?type=skincare&cat=cleansing">클렌징</a></li>
+                            <li><a href="sub_category.html?type=skincare&cat=toner">토너 & 에센스</a></li>
+                            <li><a href="sub_category.html?type=skincare&cat=serum">세럼</a></li>
+                            <li><a href="sub_category.html?type=skincare&cat=cream">크림</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="sub_category.html?type=line">라인별 제품</a>
+                        <ul class="dropdown">
+                            <li><a href="sub_category.html?type=line&cat=moisture">수분</a></li>
+                            <li><a href="sub_category.html?type=line&cat=soothing">진정</a></li>
+                            <li><a href="sub_category.html?type=line&cat=brightening">브라이트닝</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="sub_category.html?type=bodyhair">바디 & 헤어</a>
+                        <ul class="dropdown">
+                            <li><a href="sub_category.html?type=bodyhair&cat=body">바디케어</a></li>
+                            <li><a href="sub_category.html?type=bodyhair&cat=hair">헤어케어</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="sub_brand.html">브랜드 스토리</a>
+                        <ul class="dropdown">
+                            <li><a href="sub_brand.html#philosophy">브랜드 철학</a></li>
+                            <li><a href="sub_brand.html#ingredients">핵심 원료</a></li>
+                            <li><a href="sub_brand.html#lab">연구소</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="sub_category.html?type=promotion">기획전</a>
+                        <ul class="dropdown">
+                            <li><a href="sub_category.html?type=promotion&cat=best">베스트셀러</a></li>
+                            <li><a href="sub_category.html?type=promotion&cat=new">신제품</a></li>
+                            <li><a href="sub_category.html?type=promotion&cat=season">시즌 프로모션</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <div class="header-util">
                 <button type="button" onclick="openAuthModal('login')">LOGIN</button>
                 <button type="button" onclick="openAuthModal('join')">JOIN</button>
+                <a href="sub_mypage.html">MY PAGE</a>
                 <a href="sub_cart.html">CART (0)</a>
             </div>
         </div>
     </header>
+    <a id="main-content" tabindex="-1"></a>
+    <h1 class="sr-only sr-only-h1">주문 완료</h1>
 
     <div class="container" style="margin-top: 140px;">
         <div class="order-success-box">
@@ -66,8 +117,8 @@
        AUTH MODAL COMPONENT
        ========================================== -->
     <div class="modal-overlay" id="auth-modal-overlay" onclick="closeAuthModal()">
-        <div class="auth-modal" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+        <div class="auth-modal" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입" onclick="event.stopPropagation()">
+            <button type="button" class="modal-close" aria-label="닫기" onclick="closeAuthModal()">&times;</button>
             <div class="modal-tabs">
                 <div class="modal-tab-btn" id="tab-login" onclick="switchAuthTab('login')">로그인</div>
                 <div class="modal-tab-btn" id="tab-join" onclick="switchAuthTab('join')">회원가입</div>
@@ -75,15 +126,68 @@
             <div class="auth-form-panel" id="panel-login">
                 <div class="form-group"><label>이메일 주소</label><input type="email" placeholder="example@skinlab.com"></div>
                 <div class="form-group"><label>비밀번호</label><input type="password" placeholder="비밀번호를 입력해주세요"></div>
-                <button type="button" class="btn-filled" onclick="alert('로그인 완료')">로그인</button>
+                <button type="button" class="btn-filled" onclick="handleLoginSubmit()">로그인</button>
             </div>
             <div class="auth-form-panel" id="panel-join">
                 <div class="form-group"><label>이름</label><input type="text" placeholder="홍길동"></div>
                 <div class="form-group"><label>이메일 주소</label><input type="email" placeholder="example@skinlab.com"></div>
-                <button type="button" class="btn-filled" onclick="alert('가입 완료')">가입하기</button>
+                <button type="button" class="btn-filled" onclick="handleJoinSubmit()">가입하기</button>
             </div>
         </div>
     </div>
+    <div class="fake-sms-toast" id="sms-toast-node">
+        <div class="sms-header">
+            <span>💬 메시지 (SKINLAB 알림)</span>
+            <span>방금 전</span>
+        </div>
+        <div class="sms-body" id="sms-body-content">
+            [Web발신]<br>
+            SKINLAB 시스템 메시지 정보 창입니다.
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-info">
+                    <div class="footer-logo">SKINLAB</div>
+                    <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>대표번호: 1644-1234<br>cs@skinlab.co.kr</p>
+                </div>
+                <div class="footer-links">
+                    <h4>SHOPPING</h4>
+                    <ul>
+                        <li><a href="sub_category.html?type=skincare">스킨케어</a></li>
+                        <li><a href="sub_category.html?type=bodyhair">바디 & 헤어</a></li>
+                        <li><a href="sub_category.html?type=promotion">기획전 컬렉션</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>SUPPORT</h4>
+                    <ul>
+                        <li><a href="sub_cs.html?tab=qna">1:1 문의하기</a></li>
+                        <li><a href="sub_cs.html?tab=delivery">배송 및 교환/반품</a></li>
+                        <li><a href="sub_cs.html?tab=faq">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>NEWSLETTER</h4>
+                    <p>정기 뉴스레터를 구독하고 스페셜 소식을 받아보세요.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="이메일 주소 입력">
+                        <button type="button">구독</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-policies">
+                    <a href="sub_cs.html?tab=terms">이용약관</a>
+                    <a href="sub_cs.html?tab=privacy"><b>개인정보처리방침</b></a>
+                    <a href="sub_cs.html?tab=store">매장안내</a>
+                </div>
+                <p>&copy; 2026 SKINLAB. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         function openAuthModal(mode) {
@@ -101,6 +205,49 @@
             document.getElementById(`tab-${mode}`).classList.add('active');
             document.getElementById(`panel-${mode}`).classList.add('active');
         }
+    </script>
+    <script>
+    /* ===== SKINLAB 공용 인터랙션 (헤더/모달/가짜SMS) ===== */
+    window.openAuthModal = window.openAuthModal || function(mode){
+        document.getElementById('auth-modal-overlay').classList.add('active');
+        document.body.classList.add('modal-open');
+        switchAuthTab(mode);
+    };
+    window.closeAuthModal = window.closeAuthModal || function(){
+        document.getElementById('auth-modal-overlay').classList.remove('active');
+        document.body.classList.remove('modal-open');
+    };
+    window.switchAuthTab = window.switchAuthTab || function(mode){
+        document.querySelectorAll('.modal-tab-btn').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.auth-form-panel').forEach(p=>p.classList.remove('active'));
+        document.getElementById('tab-'+mode).classList.add('active');
+        document.getElementById('panel-'+mode).classList.add('active');
+    };
+    window.showSmsToast = window.showSmsToast || function(message){
+        var toast=document.getElementById('sms-toast-node');
+        var body=document.getElementById('sms-body-content');
+        if(!toast){ return; }
+        body.innerHTML='[Web발신]<br>'+message;
+        toast.classList.add('show');
+        setTimeout(function(){ toast.classList.remove('show'); },3200);
+    };
+    window.handleLoginSubmit = window.handleLoginSubmit || function(){
+        closeAuthModal();
+        setTimeout(function(){ showSmsToast('<b>SKINLAB 로그인 성공</b><br>회원님, 반가워요! 스킨랩 연구소의 맞춤형 케어를 즐겨보세요.'); },400);
+    };
+    window.handleJoinSubmit = window.handleJoinSubmit || function(){
+        closeAuthModal();
+        setTimeout(function(){ showSmsToast('<b>SKINLAB 가입 완료</b><br>스킨랩 패밀리가 되신 것을 환영합니다. 10% 비건 웰컴 쿠폰이 지급되었습니다.'); },400);
+    };
+    (function(){
+        var prev=window.scrollY;
+        window.addEventListener('scroll',function(){
+            var cur=window.scrollY, h=document.getElementById('main-header');
+            if(!h) return;
+            h.style.transform=(cur>prev&&cur>120)?'translateY(-100%)':'translateY(0)';
+            prev=cur;
+        });
+    })();
     </script>
 </body>
 </html>

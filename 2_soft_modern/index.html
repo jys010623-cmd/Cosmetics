@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKINLAB — Soft Clean Beauty</title>
+    <meta name="description" content="피부에 다정한 클린 뷰티, SKINLAB. 순한 비건 포뮬러로 매일이 산뜻해지는 데일리 스킨케어.">
+    <meta name="theme-color" content="#FBF8F3">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%2710%27%20fill%3D%27%238FA382%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2722%27%20font-family%3D%27Arial%27%20font-weight%3D%27700%27%20font-size%3D%2716%27%20fill%3D%27%23fff%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a class="skip" href="#main">본문 바로가기</a>
+    <header id="hd">
+        <div class="nav">
+            <a class="brand" href="index.html">SKIN<span>LAB</span></a>
+            <nav class="menu" aria-label="주요 메뉴">
+                <a href="sub_category.html?type=skincare">스킨케어</a>
+                <a href="sub_category.html?type=line">라인</a>
+                <a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a>
+                <a href="sub_brand.html">브랜드</a>
+                <a href="sub_category.html?type=promotion">기획전</a>
+            </nav>
+            <div class="util">
+                <button type="button" onclick="openModal('login')">로그인</button>
+                <a class="cart" href="sub_cart.html">장바구니 0</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+    <section class="hero" style="padding-top:clamp(20px,3vw,40px)">
+        <div class="hero-card reveal">
+            <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=1200" alt="SKINLAB 데일리 스킨케어" loading="eager" fetchpriority="high">
+            <div class="hero-in">
+                <span class="tagpill">🌿 100% 비건 · 무자극 테스트 완료</span>
+                <h1>매일이 산뜻해지는<br><b>순한 클린 뷰티</b></h1>
+                <p>제주 유기농 병풀로 완성한 다정한 포뮬러. 예민한 피부도 편안하게.</p>
+                <div class="hero-btns">
+                    <a href="sub_category.html?type=promotion&cat=new" class="pill">신제품 둘러보기</a>
+                    <a href="sub_brand.html" class="pill ghost">브랜드 이야기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="shead reveal"><span class="eyebrow">Categories</span><h2>무엇부터 시작할까요?</h2><p>피부 루틴 단계에 맞춰 골라보세요</p></div>
+            <div class="cats">
+                <a class="cat reveal" href="sub_category.html?type=skincare&cat=cleansing"><div class="ph"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=500" alt="클렌징" loading="lazy"></div><h3>클렌징</h3><span>Cleansing</span></a>
+                <a class="cat reveal" href="sub_category.html?type=skincare&cat=toner"><div class="ph"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=500" alt="토너" loading="lazy"></div><h3>토너 &amp; 에센스</h3><span>Toner</span></a>
+                <a class="cat reveal" href="sub_category.html?type=skincare&cat=serum"><div class="ph"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=500" alt="세럼" loading="lazy"></div><h3>세럼</h3><span>Serum</span></a>
+                <a class="cat reveal" href="sub_category.html?type=skincare&cat=cream"><div class="ph"><img src="https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&fit=crop&q=80&w=500" alt="크림" loading="lazy"></div><h3>크림</h3><span>Cream</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="lines reveal">
+                <div class="l-img"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&q=80&w=900" alt="수분 라인" loading="lazy"></div>
+                <div class="l-text">
+                    <span class="eyebrow">Aqua Deep</span>
+                    <h3>촉촉함이 오래<br>머무는 수분 라인</h3>
+                    <p>초저분자 히알루론이 피부 깊숙이 스며들어 가볍지만 오래가는 수분감을 선물해요.</p>
+                    <a href="sub_category.html?type=line&cat=moisture" class="pill ghost">컬렉션 보기</a>
+                </div>
+            </div>
+            <div class="lines flip reveal">
+                <div class="l-text">
+                    <span class="eyebrow">Calming Cica</span>
+                    <h3>예민한 날에도<br>편안한 진정 라인</h3>
+                    <p>붉어진 피부를 시카 콤플렉스가 부드럽게 다독여요. 순수 비건, 마음까지 편안하게.</p>
+                    <a href="sub_category.html?type=line&cat=soothing" class="pill ghost">컬렉션 보기</a>
+                </div>
+                <div class="l-img"><img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&q=80&w=900" alt="진정 라인" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="soft-band">
+        <div class="wrap">
+            <div class="shead reveal"><span class="eyebrow">Bestsellers</span><h2>다들 이거 써요 💛</h2><p>재구매율 1위, 사랑받는 시그니처</p></div>
+            <div class="prods">
+                <a class="prod reveal" href="sub_detail.html"><span class="badge">BEST 1</span><div class="ph"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=600" alt="수분 코어 토너" loading="lazy"></div><h3>하이드로 수분 코어 토너</h3><p class="price">23,000원 <small>· 200ml</small></p></a>
+                <a class="prod reveal" href="sub_detail.html"><span class="badge">BEST 2</span><div class="ph"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600" alt="루미너스 세럼" loading="lazy"></div><h3>비타 루미너스 세럼</h3><p class="price">28,000원 <small>· 50ml</small></p></a>
+                <a class="prod reveal" href="sub_detail.html"><span class="badge">BEST 3</span><div class="ph"><img src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="인리치드 크림" loading="lazy"></div><h3>세라맥스 인리치드 크림</h3><p class="price">26,000원 <small>· 80ml</small></p></a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="shead reveal"><span class="eyebrow">Key ingredients</span><h2>자연에서 온 다정한 원료</h2></div>
+            <div class="ing">
+                <div class="ing-card reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600" alt="제주 병풀" loading="lazy"></div><div class="tx"><h3>제주 유기농 병풀</h3><p>청정 제주에서 자라 뛰어난 진정과 장벽 회복을 도와요.</p></div></div>
+                <div class="ing-card reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=600" alt="동백 오일" loading="lazy"></div><div class="tx"><h3>천연 동백 오일</h3><p>유수분 균형을 잡아 산뜻하면서도 깊은 영양을 더해요.</p></div></div>
+                <div class="ing-card reveal"><div class="ph"><img src="https://images.pexels.com/photos/8154944/pexels-photo-8154944.jpeg?auto=compress&cs=tinysrgb&w=600" alt="자작나무 수액" loading="lazy"></div><div class="tx"><h3>인제 자작나무 수액</h3><p>아미노산이 풍부해 맑고 투명한 피부 톤을 선사해요.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding-top:0">
+        <div class="wrap">
+            <div class="shead reveal"><span class="eyebrow">Real voice</span><h2>써본 사람들의 진심 후기</h2></div>
+            <div class="reviews">
+                <div class="rev reveal"><div class="st">★★★★★</div><p>“악건성이라 겨울마다 찢어졌는데, 이젠 속당김이 완전히 사라졌어요.”</p><cite>배*은 · 구매자</cite></div>
+                <div class="rev reveal"><div class="st">★★★★★</div><p>“예민 피부인데 붉은 기가 눈에 띄게 진정됐어요. 너무 순해요.”</p><cite>정*우 · 구매자</cite></div>
+                <div class="rev reveal"><div class="st">★★★★★</div><p>“세럼이 끈적이지 않고 싹 흡수되는데 광채가 대박이에요.”</p><cite>최*윤 · 구매자</cite></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news">
+        <div class="news-card reveal">
+            <h2>산뜻한 소식, 가장 먼저 받기 💌</h2>
+            <p>신제품과 스페셜 혜택을 이메일로 살포시 전해드려요.</p>
+            <form class="nl" onsubmit="subscribe(event)">
+                <input type="email" placeholder="이메일 주소" required aria-label="이메일 주소">
+                <button type="submit" class="pill">구독</button>
+            </form>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="f-top">
+            <div>
+                <div class="f-brand">SKIN<span>LAB</span></div>
+                <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>1644-1234 · cs@skinlab.co.kr</p>
+            </div>
+            <div class="f-col"><h4>Shop</h4><a href="sub_category.html?type=skincare">스킨케어</a><a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a><a href="sub_category.html?type=promotion">기획전</a></div>
+            <div class="f-col"><h4>Support</h4><a href="sub_cs.html?tab=faq">자주 묻는 질문</a><a href="sub_cs.html?tab=delivery">배송 · 교환/반품</a><a href="sub_cs.html?tab=qna">1:1 문의</a></div>
+        </div>
+        <div class="f-bot">© 2026 SKINLAB. 다정한 클린 뷰티.</div>
+    </footer>
+
+    <div class="ov" id="ov" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입">
+            <button class="x" aria-label="닫기" onclick="closeModal()">&times;</button>
+            <h3>반가워요 👋</h3><p class="sub">스킨랩에 오신 걸 환영해요</p>
+            <div class="tabs"><button class="tab" id="t-login" onclick="switchTab('login')">로그인</button><button class="tab" id="t-join" onclick="switchTab('join')">회원가입</button></div>
+            <div class="pane" id="p-login">
+                <label>이메일</label><input type="email" placeholder="example@skinlab.com">
+                <label>비밀번호</label><input type="password" placeholder="••••••••">
+                <button class="pill go" onclick="fakeLogin()">로그인</button>
+            </div>
+            <div class="pane" id="p-join">
+                <label>이름</label><input type="text" placeholder="홍길동">
+                <label>이메일</label><input type="email" placeholder="example@skinlab.com">
+                <label>비밀번호</label><input type="password" placeholder="영문, 숫자 포함 8자 이상">
+                <button class="pill go" onclick="fakeJoin()">가입하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><div class="th"><span>SKINLAB 알림</span><span>방금 전</span></div><div class="tb" id="toast-body">[Web발신]</div></div>
+
+    <script>
+        var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+        document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(Math.min(i%3,2)*80)+'ms';io.observe(el)});
+        var last=window.scrollY,hd=document.getElementById('hd');
+        addEventListener('scroll',function(){var y=window.scrollY;hd.style.transform=(y>last&&y>200)?'translateY(-100%)':'translateY(0)';last=y});
+        function openModal(m){document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';switchTab(m)}
+        function closeModal(){document.getElementById('ov').classList.remove('on');document.body.style.overflow=''}
+        function switchTab(m){['login','join'].forEach(function(k){document.getElementById('t-'+k).classList.toggle('on',k===m);document.getElementById('p-'+k).classList.toggle('on',k===m)})}
+        function toast(msg){var t=document.getElementById('toast');document.getElementById('toast-body').innerHTML='[Web발신]<br>'+msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3400)}
+        function fakeLogin(){closeModal();setTimeout(function(){toast('<b>로그인 성공</b><br>회원님, 반가워요! 맞춤 케어를 만나보세요.')},350)}
+        function fakeJoin(){closeModal();setTimeout(function(){toast('<b>가입 완료</b><br>스킨랩 패밀리가 되신 것을 환영해요. 10% 웰컴 쿠폰 지급 💛')},350)}
+        function subscribe(e){e.preventDefault();e.target.reset();toast('<b>구독 완료</b><br>산뜻한 소식을 가장 먼저 전해드릴게요.')}
+    </script>
+</body>
+</html>

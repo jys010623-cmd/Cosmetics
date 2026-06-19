@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKINLAB — 하이드로 수분 코어 토너</title>
+    <meta name="description" content="SKINLAB 제품 상세. 성분, 사용법, 고객 리뷰를 확인하고 장바구니에 담아보세요.">
+    <meta name="theme-color" content="#0E0E0E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20fill%3D%27%230E0E0E%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2723%27%20font-family%3D%27Arial%20Black%2CArial%27%20font-weight%3D%27900%27%20font-size%3D%2719%27%20fill%3D%27%231F4D3A%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .detail{padding:calc(68px + clamp(40px,5vw,70px)) var(--pad) clamp(60px,8vw,120px)}
+        .detail-wrap{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:60px}
+        .d-imgs{display:flex;flex-direction:column;gap:16px}
+        .main-img{aspect-ratio:4/5;overflow:hidden;background:#1a1a1a}
+        .main-img img{filter:grayscale(.08)}
+        .thumbs{display:flex;gap:12px}
+        .thumb{width:84px;height:84px;border:1.5px solid var(--line);cursor:pointer;overflow:hidden;transition:border-color .3s;background:#1a1a1a}
+        .thumb.active,.thumb:hover{border-color:var(--green-bright)}
+
+        .d-info{position:sticky;top:96px;height:fit-content}
+        .brand-tag{font-family:var(--disp);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green-bright)}
+        .d-info h1{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(28px,3.6vw,46px);line-height:1.02;margin:14px 0 16px}
+        .stars{color:var(--green-bright);font-size:14px;letter-spacing:.1em;margin-bottom:22px}
+        .stars span{color:var(--mut);margin-left:8px;letter-spacing:0}
+        .d-price{font-family:var(--disp);font-weight:900;font-size:34px;border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:30px}
+
+        .meta-list{margin-bottom:30px}
+        .meta-item{display:flex;font-size:14px;margin-bottom:12px;color:#d7d4cd}
+        .meta-item .ml{width:100px;color:var(--mut);font-family:var(--disp);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding-top:2px}
+
+        .opt-row{margin-bottom:24px}
+        .opt-row label,.qty-label{display:block;font-family:var(--disp);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:10px}
+        .opt-row select{width:100%;background:#161616;border:1px solid var(--line);padding:14px;color:#fff;font:inherit;font-size:14px;outline:none}
+        .opt-row select:focus{border-color:var(--green-bright)}
+
+        .qty-box{display:flex;align-items:center;border:1px solid var(--line);width:fit-content;margin-bottom:34px}
+        .qty-box button{width:46px;height:46px;background:#161616;color:#fff;border:none;font-size:18px;font-family:var(--disp);font-weight:700;cursor:pointer;transition:.2s}
+        .qty-box button:hover{background:var(--green)}
+        .qty-box input{width:62px;height:46px;border:none;text-align:center;background:var(--black);color:#fff;font-family:var(--disp);font-weight:700;font-size:16px}
+
+        .total-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:24px;margin-bottom:28px;font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.1em;color:var(--mut)}
+        .total-row .tp{font-size:32px;color:#fff;letter-spacing:0}
+
+        .actions{display:flex;gap:14px}
+        .actions .btn{flex:1;justify-content:center}
+        .actions .btn-buy{flex:1.5}
+
+        .desc{max-width:1400px;margin:0 auto;padding-top:70px;margin-top:60px;border-top:1px solid var(--line)}
+        .desc-tabs{display:flex;justify-content:center;gap:clamp(20px,4vw,50px);border-bottom:1px solid var(--line);margin-bottom:54px;flex-wrap:wrap}
+        .desc-tabs h4{font-family:var(--disp);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding-bottom:18px;cursor:pointer;color:var(--mut);transition:.25s}
+        .desc-tabs h4.active{color:#fff;border-bottom:2px solid var(--green-bright)}
+        .desc-body{max-width:1000px;margin:0 auto}
+        .desc-body p.lead{font-family:var(--disp);font-weight:700;text-transform:uppercase;text-align:center;font-size:clamp(20px,2.6vw,34px);line-height:1.4;margin-bottom:50px}
+        .desc-banner{aspect-ratio:16/9;overflow:hidden;background:#1a1a1a;margin-bottom:30px}
+
+        /* reviews */
+        .reviews{max-width:1000px;margin:0 auto;display:none}
+        .reviews.show{display:block}
+        .review{border-bottom:1px solid var(--line);padding:24px 0}
+        .review .rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+        .review .who{font-family:var(--disp);font-weight:700;letter-spacing:.04em}
+        .review .rs{color:var(--green-bright);font-size:13px;letter-spacing:.1em}
+        .review p{color:#d7d4cd;font-size:14px}
+
+        @media(max-width:900px){
+            .detail-wrap{grid-template-columns:1fr;gap:40px}
+            .d-info{position:static}
+            .main-img{aspect-ratio:1/1}
+        }
+    </style>
+</head>
+<body>
+    <a class="skip" href="#main">본문 바로가기</a>
+    <header id="hd">
+        <div class="nav">
+            <a class="brand" href="index.html">SKINLAB</a>
+            <nav class="menu" aria-label="주요 메뉴">
+                <a href="sub_category.html?type=skincare">Skincare</a>
+                <a href="sub_category.html?type=line">Lines</a>
+                <a href="sub_category.html?type=bodyhair">Body</a>
+                <a href="sub_brand.html">Brand</a>
+                <a href="sub_category.html?type=promotion">Shop</a>
+            </nav>
+            <div class="util">
+                <button type="button" onclick="openModal('login')">Login</button>
+                <a href="sub_mypage.html">Account</a>
+                <a href="sub_cart.html">Cart(0)</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+    <section class="detail">
+        <div class="detail-wrap">
+            <div class="d-imgs reveal">
+                <div class="main-img">
+                    <img id="main-target-img" src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=800" alt="하이드로 수분 코어 토너 메인 이미지">
+                </div>
+                <div class="thumbs">
+                    <div class="thumb active" onclick="changeImg('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=800')"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=150" loading="lazy" decoding="async" alt="제품 썸네일 1"></div>
+                    <div class="thumb" onclick="changeImg('https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=800')"><img src="https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=150" loading="lazy" decoding="async" alt="제품 썸네일 2"></div>
+                    <div class="thumb" onclick="changeImg('https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=800')"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=150" loading="lazy" decoding="async" alt="제품 썸네일 3"></div>
+                </div>
+            </div>
+
+            <div class="d-info reveal">
+                <span class="brand-tag">SKINLAB Skincare</span>
+                <h1>하이드로 수분 코어 토너 (200ml)</h1>
+                <div class="stars">★★★★★ <span>4.9 (230)</span></div>
+                <p class="d-price">23,000원</p>
+
+                <div class="meta-list">
+                    <div class="meta-item"><span class="ml">피부 타입</span><span>모든 피부 (특히 건성 추천)</span></div>
+                    <div class="meta-item"><span class="ml">배송 정보</span><span>3만원 이상 구매 시 무료배송</span></div>
+                </div>
+
+                <div class="opt-row">
+                    <label>용량 선택</label>
+                    <select aria-label="용량 선택">
+                        <option>200ml (본품)</option>
+                        <option>400ml 대용량 (+12,000원)</option>
+                    </select>
+                </div>
+
+                <div class="opt-row">
+                    <span class="qty-label">수량</span>
+                    <div class="qty-box">
+                        <button type="button" onclick="updateQty(-1)" aria-label="수량 감소">-</button>
+                        <input type="text" id="product-quantity" value="1" readonly aria-label="수량">
+                        <button type="button" onclick="updateQty(1)" aria-label="수량 증가">+</button>
+                    </div>
+                </div>
+
+                <div class="total-row">
+                    <span>총 주문 금액</span>
+                    <span class="tp" id="total-price-display">23,000원</span>
+                </div>
+
+                <div class="actions">
+                    <button type="button" class="btn" onclick="addToCart()">장바구니</button>
+                    <a href="sub_cart.html" class="btn fill btn-buy">바로 구매</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="desc">
+            <div class="desc-tabs">
+                <h4 class="active" onclick="switchDesc(0)">상세 정보</h4>
+                <h4 onclick="switchDesc(1)">전성분 안내</h4>
+                <h4 onclick="switchDesc(2)">사용 방법</h4>
+                <h4 onclick="switchDesc(3)">상품 리뷰 (230)</h4>
+            </div>
+            <div class="desc-body" id="desc-body">
+                <p class="lead">병풀 추출물과 판테놀 성분이 밀착되어 지친 장벽을 건강하게 진정시킵니다.</p>
+                <div class="desc-banner"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=1000" loading="lazy" decoding="async" alt="제품 상세 배너 이미지"></div>
+            </div>
+            <div class="reviews" id="reviews">
+                <div class="review">
+                    <div class="rh"><span class="who">배*은</span><span class="rs">★★★★★</span></div>
+                    <p>겨울마다 찢어지던 피부가 잔잔해졌어요. 흡수가 빠르고 끈적임이 없습니다.</p>
+                </div>
+                <div class="review">
+                    <div class="rh"><span class="who">김*현</span><span class="rs">★★★★★</span></div>
+                    <p>민감성인데 자극 없이 촉촉하게 마무리됩니다. 재구매 의사 100%.</p>
+                </div>
+                <div class="review">
+                    <div class="rh"><span class="who">이*아</span><span class="rs">★★★★☆</span></div>
+                    <p>수분감이 오래 가서 좋아요. 용량 대비 가격도 합리적입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="f-top">
+            <div>
+                <div class="f-brand">SKINLAB</div>
+                <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>1644-1234 · cs@skinlab.co.kr</p>
+            </div>
+            <div class="f-col"><h4>Shop</h4><a href="sub_category.html?type=skincare">스킨케어</a><a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a><a href="sub_category.html?type=promotion">기획전</a></div>
+            <div class="f-col"><h4>Support</h4><a href="sub_cs.html?tab=faq">FAQ</a><a href="sub_cs.html?tab=delivery">배송 · 교환/반품</a><a href="sub_cs.html?tab=qna">1:1 문의</a></div>
+        </div>
+        <div class="f-bot"><span>© 2026 SKINLAB</span><span>Clean · Vegan · Proven</span></div>
+    </footer>
+
+    <div class="ov" id="ov" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입">
+            <button class="x" aria-label="닫기" onclick="closeModal()">&times;</button>
+            <h3>SKINLAB</h3><p class="sub">Welcome to the lab</p>
+            <div class="tabs"><button class="tab" id="t-login" onclick="switchTab('login')">로그인</button><button class="tab" id="t-join" onclick="switchTab('join')">회원가입</button></div>
+            <div class="pane" id="p-login">
+                <label>Email</label><input type="email" placeholder="example@skinlab.com">
+                <label>Password</label><input type="password" placeholder="••••••••">
+                <button class="btn fill go" onclick="fakeLogin()">로그인</button>
+            </div>
+            <div class="pane" id="p-join">
+                <label>이름</label><input type="text" placeholder="홍길동">
+                <label>Email</label><input type="email" placeholder="example@skinlab.com">
+                <label>Password</label><input type="password" placeholder="영문, 숫자 포함 8자 이상">
+                <button class="btn fill go" onclick="fakeJoin()">가입하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><div class="th"><span>SKINLAB</span><span>방금 전</span></div><div class="tb" id="toast-body">[Web발신]</div></div>
+
+    <script>
+        var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+        document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(Math.min(i%4,3)*65)+'ms';io.observe(el)});
+        var last=window.scrollY,hd=document.getElementById('hd');
+        addEventListener('scroll',function(){var y=window.scrollY;hd.style.transform=(y>last&&y>240)?'translateY(-100%)':'translateY(0)';last=y});
+        function openModal(m){document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';switchTab(m)}
+        function closeModal(){document.getElementById('ov').classList.remove('on');document.body.style.overflow=''}
+        function switchTab(m){['login','join'].forEach(function(k){document.getElementById('t-'+k).classList.toggle('on',k===m);document.getElementById('p-'+k).classList.toggle('on',k===m)})}
+        function toast(msg){var t=document.getElementById('toast');document.getElementById('toast-body').innerHTML='[Web발신]<br>'+msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3400)}
+        function fakeLogin(){closeModal();setTimeout(function(){toast('<b>로그인 성공</b><br>회원님, 반가워요. 맞춤 케어를 만나보세요.')},350)}
+        function fakeJoin(){closeModal();setTimeout(function(){toast('<b>가입 완료</b><br>스킨랩 패밀리가 되신 것을 환영합니다. 10% 웰컴 쿠폰 지급.')},350)}
+        function subscribe(e){e.preventDefault();e.target.reset();toast('<b>구독 완료</b><br>가장 먼저 소식을 전해드릴게요.')}
+
+        /* ===== page-specific: qty, thumbnails, desc tabs, cart ===== */
+        var basePrice=23000;
+        var qtyInput=document.getElementById('product-quantity');
+        var priceDisplay=document.getElementById('total-price-display');
+        function updateQty(val){
+            var q=parseInt(qtyInput.value)+val;
+            if(q<1)q=1;
+            qtyInput.value=q;
+            priceDisplay.innerText=(basePrice*q).toLocaleString()+'원';
+        }
+        function changeImg(url){
+            document.getElementById('main-target-img').src=url;
+            document.querySelectorAll('.thumb').forEach(function(t){t.classList.remove('active')});
+            event.currentTarget.classList.add('active');
+        }
+        function switchDesc(i){
+            var tabs=document.querySelectorAll('.desc-tabs h4');
+            tabs.forEach(function(t){t.classList.remove('active')});
+            tabs[i].classList.add('active');
+            var isReview=(i===3);
+            document.getElementById('desc-body').style.display=isReview?'none':'block';
+            document.getElementById('reviews').classList.toggle('show',isReview);
+        }
+        function addToCart(){
+            toast('<b>장바구니 담기 완료</b><br>하이드로 수분 코어 토너 '+qtyInput.value+'개를 담았습니다.');
+        }
+    </script>
+</body>
+</html>

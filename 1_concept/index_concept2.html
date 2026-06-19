@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKINLAB — Soft Clean Beauty</title>
+    <meta name="description" content="피부에 다정한 클린 뷰티, SKINLAB. 순한 비건 포뮬러로 매일이 산뜻해지는 데일리 스킨케어.">
+    <meta name="theme-color" content="#FBF8F3">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%2710%27%20fill%3D%27%238FA382%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2722%27%20font-family%3D%27Arial%27%20font-weight%3D%27700%27%20font-size%3D%2716%27%20fill%3D%27%23fff%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+    <style>
+        :root{
+            --cream:#FBF8F3; --paper:#FFFFFF; --ink:#2B2B28; --soft:#7A756C;
+            --sage:#8FA382; --sage-bg:#EAF0E4; --blush:#DDA89A; --blush-bg:#F7E8E3;
+            --butter:#F4E3C1; --line:#ECE7DD;
+            --disp:'Poppins','Noto Sans KR',sans-serif;
+            --sans:'Noto Sans KR','Poppins',sans-serif;
+            --r:26px; --r-sm:16px; --pad:max(22px,5vw);
+            --sh:0 18px 50px -28px rgba(90,80,60,.35);
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        img{display:block;width:100%;height:100%;object-fit:cover}
+        a{color:inherit;text-decoration:none}
+        ::selection{background:var(--sage);color:#fff}
+        .eyebrow{font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
+        .reveal{opacity:0;transform:translateY(26px);transition:.9s cubic-bezier(.2,.7,.2,1)}
+        .reveal.in{opacity:1;transform:none}
+        .pill{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;font-family:var(--disp);font-weight:500;font-size:14px;padding:14px 28px;border-radius:999px;border:none;cursor:pointer;transition:.3s;width:fit-content}
+        .pill:hover{background:var(--sage);transform:translateY(-2px)}
+        .pill.ghost{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+        .pill.ghost:hover{background:var(--sage-bg);box-shadow:inset 0 0 0 1.5px var(--sage);color:var(--ink)}
+
+        header{position:sticky;top:0;z-index:100;background:rgba(251,248,243,.85);backdrop-filter:blur(12px);transition:transform .45s ease}
+        .nav{display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad)}
+        .brand{font-family:var(--disp);font-size:25px;font-weight:600;letter-spacing:.01em;color:var(--ink)}
+        .brand span{color:var(--sage)}
+        .menu{display:flex;gap:30px}
+        .menu a{font-family:var(--disp);font-size:14.5px;font-weight:500;color:var(--ink);padding:6px 0;transition:color .3s}
+        .menu a:hover{color:var(--sage)}
+        .util{display:flex;gap:16px;align-items:center}
+        .util button{background:none;border:none;cursor:pointer;font-family:var(--disp);font-size:14px;font-weight:500;color:var(--ink)}
+        .util .cart{background:var(--sage-bg);color:var(--ink);padding:8px 16px;border-radius:999px;font-family:var(--disp);font-size:13.5px;font-weight:500}
+        .util .cart:hover{background:var(--sage);color:#fff}
+        @media(max-width:900px){.menu{display:none}}
+
+        .hero{padding:clamp(28px,5vw,60px) var(--pad) clamp(40px,6vw,80px)}
+        .hero-card{position:relative;border-radius:var(--r);overflow:hidden;min-height:560px;display:flex;align-items:center;box-shadow:var(--sh)}
+        .hero-card img{position:absolute;inset:0;z-index:0}
+        .hero-card::after{content:'';position:absolute;inset:0;background:linear-gradient(95deg,rgba(251,248,243,.94) 0%,rgba(251,248,243,.78) 38%,rgba(251,248,243,0) 70%);z-index:1}
+        .hero-in{position:relative;z-index:2;padding:clamp(30px,5vw,70px);max-width:560px;display:flex;flex-direction:column;gap:22px}
+        .tagpill{background:var(--blush-bg);color:#b06a55;font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.06em;padding:7px 16px;border-radius:999px;width:fit-content}
+        .hero-in h1{font-family:var(--disp);font-weight:600;font-size:clamp(36px,5.4vw,62px);line-height:1.12;letter-spacing:-.01em}
+        .hero-in h1 b{color:var(--sage);font-weight:600}
+        .hero-in p{font-size:16px;color:var(--soft);max-width:400px}
+        .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+        @media(max-width:620px){.hero-card::after{background:linear-gradient(0deg,rgba(251,248,243,.96) 32%,rgba(251,248,243,.55))}.hero-card{align-items:flex-end;min-height:600px}}
+
+        section{padding:clamp(56px,8vw,110px) var(--pad)}
+        .wrap{max-width:1280px;margin:0 auto}
+        .shead{text-align:center;margin-bottom:clamp(36px,5vw,60px)}
+        .shead h2{font-family:var(--disp);font-weight:600;font-size:clamp(28px,3.6vw,44px);margin-top:12px;line-height:1.15}
+        .shead p{color:var(--soft);margin-top:10px}
+
+        .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+        .cat{background:var(--paper);border-radius:var(--r);padding:18px 18px 22px;text-align:center;transition:.35s;box-shadow:0 10px 30px -24px rgba(90,80,60,.5)}
+        .cat:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+        .cat .ph{aspect-ratio:1/1;border-radius:var(--r-sm);overflow:hidden;margin-bottom:16px;background:var(--sage-bg)}
+        .cat .ph img{transition:transform .8s ease}
+        .cat:hover .ph img{transform:scale(1.06)}
+        .cat h3{font-family:var(--disp);font-weight:600;font-size:18px}
+        .cat span{font-size:12.5px;color:var(--soft)}
+        @media(max-width:820px){.cats{grid-template-columns:1fr 1fr}}
+
+        .lines{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px);align-items:center}
+        .lines+.lines{margin-top:clamp(24px,4vw,40px)}
+        .lines.flip .l-text{order:2}
+        .l-img{aspect-ratio:5/4;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+        .l-img img{transition:transform 1s ease}.l-img:hover img{transform:scale(1.05)}
+        .l-text .eyebrow{display:block;margin-bottom:14px}
+        .l-text h3{font-family:var(--disp);font-weight:600;font-size:clamp(24px,3vw,38px);line-height:1.18;margin-bottom:14px}
+        .l-text p{color:var(--soft);max-width:40ch;margin-bottom:24px}
+        @media(max-width:720px){.lines{grid-template-columns:1fr;gap:20px}.lines.flip .l-text{order:0}}
+
+        .soft-band{background:var(--sage-bg);border-radius:clamp(28px,5vw,52px);margin:0 var(--pad)}
+        .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+        .prod{background:var(--paper);border-radius:var(--r);padding:16px;transition:.35s;box-shadow:0 10px 30px -24px rgba(90,80,60,.5);position:relative}
+        .prod:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+        .prod .badge{position:absolute;top:24px;left:24px;z-index:2;background:#fff;color:var(--sage);font-family:var(--disp);font-weight:600;font-size:11px;padding:5px 12px;border-radius:999px}
+        .prod .ph{aspect-ratio:1/1;border-radius:var(--r-sm);overflow:hidden;margin-bottom:16px;background:var(--blush-bg)}
+        .prod .ph img{transition:transform .8s ease}.prod:hover .ph img{transform:scale(1.06)}
+        .prod h3{font-family:var(--disp);font-weight:600;font-size:17px;margin:0 4px 6px;line-height:1.3}
+        .prod .price{margin:0 4px;font-weight:500;color:var(--ink)}
+        .prod .price small{color:var(--soft);font-weight:400}
+        @media(max-width:720px){.prods{grid-template-columns:1fr}}
+
+        .ing{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+        .ing-card{background:var(--paper);border-radius:var(--r);overflow:hidden;box-shadow:0 10px 30px -24px rgba(90,80,60,.5);transition:.35s}
+        .ing-card:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+        .ing-card .ph{aspect-ratio:4/3;overflow:hidden}
+        .ing-card .ph img{transition:transform .9s ease}.ing-card:hover .ph img{transform:scale(1.06)}
+        .ing-card .tx{padding:24px}
+        .ing-card h3{font-family:var(--disp);font-weight:600;font-size:19px;margin-bottom:8px}
+        .ing-card p{font-size:14px;color:var(--soft)}
+        @media(max-width:720px){.ing{grid-template-columns:1fr}}
+
+        .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+        .rev{background:var(--paper);border-radius:var(--r);padding:30px;box-shadow:0 10px 30px -24px rgba(90,80,60,.5)}
+        .rev .st{color:var(--blush);letter-spacing:.2em;margin-bottom:14px}
+        .rev p{font-size:15.5px;margin-bottom:20px}
+        .rev cite{font-style:normal;font-family:var(--disp);font-size:13px;color:var(--soft)}
+        @media(max-width:720px){.reviews{grid-template-columns:1fr}}
+
+        .news{text-align:center}
+        .news-card{background:var(--ink);color:#fff;border-radius:clamp(28px,5vw,46px);padding:clamp(44px,7vw,86px) var(--pad);max-width:900px;margin:0 auto}
+        .news-card h2{font-family:var(--disp);font-weight:600;font-size:clamp(26px,3.4vw,42px);margin-bottom:12px}
+        .news-card p{color:#cfcabf;margin-bottom:28px}
+        .nl{display:flex;gap:10px;max-width:430px;margin:0 auto}
+        .nl input{flex:1;border:none;border-radius:999px;padding:14px 20px;font:inherit;font-size:15px;outline:none}
+        .nl .pill{background:var(--sage)}.nl .pill:hover{background:var(--blush)}
+
+        footer{padding:clamp(50px,7vw,80px) var(--pad) 36px}
+        .f-top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid var(--line)}
+        .f-brand{font-family:var(--disp);font-weight:600;font-size:26px;margin-bottom:16px}
+        .f-brand span{color:var(--sage)}
+        .f-top p{color:var(--soft);font-size:13.5px;line-height:1.9}
+        .f-col h4{font-family:var(--disp);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:14px}
+        .f-col a{display:block;color:var(--soft);font-size:13.5px;margin-bottom:10px}
+        .f-col a:hover{color:var(--sage)}
+        .f-bot{padding-top:24px;text-align:center;color:var(--soft);font-size:12.5px}
+
+        .ov{position:fixed;inset:0;background:rgba(43,43,40,.42);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.35s;z-index:500}
+        .ov.on{opacity:1;visibility:visible}
+        .modal{background:var(--cream);width:100%;max-width:420px;border-radius:var(--r);padding:42px 36px;position:relative;transform:translateY(18px);transition:.35s}
+        .ov.on .modal{transform:none}
+        .modal .x{position:absolute;top:18px;right:20px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--soft)}
+        .modal h3{font-family:var(--disp);font-weight:600;font-size:26px;text-align:center;margin-bottom:4px}
+        .modal .sub{text-align:center;font-size:13.5px;color:var(--soft);margin-bottom:26px}
+        .tabs{display:flex;gap:8px;background:#fff;border-radius:999px;padding:5px;margin-bottom:26px}
+        .tab{flex:1;background:none;border:none;cursor:pointer;font-family:var(--disp);font-size:13.5px;font-weight:500;padding:10px;border-radius:999px;color:var(--soft)}
+        .tab.on{background:var(--sage);color:#fff}
+        .pane{display:none}.pane.on{display:block}
+        .modal label{display:block;font-family:var(--disp);font-size:12.5px;font-weight:500;color:var(--soft);margin:0 0 6px 4px}
+        .modal input{width:100%;border:none;border-radius:14px;background:#fff;padding:13px 16px;font:inherit;font-size:15px;outline:none;margin-bottom:16px;box-shadow:inset 0 0 0 1.5px var(--line)}
+        .modal input:focus{box-shadow:inset 0 0 0 1.5px var(--sage)}
+        .modal .go{width:100%;margin-top:6px;border-radius:999px;justify-content:center}
+        .toast{position:fixed;right:22px;bottom:-140px;width:330px;background:#fff;border-radius:18px;padding:18px 20px;z-index:600;box-shadow:var(--sh);transition:bottom .5s cubic-bezier(.2,.9,.3,1.2)}
+        .toast.show{bottom:22px}
+        .toast .th{display:flex;justify-content:space-between;font-family:var(--disp);font-size:12px;font-weight:600;color:var(--sage);margin-bottom:7px}
+        .toast .tb{font-size:13.5px;color:var(--ink);line-height:1.5}.toast .tb b{font-weight:600}
+        .skip{position:absolute;left:16px;top:-60px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;z-index:900;font-size:12px;transition:top .25s}
+        .skip:focus{top:12px}
+        :focus-visible{outline:2px solid var(--sage);outline-offset:3px}
+    </style>
+</head>
+<body>
+    <a class="skip" href="#main">본문 바로가기</a>
+    <header id="hd">
+        <div class="nav">
+            <a class="brand" href="index.html">SKIN<span>LAB</span></a>
+            <nav class="menu" aria-label="주요 메뉴">
+                <a href="sub_category.html?type=skincare">스킨케어</a>
+                <a href="sub_category.html?type=line">라인</a>
+                <a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a>
+                <a href="sub_brand.html">브랜드</a>
+                <a href="sub_category.html?type=promotion">기획전</a>
+            </nav>
+            <div class="util">
+                <button type="button" onclick="openModal('login')">로그인</button>
+                <a class="cart" href="sub_cart.html">장바구니 0</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+    <section class="hero" style="padding-top:clamp(20px,3vw,40px)">
+        <div class="hero-card reveal">
+            <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=1200" alt="SKINLAB 데일리 스킨케어" loading="eager" fetchpriority="high">
+            <div class="hero-in">
+                <span class="tagpill">🌿 100% 비건 · 무자극 테스트 완료</span>
+                <h1>매일이 산뜻해지는<br><b>순한 클린 뷰티</b></h1>
+                <p>제주 유기농 병풀로 완성한 다정한 포뮬러. 예민한 피부도 편안하게.</p>
+                <div class="hero-btns">
+                    <a href="sub_category.html?type=promotion&cat=new" class="pill">신제품 둘러보기</a>
+                    <a href="sub_brand.html" class="pill ghost">브랜드 이야기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="shead reveal"><span class="eyebrow">Categories</span><h2>무엇부터 시작할까요?</h2><p>피부 루틴 단계에 맞춰 골라보세요</p></div>
+            <div class="cats">
+                <a class="cat reveal" href="sub_category.html?type=skincare&cat=cleansing"><div class="ph"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=500" alt="클렌징" loading="lazy"></div><h3>클렌징</h3><span>Cleansing</span></a>
+                <a class="cat reveal" href="sub_category.html?type=skincare&cat=toner"><div class="ph"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=500" alt="토너" loading="lazy"></div><h3>토너 &amp; 에센스</h3><span>Toner</span></a>
+                <a class="cat reveal" href="sub_category.html?type=skincare&cat=serum"><div class="ph"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=500" alt="세럼" loading="lazy"></div><h3>세럼</h3><span>Serum</span></a>
+                <a class="cat reveal" href="sub_category.html?type=skincare&cat=cream"><div class="ph"><img src="https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&fit=crop&q=80&w=500" alt="크림" loading="lazy"></div><h3>크림</h3><span>Cream</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="lines reveal">
+                <div class="l-img"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&q=80&w=900" alt="수분 라인" loading="lazy"></div>
+                <div class="l-text">
+                    <span class="eyebrow">Aqua Deep</span>
+                    <h3>촉촉함이 오래<br>머무는 수분 라인</h3>
+                    <p>초저분자 히알루론이 피부 깊숙이 스며들어 가볍지만 오래가는 수분감을 선물해요.</p>
+                    <a href="sub_category.html?type=line&cat=moisture" class="pill ghost">컬렉션 보기</a>
+                </div>
+            </div>
+            <div class="lines flip reveal">
+                <div class="l-text">
+                    <span class="eyebrow">Calming Cica</span>
+                    <h3>예민한 날에도<br>편안한 진정 라인</h3>
+                    <p>붉어진 피부를 시카 콤플렉스가 부드럽게 다독여요. 순수 비건, 마음까지 편안하게.</p>
+                    <a href="sub_category.html?type=line&cat=soothing" class="pill ghost">컬렉션 보기</a>
+                </div>
+                <div class="l-img"><img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&q=80&w=900" alt="진정 라인" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="soft-band">
+        <div class="wrap">
+            <div class="shead reveal"><span class="eyebrow">Bestsellers</span><h2>다들 이거 써요 💛</h2><p>재구매율 1위, 사랑받는 시그니처</p></div>
+            <div class="prods">
+                <a class="prod reveal" href="sub_detail.html"><span class="badge">BEST 1</span><div class="ph"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=600" alt="수분 코어 토너" loading="lazy"></div><h3>하이드로 수분 코어 토너</h3><p class="price">23,000원 <small>· 200ml</small></p></a>
+                <a class="prod reveal" href="sub_detail.html"><span class="badge">BEST 2</span><div class="ph"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600" alt="루미너스 세럼" loading="lazy"></div><h3>비타 루미너스 세럼</h3><p class="price">28,000원 <small>· 50ml</small></p></a>
+                <a class="prod reveal" href="sub_detail.html"><span class="badge">BEST 3</span><div class="ph"><img src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="인리치드 크림" loading="lazy"></div><h3>세라맥스 인리치드 크림</h3><p class="price">26,000원 <small>· 80ml</small></p></a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="shead reveal"><span class="eyebrow">Key ingredients</span><h2>자연에서 온 다정한 원료</h2></div>
+            <div class="ing">
+                <div class="ing-card reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600" alt="제주 병풀" loading="lazy"></div><div class="tx"><h3>제주 유기농 병풀</h3><p>청정 제주에서 자라 뛰어난 진정과 장벽 회복을 도와요.</p></div></div>
+                <div class="ing-card reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=600" alt="동백 오일" loading="lazy"></div><div class="tx"><h3>천연 동백 오일</h3><p>유수분 균형을 잡아 산뜻하면서도 깊은 영양을 더해요.</p></div></div>
+                <div class="ing-card reveal"><div class="ph"><img src="https://images.pexels.com/photos/8154944/pexels-photo-8154944.jpeg?auto=compress&cs=tinysrgb&w=600" alt="자작나무 수액" loading="lazy"></div><div class="tx"><h3>인제 자작나무 수액</h3><p>아미노산이 풍부해 맑고 투명한 피부 톤을 선사해요.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding-top:0">
+        <div class="wrap">
+            <div class="shead reveal"><span class="eyebrow">Real voice</span><h2>써본 사람들의 진심 후기</h2></div>
+            <div class="reviews">
+                <div class="rev reveal"><div class="st">★★★★★</div><p>“악건성이라 겨울마다 찢어졌는데, 이젠 속당김이 완전히 사라졌어요.”</p><cite>배*은 · 구매자</cite></div>
+                <div class="rev reveal"><div class="st">★★★★★</div><p>“예민 피부인데 붉은 기가 눈에 띄게 진정됐어요. 너무 순해요.”</p><cite>정*우 · 구매자</cite></div>
+                <div class="rev reveal"><div class="st">★★★★★</div><p>“세럼이 끈적이지 않고 싹 흡수되는데 광채가 대박이에요.”</p><cite>최*윤 · 구매자</cite></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news">
+        <div class="news-card reveal">
+            <h2>산뜻한 소식, 가장 먼저 받기 💌</h2>
+            <p>신제품과 스페셜 혜택을 이메일로 살포시 전해드려요.</p>
+            <form class="nl" onsubmit="subscribe(event)">
+                <input type="email" placeholder="이메일 주소" required aria-label="이메일 주소">
+                <button type="submit" class="pill">구독</button>
+            </form>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="f-top">
+            <div>
+                <div class="f-brand">SKIN<span>LAB</span></div>
+                <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>1644-1234 · cs@skinlab.co.kr</p>
+            </div>
+            <div class="f-col"><h4>Shop</h4><a href="sub_category.html?type=skincare">스킨케어</a><a href="sub_category.html?type=bodyhair">바디 &amp; 헤어</a><a href="sub_category.html?type=promotion">기획전</a></div>
+            <div class="f-col"><h4>Support</h4><a href="sub_cs.html?tab=faq">자주 묻는 질문</a><a href="sub_cs.html?tab=delivery">배송 · 교환/반품</a><a href="sub_cs.html?tab=qna">1:1 문의</a></div>
+        </div>
+        <div class="f-bot">© 2026 SKINLAB. 다정한 클린 뷰티.</div>
+    </footer>
+
+    <div class="ov" id="ov" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입">
+            <button class="x" aria-label="닫기" onclick="closeModal()">&times;</button>
+            <h3>반가워요 👋</h3><p class="sub">스킨랩에 오신 걸 환영해요</p>
+            <div class="tabs"><button class="tab" id="t-login" onclick="switchTab('login')">로그인</button><button class="tab" id="t-join" onclick="switchTab('join')">회원가입</button></div>
+            <div class="pane" id="p-login">
+                <label>이메일</label><input type="email" placeholder="example@skinlab.com">
+                <label>비밀번호</label><input type="password" placeholder="••••••••">
+                <button class="pill go" onclick="fakeLogin()">로그인</button>
+            </div>
+            <div class="pane" id="p-join">
+                <label>이름</label><input type="text" placeholder="홍길동">
+                <label>이메일</label><input type="email" placeholder="example@skinlab.com">
+                <label>비밀번호</label><input type="password" placeholder="영문, 숫자 포함 8자 이상">
+                <button class="pill go" onclick="fakeJoin()">가입하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><div class="th"><span>SKINLAB 알림</span><span>방금 전</span></div><div class="tb" id="toast-body">[Web발신]</div></div>
+
+    <script>
+        var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+        document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(Math.min(i%3,2)*80)+'ms';io.observe(el)});
+        var last=window.scrollY,hd=document.getElementById('hd');
+        addEventListener('scroll',function(){var y=window.scrollY;hd.style.transform=(y>last&&y>200)?'translateY(-100%)':'translateY(0)';last=y});
+        function openModal(m){document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';switchTab(m)}
+        function closeModal(){document.getElementById('ov').classList.remove('on');document.body.style.overflow=''}
+        function switchTab(m){['login','join'].forEach(function(k){document.getElementById('t-'+k).classList.toggle('on',k===m);document.getElementById('p-'+k).classList.toggle('on',k===m)})}
+        function toast(msg){var t=document.getElementById('toast');document.getElementById('toast-body').innerHTML='[Web발신]<br>'+msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3400)}
+        function fakeLogin(){closeModal();setTimeout(function(){toast('<b>로그인 성공</b><br>회원님, 반가워요! 맞춤 케어를 만나보세요.')},350)}
+        function fakeJoin(){closeModal();setTimeout(function(){toast('<b>가입 완료</b><br>스킨랩 패밀리가 되신 것을 환영해요. 10% 웰컴 쿠폰 지급 💛')},350)}
+        function subscribe(e){e.preventDefault();e.target.reset();toast('<b>구독 완료</b><br>산뜻한 소식을 가장 먼저 전해드릴게요.')}
+    </script>
+</body>
+</html>

@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKINLAB | BRAND STORY</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="자연과 과학의 균형을 추구하는 SKINLAB의 브랜드 철학, 핵심 천연 원료, 클린 뷰티 연구소 이야기를 소개합니다.">
+    <meta name="author" content="SKINLAB">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SKINLAB">
+    <meta property="og:title" content="SKINLAB | 브랜드 스토리">
+    <meta property="og:description" content="자연과 과학의 균형을 추구하는 SKINLAB의 브랜드 철학, 핵심 천연 원료, 클린 뷰티 연구소 이야기를 소개합니다.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=1200">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SKINLAB | 브랜드 스토리">
+    <meta name="twitter:description" content="자연과 과학의 균형을 추구하는 SKINLAB의 브랜드 철학, 핵심 천연 원료, 클린 뷰티 연구소 이야기를 소개합니다.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%277%27%20fill%3D%27%231a1a1a%27/%3E%3Ctext%20x%3D%2716%27%20y%3D%2723%27%20font-family%3D%27Arial%2CHelvetica%2Csans-serif%27%20font-size%3D%2719%27%20font-weight%3D%27700%27%20fill%3D%27%23c8a27b%27%20text-anchor%3D%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
     <style>
         .brand-hero { margin-top: 85px; height: 450px; position: relative; }
         .brand-hero .img-box { height: 100%; border-radius: 0; }
@@ -28,17 +45,48 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">본문 바로가기</a>
 
     <header id="main-header">
         <div class="header-inner">
             <div class="logo"><a href="index.html">SKINLAB</a></div>
             <nav class="gnb">
                 <ul>
-                    <li><a href="sub_category.html?type=skincare">스킨케어</a></li>
-                    <li><a href="sub_category.html?type=line">라인별 제품</a></li>
-                    <li><a href="sub_category.html?type=bodyhair">바디 & 헤어</a></li>
-                    <li><a href="sub_brand.html" class="active">브랜드 스토리</a></li>
-                    <li><a href="sub_category.html?type=promotion">기획전</a></li>
+                    <li><a href="sub_category.html?type=skincare">스킨케어</a>
+                        <ul class="dropdown">
+                            <li><a href="sub_category.html?type=skincare&cat=cleansing">클렌징</a></li>
+                            <li><a href="sub_category.html?type=skincare&cat=toner">토너 & 에센스</a></li>
+                            <li><a href="sub_category.html?type=skincare&cat=serum">세럼</a></li>
+                            <li><a href="sub_category.html?type=skincare&cat=cream">크림</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="sub_category.html?type=line">라인별 제품</a>
+                        <ul class="dropdown">
+                            <li><a href="sub_category.html?type=line&cat=moisture">수분</a></li>
+                            <li><a href="sub_category.html?type=line&cat=soothing">진정</a></li>
+                            <li><a href="sub_category.html?type=line&cat=brightening">브라이트닝</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="sub_category.html?type=bodyhair">바디 & 헤어</a>
+                        <ul class="dropdown">
+                            <li><a href="sub_category.html?type=bodyhair&cat=body">바디케어</a></li>
+                            <li><a href="sub_category.html?type=bodyhair&cat=hair">헤어케어</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="sub_brand.html">브랜드 스토리</a>
+                        <ul class="dropdown">
+                            <li><a href="sub_brand.html#philosophy">브랜드 철학</a></li>
+                            <li><a href="sub_brand.html#ingredients">핵심 원료</a></li>
+                            <li><a href="sub_brand.html#lab">연구소</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="sub_category.html?type=promotion">기획전</a>
+                        <ul class="dropdown">
+                            <li><a href="sub_category.html?type=promotion&cat=best">베스트셀러</a></li>
+                            <li><a href="sub_category.html?type=promotion&cat=new">신제품</a></li>
+                            <li><a href="sub_category.html?type=promotion&cat=season">시즌 프로모션</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <div class="header-util">
@@ -49,9 +97,10 @@
             </div>
         </div>
     </header>
+    <a id="main-content" tabindex="-1"></a>
 
     <section class="brand-hero">
-        <div class="img-box"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&q=80&w=1200" alt="Brand story"></div>
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&q=80&w=1200" alt="Brand story" loading="lazy" decoding="async"></div>
         <div class="brand-hero-title">
             <h1>OUR STORY</h1>
             <p>자연의 힘과 정밀한 피부 과학의 융합</p>
@@ -60,7 +109,7 @@
 
     <div class="container story-section">
         <div class="story-block" id="philosophy">
-            <div class="story-img img-box"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=800" alt="philosophy"></div>
+            <div class="story-img img-box"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=800" alt="philosophy" loading="lazy" decoding="async"></div>
             <div class="story-txt-box">
                 <h2>01. 브랜드 철학</h2>
                 <p>SKINLAB은 유해 성분을 철저히 배제하고 본연의 자생력을 높이는 100% 클린 비건 처방을 추구합니다. 인위적인 일시적 효과 대신, 시간이 흐를수록 탄탄해지는 장벽의 변화를 최우선으로 생각합니다.</p>
@@ -68,7 +117,7 @@
         </div>
 
         <div class="story-block" id="ingredients">
-            <div class="story-img img-box"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800" alt="ingredients"></div>
+            <div class="story-img img-box"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800" alt="ingredients" loading="lazy" decoding="async"></div>
             <div class="story-txt-box">
                 <h2>02. 정직한 유기농 원료</h2>
                 <p>청정 지역에서 자연 재배 방식으로 수확한 최고 품질의 생재료만을 엄선합니다. 저온 추출 공법을 도입하여 열에 약한 유효 성분의 파괴를 원천 차단하고 식물이 가진 에너지를 고스란히 전달합니다.</p>
@@ -77,8 +126,8 @@
     </div>
 
     <div class="modal-overlay" id="auth-modal-overlay" onclick="closeAuthModal()">
-        <div class="auth-modal" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+        <div class="auth-modal" role="dialog" aria-modal="true" aria-label="로그인 / 회원가입" onclick="event.stopPropagation()">
+            <button type="button" class="modal-close" aria-label="닫기" onclick="closeAuthModal()">&times;</button>
             <div class="modal-tabs">
                 <div class="modal-tab-btn" id="tab-login" onclick="switchAuthTab('login')">로그인</div>
                 <div class="modal-tab-btn" id="tab-join" onclick="switchAuthTab('join')">회원가입</div>
@@ -113,8 +162,42 @@
     <footer>
         <div class="container">
             <div class="footer-inner">
-                <div class="footer-logo">SKINLAB</div>
-                <p>주식회사 스킨랩 코스메틱<br>cs@skinlab.co.kr</p>
+                <div class="footer-info">
+                    <div class="footer-logo">SKINLAB</div>
+                    <p>주식회사 스킨랩 코스메틱<br>서울특별시 강남구 테헤란로 456<br>대표번호: 1644-1234<br>cs@skinlab.co.kr</p>
+                </div>
+                <div class="footer-links">
+                    <h4>SHOPPING</h4>
+                    <ul>
+                        <li><a href="sub_category.html?type=skincare">스킨케어</a></li>
+                        <li><a href="sub_category.html?type=bodyhair">바디 & 헤어</a></li>
+                        <li><a href="sub_category.html?type=promotion">기획전 컬렉션</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>SUPPORT</h4>
+                    <ul>
+                        <li><a href="sub_cs.html?tab=qna">1:1 문의하기</a></li>
+                        <li><a href="sub_cs.html?tab=delivery">배송 및 교환/반품</a></li>
+                        <li><a href="sub_cs.html?tab=faq">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>NEWSLETTER</h4>
+                    <p>정기 뉴스레터를 구독하고 스페셜 소식을 받아보세요.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="이메일 주소 입력">
+                        <button type="button">구독</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-policies">
+                    <a href="sub_cs.html?tab=terms">이용약관</a>
+                    <a href="sub_cs.html?tab=privacy"><b>개인정보처리방침</b></a>
+                    <a href="sub_cs.html?tab=store">매장안내</a>
+                </div>
+                <p>&copy; 2026 SKINLAB. All rights reserved.</p>
             </div>
         </div>
     </footer>
