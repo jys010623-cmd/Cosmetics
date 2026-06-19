@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKINLAB 2027 Preview</title>
+  <style>
+    :root{
+      --ink:#171412;
+      --muted:#746d66;
+      --line:#e6dfd5;
+      --paper:#fbfaf7;
+      --milk:#f5efe6;
+      --sage:#78917f;
+      --rose:#d7a99b;
+      --blue:#9bb7c8;
+      --chart:#2d3a35;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans KR","Pretendard","Segoe UI",Arial,sans-serif}
+    .page{min-height:100vh;overflow:hidden;background:
+      radial-gradient(circle at 88% 9%, rgba(155,183,200,.30), transparent 28%),
+      linear-gradient(180deg,#fffaf3 0%,#fbfaf7 42%,#f1f5f2 100%)}
+    header{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 54px;border-bottom:1px solid rgba(23,20,18,.08);backdrop-filter:blur(18px)}
+    .brand{font-size:25px;font-weight:800;letter-spacing:.02em}
+    nav{display:flex;gap:30px;font-size:14px;color:#4f4943}
+    .icons{display:flex;align-items:center;gap:10px}
+    .icon{width:38px;height:38px;border:1px solid rgba(23,20,18,.13);border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.55)}
+    .hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(500px,.92fr);gap:22px;min-height:702px;padding:42px 54px 28px}
+    .copy{align-self:end;padding-bottom:56px}
+    .kicker{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(45,58,53,.18);background:rgba(255,255,255,.62);padding:9px 13px;border-radius:999px;color:var(--chart);font-size:13px;font-weight:700}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 5px rgba(215,169,155,.16)}
+    h1{font-size:92px;line-height:.96;margin:24px 0 20px;letter-spacing:-.04em;font-weight:850;max-width:840px}
+    h1 span{color:var(--sage)}
+    .lead{font-size:18px;line-height:1.75;color:var(--muted);max-width:540px;margin:0 0 30px}
+    .actions{display:flex;align-items:center;gap:12px;margin-bottom:34px}
+    .btn{height:50px;border:0;border-radius:999px;padding:0 22px;font-weight:800;font-size:14px}
+    .primary{background:var(--ink);color:white}
+    .secondary{background:white;color:var(--ink);border:1px solid rgba(23,20,18,.13)}
+    .metrics{display:grid;grid-template-columns:repeat(3,148px);gap:12px}
+    .metric{border-top:1px solid rgba(23,20,18,.16);padding-top:14px}
+    .metric b{font-size:26px;display:block;line-height:1}
+    .metric span{font-size:12px;color:var(--muted)}
+    .stage{position:relative;border:1px solid rgba(23,20,18,.10);border-radius:28px;background:rgba(255,255,255,.48);overflow:hidden;box-shadow:0 34px 70px rgba(68,57,43,.12)}
+    .stage:before{content:"";position:absolute;inset:0;background:
+      linear-gradient(120deg,rgba(255,255,255,.72),transparent 45%),
+      radial-gradient(circle at 65% 28%,rgba(215,169,155,.35),transparent 26%),
+      radial-gradient(circle at 25% 75%,rgba(120,145,127,.30),transparent 30%)}
+    .shelf{position:absolute;left:54px;right:54px;bottom:82px;height:22px;border-radius:999px;background:rgba(23,20,18,.10);filter:blur(.1px)}
+    .product{position:absolute;bottom:104px;filter:drop-shadow(0 26px 28px rgba(51,43,37,.22))}
+    .bottle{left:115px;width:118px;height:350px;border-radius:42px 42px 26px 26px;background:linear-gradient(90deg,#e8ddd1,#fff8ef 42%,#d9cabe);border:1px solid rgba(23,20,18,.13)}
+    .bottle:before{content:"";position:absolute;left:34px;top:-58px;width:50px;height:72px;border-radius:18px 18px 10px 10px;background:#cab7a6}
+    .bottle:after{content:"SKINLAB\A BARRIER MILK";white-space:pre;position:absolute;left:18px;right:18px;top:132px;text-align:center;font-size:12px;line-height:1.45;font-weight:800;color:#3a342f;letter-spacing:.08em}
+    .jar{left:256px;width:188px;height:156px;border-radius:44px 44px 62px 62px;background:linear-gradient(90deg,#9db7aa,#e4eee7 48%,#7b9a88);border:1px solid rgba(23,20,18,.13)}
+    .jar:before{content:"";position:absolute;left:20px;right:20px;top:-38px;height:52px;border-radius:34px;background:linear-gradient(90deg,#e9d7cb,#fff6ef 52%,#d2aea0)}
+    .jar:after{content:"CICA CLOUD CREAM";position:absolute;left:24px;right:24px;top:66px;text-align:center;font-size:13px;font-weight:850;letter-spacing:.1em;color:#f9fff9}
+    .tube{right:118px;width:122px;height:302px;border-radius:58px 58px 34px 34px;background:linear-gradient(105deg,#d8a394,#f5d4c9 48%,#b98478);border:1px solid rgba(23,20,18,.12);transform:rotate(-5deg)}
+    .tube:before{content:"";position:absolute;left:31px;right:31px;bottom:-32px;height:44px;border-radius:12px;background:#a77970}
+    .tube:after{content:"GLOW\A SERUM";white-space:pre;position:absolute;left:18px;right:18px;top:112px;text-align:center;font-weight:850;font-size:15px;letter-spacing:.08em;color:white}
+    .floating{position:absolute;border:1px solid rgba(23,20,18,.10);background:rgba(255,255,255,.72);backdrop-filter:blur(14px);border-radius:18px;box-shadow:0 18px 44px rgba(68,57,43,.12)}
+    .skin-score{top:34px;right:34px;width:196px;padding:18px}
+    .skin-score strong{font-size:13px}
+    .bars{display:grid;gap:8px;margin-top:14px}
+    .bar{height:7px;border-radius:999px;background:#ece5dc;overflow:hidden}
+    .bar i{display:block;height:100%;border-radius:inherit;background:var(--sage)}
+    .bar:nth-child(2) i{width:82%;background:var(--rose)}
+    .bar:nth-child(3) i{width:71%;background:var(--blue)}
+    .routine{left:30px;bottom:26px;width:230px;padding:14px;display:flex;gap:12px;align-items:center}
+    .mini{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#e9d9cb,#8ba08e)}
+    .routine b{font-size:13px;display:block}
+    .routine span{font-size:12px;color:var(--muted)}
+    .shop-card{right:34px;bottom:30px;width:214px;padding:14px}
+    .shop-card .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;font-weight:800}
+    .thumbs{display:flex;gap:7px}
+    .thumb{height:42px;flex:1;border-radius:13px;background:#eee0d1}
+    .thumb:nth-child(2){background:#cddbd2}.thumb:nth-child(3){background:#e8bbb0}
+    .below{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;padding:0 54px 54px}
+    .tile{min-height:142px;border:1px solid rgba(23,20,18,.10);background:rgba(255,255,255,.58);border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+    .tile small{color:var(--muted);font-weight:700}
+    .tile b{font-size:23px;line-height:1.18;letter-spacing:-.02em}
+    .tile:nth-child(2){background:#eef4ef}.tile:nth-child(3){background:#f7ece8}
+    @media(max-width:980px){
+      header{padding:0 22px}nav{display:none}.hero{grid-template-columns:1fr;padding:24px 22px}.stage{min-height:560px}.below{grid-template-columns:1fr;padding:0 22px 34px}h1{font-size:58px}.metrics{grid-template-columns:repeat(3,1fr)}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">SKINLAB</div>
+      <nav>
+        <a>스킨케어</a><a>베스트</a><a>루틴진단</a><a>브랜드</a>
+      </nav>
+      <div class="icons"><div class="icon">⌕</div><div class="icon">♡</div><div class="icon">Bag</div></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="copy">
+          <div class="kicker"><i class="dot"></i> 2027 CLEAN BEAUTY COMMERCE</div>
+          <h1>피부 루틴을<br><span>더 투명하게</span><br>쇼핑하다</h1>
+          <p class="lead">성분, 피부 타입, 사용감을 한 화면에서 비교하고 바로 구매하는 프리미엄 클린 뷰티 스토어. 절제된 색감과 제품 중심 레이아웃으로 신뢰와 감도를 함께 만듭니다.</p>
+          <div class="actions">
+            <button class="btn primary">신제품 보기</button>
+            <button class="btn secondary">피부 루틴 찾기</button>
+          </div>
+          <div class="metrics">
+            <div class="metric"><b>98%</b><span>저자극 만족도</span></div>
+            <div class="metric"><b>24H</b><span>보습 지속 테스트</span></div>
+            <div class="metric"><b>0.00</b><span>무첨가 포뮬러</span></div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="shelf"></div>
+          <div class="product bottle"></div>
+          <div class="product jar"></div>
+          <div class="product tube"></div>
+          <div class="floating skin-score">
+            <strong>피부 컨디션 매칭</strong>
+            <div class="bars"><div class="bar"><i style="width:92%"></i></div><div class="bar"><i></i></div><div class="bar"><i></i></div></div>
+          </div>
+          <div class="floating routine"><div class="mini"></div><div><b>오늘의 추천 루틴</b><span>장벽 크림 + 광채 세럼</span></div></div>
+          <div class="floating shop-card">
+            <div class="row"><span>BEST 3</span><span>₩28,000</span></div>
+            <div class="thumbs"><i class="thumb"></i><i class="thumb"></i><i class="thumb"></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="below">
+        <div class="tile"><small>01 PERSONAL</small><b>피부 타입별<br>큐레이션</b></div>
+        <div class="tile"><small>02 INGREDIENT</small><b>성분 투명성<br>비교 UI</b></div>
+        <div class="tile"><small>03 COMMERCE</small><b>빠른 장바구니<br>구매 흐름</b></div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

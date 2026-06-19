@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKINLAB POP | K-Beauty Select Store</title>
+  <meta name="description" content="페리페라, 에스쁘아, 올리브영 감도를 반영한 2027 K-뷰티 쇼핑몰 시안. 랭킹, 큐레이션, 빠른 장바구니, 피부 고민별 탐색을 제공합니다.">
+  <meta name="theme-color" content="#f7ff43">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <div class="topline">
+    <div class="ticker" aria-hidden="true">
+      <span>오늘 단 하루 20% 쿠폰</span><span>신상 틴트 런칭</span><span>피부 고민별 랭킹 업데이트</span><span>3만원 이상 무료배송</span>
+      <span>오늘 단 하루 20% 쿠폰</span><span>신상 틴트 런칭</span><span>피부 고민별 랭킹 업데이트</span><span>3만원 이상 무료배송</span>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a class="logo" href="index.html" aria-label="SKINLAB POP 홈">SKINLAB<span>POP</span></a>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <a href="#ranking">랭킹</a>
+        <a href="#new">신상</a>
+        <a href="#makeup">메이크업</a>
+        <a href="#skinfit">피부고민</a>
+        <a href="#review">리뷰</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn search-open" type="button" aria-label="검색 열기">⌕</button>
+        <button class="icon-btn" type="button" aria-label="찜 목록">♡</button>
+        <button class="cart-pill" type="button" data-open-cart>장바구니 <b id="cartCount">0</b></button>
+      </div>
+    </div>
+    <div class="mobile-cats" aria-label="빠른 카테고리">
+      <a href="#ranking">랭킹</a><a href="#new">신상</a><a href="#makeup">립</a><a href="#skinfit">스킨</a><a href="#deal">특가</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="label-chip"><i></i> 2027 K-BEAUTY SELECT</span>
+        <h1>오늘 뜨는 컬러와<br>피부 루틴을<br><mark>한 번에 쇼핑</mark></h1>
+        <p>랭킹, 피부 고민, 컬러 취향을 빠르게 넘나드는 K-뷰티 편집숍. 팝한 메이크업 감도와 신뢰감 있는 스킨케어 큐레이션을 한 화면에 담았습니다.</p>
+        <div class="hero-buttons">
+          <a class="btn primary" href="#ranking">실시간 랭킹 보기</a>
+          <a class="btn ghost" href="#skinfit">내 피부 루틴 찾기</a>
+        </div>
+      </div>
+
+      <div class="hero-stage" aria-label="대표 상품 비주얼">
+        <div class="glow-panel">
+          <div class="product-visual cushion"><span>GLOW<br>CUSHION</span></div>
+          <div class="product-visual tint"><span>INK<br>TINT</span></div>
+          <div class="product-visual serum"><span>CICA<br>SERUM</span></div>
+          <div class="floating-card score">
+            <small>오늘의 급상승</small>
+            <strong>누디 로즈 틴트</strong>
+            <div class="meter"><i style="width:91%"></i></div>
+          </div>
+          <div class="floating-card live">
+            <b>LIVE 09:45</b>
+            <span>장바구니 1,284회</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-strip" aria-label="쇼핑 혜택">
+      <a href="#deal"><b>오특</b><span>오늘만 1+1</span></a>
+      <a href="#skinfit"><b>AI FIT</b><span>피부 고민 매칭</span></a>
+      <a href="#makeup"><b>COLOR</b><span>퍼스널 컬러 PICK</span></a>
+      <a href="#review"><b>REVIEW</b><span>실사용 랭킹</span></a>
+    </section>
+
+    <section class="section trend-section" id="ranking">
+      <div class="section-head row-head">
+        <div>
+          <span class="eyebrow">Real-time ranking</span>
+          <h2>지금 많이 담는 랭킹</h2>
+        </div>
+        <div class="tabs" role="tablist" aria-label="랭킹 필터">
+          <button type="button" class="tab active" data-filter="all">전체</button>
+          <button type="button" class="tab" data-filter="makeup">메이크업</button>
+          <button type="button" class="tab" data-filter="skin">스킨케어</button>
+          <button type="button" class="tab" data-filter="deal">특가</button>
+        </div>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="drop-banner" id="new">
+      <div class="drop-copy">
+        <span class="eyebrow">New drop</span>
+        <h2>맑게 번지는<br>셔벗 글로우 컬렉션</h2>
+        <p>촉촉한 틴트, 얇은 쿠션, 투명한 블러셔를 조합해 여름 피부에 맞는 얇고 선명한 컬러 루틴을 제안합니다.</p>
+        <a class="btn dark" href="#makeup">컬렉션 보기</a>
+      </div>
+      <div class="drop-look local-look" aria-label="셔벗 글로우 컬렉션 제품 비주얼">
+        <i class="look-palette"></i>
+        <i class="look-lip"></i>
+        <i class="look-blush"></i>
+        <span>SHERBET<br>GLOW</span>
+      </div>
+    </section>
+
+    <section class="section" id="makeup">
+      <div class="section-head">
+        <span class="eyebrow">Color playground</span>
+        <h2>컬러별로 빠르게 찾기</h2>
+        <p>페리페라처럼 경쾌하고 에스쁘아처럼 정돈된 컬러 탐색 UI입니다.</p>
+      </div>
+      <div class="color-board">
+        <a class="color-tile coral" href="#ranking"><b>코랄</b><span>생기 충전 립</span></a>
+        <a class="color-tile rose" href="#ranking"><b>로즈</b><span>데일리 무드</span></a>
+        <a class="color-tile nude" href="#ranking"><b>누드</b><span>오피스 톤</span></a>
+        <a class="color-tile berry" href="#ranking"><b>베리</b><span>쿨톤 포인트</span></a>
+        <a class="color-tile beige" href="#ranking"><b>베이지</b><span>소프트 쉐딩</span></a>
+      </div>
+    </section>
+
+    <section class="skinfit" id="skinfit">
+      <div class="fit-copy">
+        <span class="eyebrow">Skin concern curation</span>
+        <h2>피부 고민으로 고르는<br>올리브영식 탐색</h2>
+        <p>브랜드보다 먼저 고민, 성분, 제형을 비교합니다. 사용자는 빠르게 스캔하고, 바로 장바구니에 담을 수 있습니다.</p>
+      </div>
+      <div class="fit-grid">
+        <button type="button" data-routine="barrier"><b>장벽</b><span>세라마이드 · 판테놀</span></button>
+        <button type="button" data-routine="calm"><b>진정</b><span>시카 · 마데카소사이드</span></button>
+        <button type="button" data-routine="glow"><b>광채</b><span>나이아신아마이드</span></button>
+        <button type="button" data-routine="pore"><b>모공</b><span>PHA · 클레이</span></button>
+      </div>
+      <div class="routine-result" id="routineResult">
+        <small>추천 루틴</small>
+        <strong>장벽 크림 + 시카 세럼 + 무기자차 선앰플</strong>
+        <p>민감한 피부가 매일 쓰기 쉬운 저자극 3단계 루틴입니다.</p>
+      </div>
+    </section>
+
+    <section class="section deal-section" id="deal">
+      <div class="section-head row-head">
+        <div>
+          <span class="eyebrow">Only today</span>
+          <h2>오늘의 특가 박스</h2>
+        </div>
+        <span class="time-badge">마감까지 09:45:18</span>
+      </div>
+      <div class="deal-grid">
+        <article class="deal-main">
+          <div class="deal-visual" aria-label="베이스 메이크업 스타터 키트 비주얼">
+            <i></i><i></i><i></i>
+          </div>
+          <div>
+            <span>SET DEAL</span>
+            <h3>베이스 메이크업 스타터 키트</h3>
+            <p>쿠션, 프라이머, 픽서까지 한 번에. 첫 구매 쿠폰 적용 시 추가 10% 할인.</p>
+          </div>
+        </article>
+        <article class="coupon-card">
+          <b>20%</b>
+          <span>앱 첫 구매 쿠폰</span>
+          <button type="button" class="btn primary">쿠폰 받기</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="review-band" id="review">
+      <div class="section-head">
+        <span class="eyebrow">Verified reviews</span>
+        <h2>구매자가 남긴 진짜 포인트</h2>
+      </div>
+      <div class="review-grid">
+        <article><b>★★★★★</b><p>틴트가 가볍게 발리고 착색이 예뻐요. 상세 페이지에서 톤별 비교가 잘 보여서 고르기 쉬웠습니다.</p><span>김** · 웜톤</span></article>
+        <article><b>★★★★★</b><p>올리브영처럼 랭킹이 바로 보여서 익숙하고, 컬러는 더 브랜드몰처럼 예쁘게 보여요.</p><span>서** · 복합성</span></article>
+        <article><b>★★★★☆</b><p>성분 비교와 피부 고민 필터가 좋아요. 스킨케어 제품은 이렇게 보여주는 게 훨씬 믿음이 갑니다.</p><span>이** · 민감성</span></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">SKINLAB<span>POP</span></div>
+        <p>서울특별시 강남구 테헤란로 456 · 1644-1234 · cs@skinlab.co.kr</p>
+      </div>
+      <nav aria-label="푸터 메뉴">
+        <a href="#ranking">랭킹</a>
+        <a href="#new">신상</a>
+        <a href="#skinfit">피부고민</a>
+        <a href="#review">리뷰</a>
+      </nav>
+    </div>
+  </footer>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="장바구니">
+      <div class="drawer-head">
+        <strong>장바구니</strong>
+        <button type="button" class="icon-btn" data-close-cart aria-label="장바구니 닫기">×</button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="drawer-total">
+        <span>예상 결제금액</span>
+        <b id="cartTotal">0원</b>
+      </div>
+      <button type="button" class="checkout">주문하기</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
