@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKINLAB | PRODUCT DETAIL</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .detail-wrapper { margin-top: 140px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; margin-bottom: var(--section-gap); }
+        .detail-imgs { display: flex; flex-direction: column; gap: 16px; }
+        .detail-imgs .main-img-box { height: 640px; border-radius: var(--radius-lg); }
+        .thumb-list { display: flex; gap: 12px; }
+        .thumb-item { width: 80px; height: 80px; border: 1px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer; overflow: hidden; transition: border-color 0.3s; }
+        .thumb-item.active, .thumb-item:hover { border-color: var(--main-color); }
+
+        .detail-info-box { position: sticky; top: 130px; height: fit-content; }
+        .brand-tag { font-size: var(--fs-small); font-weight: var(--fw-bold); color: var(--point-color); letter-spacing: 0.05em; }
+        .prod-title-name { font-size: var(--fs-h2); font-weight: var(--fw-bold); margin: 8px 0 12px; line-height: 1.3; }
+        .prod-stars { color: var(--point-color); font-size: var(--fs-small); margin-bottom: 20px; }
+        .prod-stars span { color: var(--sub-color); margin-left: 6px; }
+        .prod-price-detail { font-size: 30px; font-weight: var(--fw-bold); border-bottom: 1px solid var(--border-color); padding-bottom: 25px; margin-bottom: 30px; }
+        
+        .info-meta-list { margin-bottom: 30px; }
+        .info-meta-item { display: flex; font-size: var(--fs-small); margin-bottom: 10px; }
+        .info-meta-item .meta-label { width: 90px; color: var(--sub-color); font-weight: var(--fw-medium); }
+        
+        .option-row { margin-bottom: 24px; }
+        .option-row label { display: block; font-size: var(--fs-small); font-weight: var(--fw-medium); margin-bottom: 10px; color: var(--main-color); }
+        .option-row select { width: 100%; border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md); background-color: #fff; font-size: var(--fs-small); }
+        
+        .qty-label { font-size: var(--fs-small); font-weight: var(--fw-medium); margin-bottom: 10px; display: block; }
+        .qty-box { display: flex; align-items: center; border: 1px solid var(--border-color); width: fit-content; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 35px; background: #fff; }
+        .qty-box button { width: 44px; height: 44px; background-color: #f7f6f4; font-size: 18px; font-weight: var(--fw-medium); transition: background 0.2s; }
+        .qty-box button:hover { background-color: #eae6df; }
+        .qty-box input { width: 60px; height: 44px; border: none; text-align: center; background: #fff; font-weight: var(--fw-bold); }
+
+        .total-price-row { display: flex; justify-content: space-between; align-items: center; font-size: var(--fs-body); font-weight: var(--fw-bold); margin-bottom: 30px; padding: 24px 0; border-top: 1px solid var(--border-color); }
+        .total-price-row .t-price { font-size: 32px; color: var(--main-color); }
+
+        .action-btns { display: flex; gap: 14px; }
+        .action-btns .btn-cart-add { flex: 1; border: 1px solid var(--main-color); padding: 18px; text-align: center; font-weight: var(--fw-bold); border-radius: var(--radius-md); font-size: var(--fs-body); background-color: #fff; }
+        .action-btns .btn-cart-add:hover { background-color: #f5f5f5; }
+        .action-btns .btn-buy-now { flex: 1.5; padding: 18px; font-size: var(--fs-body); font-weight: var(--fw-bold); }
+
+        .desc-sections { margin-top: 60px; border-top: 1px solid var(--border-color); padding-top: 40px; }
+        .desc-tabs { display: flex; justify-content: center; gap: 50px; border-bottom: 1px solid var(--border-color); margin-bottom: 60px; }
+        .desc-tabs h4 { font-size: var(--fs-body); font-weight: var(--fw-bold); padding-bottom: 18px; cursor: pointer; color: var(--sub-color); }
+        .desc-tabs h4.active { color: var(--main-color); border-bottom: 2px solid var(--main-color); }
+        .desc-content-img { max-width: 1000px; margin: 0 auto; }
+        .desc-content-img p { font-size: var(--fs-h3); color: var(--main-color); margin-bottom: 50px; text-align: center; line-height: 1.8; font-weight: var(--fw-medium); }
+        .desc-content-img .detail-banner { height: 550px; margin-bottom: 30px; }
+
+        @media (max-width: 900px) {
+            .detail-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .detail-info-box { position: static; }
+            .detail-imgs .main-img-box { height: 450px; }
+            .desc-tabs { gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="header-inner">
+            <div class="logo"><a href="index.html">SKINLAB</a></div>
+            <nav class="gnb">
+                <ul>
+                    <li><a href="sub_category.html?type=skincare">스킨케어</a></li>
+                    <li><a href="sub_category.html?type=line">라인별 제품</a></li>
+                    <li><a href="sub_category.html?type=bodyhair">바디 & 헤어</a></li>
+                    <li><a href="sub_brand.html">브랜드 스토리</a></li>
+                    <li><a href="sub_category.html?type=promotion">기획전</a></li>
+                </ul>
+            </nav>
+            <div class="header-util">
+                <button type="button" onclick="openAuthModal('login')">LOGIN</button>
+                <button type="button" onclick="openAuthModal('join')">JOIN</button>
+                <a href="sub_mypage.html">MY PAGE</a>
+                <a href="sub_cart.html">CART (0)</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="detail-wrapper">
+            <div class="detail-imgs">
+                <div class="main-img-box img-box">
+                    <img id="main-target-img" src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=800" alt="Main Product">
+                </div>
+                <div class="thumb-list">
+                    <div class="thumb-item active" onclick="changeImg('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=800')"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=150"></div>
+                    <div class="thumb-item" onclick="changeImg('https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=800')"><img src="https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=150"></div>
+                    <div class="thumb-item" onclick="changeImg('https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=800')"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=150"></div>
+                </div>
+            </div>
+            
+            <div class="detail-info-box">
+                <span class="brand-tag">SKINLAB SKINCARE</span>
+                <h1 class="prod-title-name">하이드로 수분 코어 토너 (200ml)</h1>
+                <div class="prod-stars">★★★★★ <span>4.9 (230)</span></div>
+                <p class="prod-price-detail">23,000원</p>
+                
+                <div class="info-meta-list">
+                    <div class="info-meta-item"><span class="meta-label">피부 타입</span><span>모든 피부 (특히 건성 추천)</span></div>
+                    <div class="info-meta-item"><span class="meta-label">배송 정보</span><span>3만원 이상 구매 시 무료배송</span></div>
+                </div>
+
+                <div class="option-row">
+                    <label>용량 선택</label>
+                    <select>
+                        <option>200ml (본품)</option>
+                        <option>400ml 대용량 (+12,000원)</option>
+                    </select>
+                </div>
+
+                <div class="option-row">
+                    <span class="qty-label">수량</span>
+                    <div class="qty-box">
+                        <button type="button" onclick="updateQty(-1)">-</button>
+                        <input type="text" id="product-quantity" value="1" readonly>
+                        <button type="button" onclick="updateQty(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="total-price-row">
+                    <span>총 주문 금액</span>
+                    <span class="t-price" id="total-price-display">23,000원</span>
+                </div>
+
+                <div class="action-btns">
+                    <a href="sub_cart.html" class="btn-cart-add">장바구니 담기</a>
+                    <a href="sub_cart.html" class="btn-filled btn-buy-now">바로 구매하기</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="desc-sections">
+            <div class="desc-tabs">
+                <h4 class="active">상세 정보</h4><h4>전성분 안내</h4><h4>사용 방법</h4><h4>상품 리뷰 (230)</h4>
+            </div>
+            <div class="desc-content-img">
+                <p>병풀 추출물과 판테놀 성분이밀착되어 지친 장벽을 건강하게 진정시킵니다.</p>
+                <div class="detail-banner img-box"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=1000"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="auth-modal-overlay" onclick="closeAuthModal()">
+        <div class="auth-modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+            <div class="modal-tabs">
+                <div class="modal-tab-btn" id="tab-login" onclick="switchAuthTab('login')">로그인</div>
+                <div class="modal-tab-btn" id="tab-join" onclick="switchAuthTab('join')">회원가입</div>
+            </div>
+            <div class="auth-form-panel" id="panel-login">
+                <div class="form-group"><label>이메일 주소</label><input type="email" placeholder="example@skinlab.com"></div>
+                <div class="form-group"><label>비밀번호</label><input type="password" placeholder="비밀번호를 입력해주세요"></div>
+                <div class="form-options"><label><input type="checkbox"> 로그인 상태 유지</label><a href="#" style="text-decoration: underline;">비밀번호 찾기</a></div>
+                <button type="button" class="btn-filled" onclick="handleLoginSubmit()">로그인</button>
+            </div>
+            <div class="auth-form-panel" id="panel-join">
+                <div class="form-group"><label>이름</label><input type="text" placeholder="홍길동"></div>
+                <div class="form-group"><label>이메일 주소 (아이디)</label><input type="email" placeholder="example@skinlab.com"></div>
+                <div class="form-group"><label>비밀번호</label><input type="password" placeholder="영문, 숫자 포함 8자 이상"></div>
+                <div class="form-options"><label><input type="checkbox" required> [필수] 약관 동의</label></div>
+                <button type="button" class="btn-filled" onclick="handleJoinSubmit()">가입하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fake-sms-toast" id="sms-toast-node">
+        <div class="sms-header">
+            <span>💬 메시지 (SKINLAB 알림)</span>
+            <span>방금 전</span>
+        </div>
+        <div class="sms-body" id="sms-body-content">
+            [Web발신]<br>
+            SKINLAB 시스템 메시지 정보 창입니다.
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-info">
+                    <div class="footer-logo">SKINLAB</div>
+                    <p>주식회사 스킨랩 코스메틱<br>cs@skinlab.co.kr</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const basePrice = 23000;
+        const qtyInput = document.getElementById('product-quantity');
+        const priceDisplay = document.getElementById('total-price-display');
+
+        function updateQty(val) {
+            let currentQty = parseInt(qtyInput.value) + val;
+            if (currentQty < 1) currentQty = 1;
+            qtyInput.value = currentQty;
+            priceDisplay.innerText = (basePrice * currentQty).toLocaleString() + "원";
+        }
+
+        function changeImg(imgUrl) {
+            document.getElementById('main-target-img').src = imgUrl;
+            const thumbs = document.querySelectorAll('.thumb-item');
+            thumbs.forEach(t => t.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        function openAuthModal(mode) {
+            document.getElementById('auth-modal-overlay').classList.add('active');
+            document.body.classList.add('modal-open');
+            switchAuthTab(mode);
+        }
+        function closeAuthModal() {
+            document.getElementById('auth-modal-overlay').classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+        function switchAuthTab(mode) {
+            document.querySelectorAll('.modal-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.auth-form-panel').forEach(panel => panel.classList.remove('active'));
+            document.getElementById(`tab-${mode}`).classList.add('active');
+            document.getElementById(`panel-${mode}`).classList.add('active');
+        }
+
+        function showSmsToast(message) {
+            const toast = document.getElementById('sms-toast-node');
+            const bodyContent = document.getElementById('sms-body-content');
+            bodyContent.innerHTML = `[Web발신]<br>${message}`;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }
+
+        function handleLoginSubmit() {
+            closeAuthModal();
+            setTimeout(() => { showSmsToast("<b>SKINLAB 로그인 성공</b><br>홍길동 회원님, 반가워요! 스킨랩 연구소의 맞춤형 케어를 즐겨보세요."); }, 400);
+        }
+
+        function handleJoinSubmit() {
+            closeAuthModal();
+            setTimeout(() => { showSmsToast("<b>SKINLAB 가입 완료</b><br>스킨랩 패밀리가 되신 것을 환영합니다. 즉시 사용 가능한 10% 비건 웰컴 쿠폰이 지급되었습니다."); }, 400);
+        }
+    </script>
+</body>
+</html>

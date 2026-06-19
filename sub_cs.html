@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKINLAB | CUSTOMER SUPPORT</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cs-wrapper { margin-top: 140px; display: grid; grid-template-columns: 250px 1fr; gap: 50px; margin-bottom: var(--section-gap); }
+        
+        .cs-menu h3 { font-size: var(--fs-h3); font-weight: var(--fw-bold); margin-bottom: 25px; }
+        .cs-menu-list li { padding: 14px 0; border-bottom: 1px solid var(--border-color); color: var(--sub-color); font-weight: var(--fw-medium); cursor: pointer; }
+        .cs-menu-list li.active, .cs-menu-list li:hover { color: var(--main-color); border-bottom-color: var(--main-color); }
+        
+        .cs-content-panel { display: none; }
+        .cs-content-panel.active { display: block; }
+        .cs-panel-title { font-size: var(--fs-h2); font-weight: var(--fw-bold); margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid var(--main-color); }
+        
+        /* FAQAccordion 무드 디자인 */
+        .faq-item { border-bottom: 1px solid var(--border-color); padding: 20px 0; cursor: pointer; }
+        .faq-q { font-weight: var(--fw-bold); display: flex; justify-content: space-between; font-size: var(--fs-body); }
+        .faq-a { padding-top: 15px; color: var(--sub-color); font-size: var(--fs-small); display: none; line-height: 1.7; }
+        
+        /* 약관 무드 */
+        .text-policy-box { background: #fff; border: 1px solid var(--border-color); padding: 30px; height: 450px; overflow-y: scroll; border-radius: var(--radius-lg); font-size: var(--fs-small); color: var(--sub-color); line-height: 1.8; }
+        
+        /* 1:1 QNA 양식 */
+        .qna-form-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 700px; }
+        .qna-form-grid select, .qna-form-grid textarea { width: 100%; border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md); background-color: #fff; }
+        .qna-form-grid textarea { height: 180px; resize: none; }
+
+        @media (max-width: 900px) {
+            .cs-wrapper { grid-template-columns: 1fr; gap: 30px; }
+            .cs-menu-list { display: flex; flex-wrap: wrap; gap: 10px; }
+            .cs-menu-list li { border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; }
+            .cs-menu-list li.active { background: var(--main-color); color: #fff; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COMPONENT: HEADER -->
+    <header id="main-header">
+        <div class="header-inner">
+            <div class="logo"><a href="index.html">SKINLAB</a></div>
+            <nav class="gnb">
+                <ul>
+                    <li><a href="sub_category.html?type=skincare">스킨케어</a></li>
+                    <li><a href="sub_category.html?type=line">라인별 제품</a></li>
+                    <li><a href="sub_category.html?type=bodyhair">바디 & 헤어</a></li>
+                    <li><a href="sub_brand.html">브랜드 스토리</a></li>
+                    <li><a href="sub_category.html?type=promotion">기획전</a></li>
+                </ul>
+            </nav>
+            <div class="header-util">
+                <a href="sub_cart.html">CART (0)</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container cs-wrapper">
+        <aside class="cs-menu">
+            <h3>고객센터</h3>
+            <ul class="cs-menu-list">
+                <li id="menu-faq" onclick="switchCsTab('faq')">자주 묻는 질문</li>
+                <li id="menu-qna" onclick="switchCsTab('qna')">1:1 문의하기</li>
+                <li id="menu-delivery" onclick="switchCsTab('delivery')">배송/교환/반품</li>
+                <li id="menu-terms" onclick="switchCsTab('terms')">이용약관</li>
+                <li id="menu-privacy" onclick="switchCsTab('privacy')">개인정보처리방침</li>
+            </ul>
+        </aside>
+
+        <main class="cs-content-area">
+            <!-- Panel: FAQ -->
+            <div class="cs-content-panel" id="panel-faq">
+                <h2 class="cs-panel-title">자주 묻는 질문</h2>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-q">Q. 배송은 얼마나 걸리나요? <span>&darr;</span></div>
+                    <div class="faq-a">A. 스킨랩의 모든 제품은 영업일 기준 오후 2시 이전 결제 완료 건에 한해 당일 발송되며, 평균 1~3일 이내에 안전하게 수령하실 수 있습니다.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-q">Q. 민감성 피부가 사용해도 안전한가요? <span>&darr;</span></div>
+                    <div class="faq-a">A. 네, SKINLAB의 모든 라인은 독자 덤-랩 연구소에서 피부 저자극 테스트 및 비건 인증을 완료하여 예민한 민감성 스킨에도 순하게 작용합니다.</div>
+                </div>
+            </div>
+
+            <!-- Panel: QNA -->
+            <div class="cs-content-panel" id="panel-qna">
+                <h2 class="cs-panel-title">1:1 문의하기</h2>
+                <div class="qna-form-grid">
+                    <select>
+                        <option>문의 유형을 선택해주세요</option>
+                        <option>배송/취소 문의</option>
+                        <option>제품 및 성분 문의</option>
+                        <option>기타 서비스 문의</option>
+                    </select>
+                    <input type="text" placeholder="제목을 입력해주세요" style="width: 100%; border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md);">
+                    <textarea placeholder="문의하실 내용을 상세히 적어주시면 신속하게 답변드리겠습니다."></textarea>
+                    <button type="button" class="btn-filled" style="width:140px;" onclick="alert('문의가 정상 접수되었습니다.')">문의 등록</button>
+                </div>
+            </div>
+
+            <!-- Panel: Delivery -->
+            <div class="cs-content-panel" id="panel-delivery">
+                <h2 class="cs-panel-title">배송 및 교환/반품 가이드</h2>
+                <div class="text-policy-box">
+                    <p><b>1. 배송 가이드</b><br>스킨랩은 전국 전 지역 배송 시스템을 운영하고 있으며, 기본 배송비는 3,000원입니다. 최종 실 결제금액 기준 30,000원 이상 구매 시 전액 무료 배송 처리가 적용됩니다.</p><br>
+                    <p><b>2. 교환 및 반품 접수</b><br>상품 수령 후 7일 이내에 고객센터 혹은 1:1 문의 게시판을 통해 접수가 가능합니다. 제품의 하자 및 오배송의 경우 왕복 배송비는 본사에서 전액 부담합니다. 다만, 개인 변심에 의한 교환/반품의 경우 왕복 택배비 6,000원이 청구됩니다.</p>
+                </div>
+            </div>
+
+            <!-- Panel: Terms -->
+            <div class="cs-content-panel" id="panel-terms">
+                <h2 class="cs-panel-title">서비스 이용약관</h2>
+                <div class="text-policy-box">
+                    <h4>제 1조 (목적)</h4>
+                    <p>본 약관은 주식회사 스킨랩 코스메틱이 운영하는 온라인 몰 사이트에서 제공하는 인터넷 관련 서비스 및 유통 시스템을 이용함에 있어 전자상거래 권리와 의무 책임을 규정함을 목적으로 합니다.</p>
+                </div>
+            </div>
+
+            <!-- Panel: Privacy -->
+            <div class="cs-content-panel" id="panel-privacy">
+                <h2 class="cs-panel-title">개인정보처리방침</h2>
+                <div class="text-policy-box">
+                    <p>주식회사 스킨랩 코스메틱은 고객님의 소중한 개인정보를 안전하게 보호하며, 정보통신망 이용촉진 및 정보보호 등에 관한 법률을 철저히 준수하고 있습니다. 수집된 식별 데이터는 오직 안전한 배송 및 맞춤형 케어 메일 발송 서비스 품질 증진을 위해서만 제한적으로 사용됩니다.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 쿼리 스트링 분기 로직으로 어떤 링크로 오든 자동 매칭 렌더링
+        const params = new URLSearchParams(window.location.search);
+        const currentTab = params.get('tab') || 'faq';
+
+        function switchCsTab(tabId) {
+            document.querySelectorAll('.cs-menu-list li').forEach(li => li.classList.remove('active'));
+            document.querySelectorAll('.cs-content-panel').forEach(panel => panel.classList.remove('active'));
+            
+            document.getElementById(`menu-${tabId}`).classList.add('active');
+            document.getElementById(`panel-${tabId}`).classList.add('active');
+        }
+        switchCsTab(currentTab);
+
+        function toggleFaq(element) {
+            const answer = element.querySelector('.faq-a');
+            const isOpen = answer.style.display === 'block';
+            answer.style.display = isOpen ? 'none' : 'block';
+            element.querySelector('span').innerHTML = isOpen ? '&darr;' : '&uarr;';
+        }
+    </script>
+</body>
+</html>
