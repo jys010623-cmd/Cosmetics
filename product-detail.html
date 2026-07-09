@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 :root{--point:#e94378;--main:#111;--sub:#6f666a;--bg:#fff;--soft:#fff7fa;--surface:#fff;--line:#eee6e9;--font-ko:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif;--font-en:Archivo,Arial,sans-serif;--max:1500px;--space-xs:10px;--space-sm:18px;--space-md:32px;--space-lg:56px;--space-xl:92px;--fs-xs:12px;--fs-sm:14px;--fs-md:16px;--fs-lg:22px;--fs-xl:42px;--fw-r:400;--fw-m:600;--fw-b:800;--radius:8px}
+html{overflow-y:scroll;scrollbar-gutter:stable}
 *{box-sizing:border-box}
 body{margin:0;font-family:var(--font-ko);color:var(--main);background:var(--bg);word-break:keep-all}
 a{text-decoration:none;color:inherit}
@@ -221,6 +222,51 @@ section{padding:var(--space-xl) 0}
 <footer class="foot"><div class="wrap"><div><a class="logo" href="index.html">Fluttery</a><p>색조 화장품 쇼핑몰 스킨 샘플<br>구매, 결제, 로그인 기능은 카페24 모듈 영역입니다.</p></div><p>Company 000-00-00000<br>Customer 10:00-17:00<br>Instagram / Kakao / Naver</p></div></footer>
 <script>
 document.querySelectorAll('.fade').forEach(function(el){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.12}).observe(el)});
+
+/* 상품별 상세 정보 로드 (?id=N) */
+var PRODUCTS={
+  '1':{n:'Velvet Ink Tint',s:'로즈 베리 컬러',img:'product-01.jpg',p:18000,w:22000,cat:'립'},
+  '2':{n:'Glass Lip Lacquer',s:'클리어 글로우',img:'product-02.jpg',p:17000,cat:'립'},
+  '3':{n:'Soft Matte Lipstick',s:'무드 누드',img:'product-03.jpg',p:21000,cat:'립'},
+  '4':{n:'Urban Cushion Compact',s:'세미 매트',img:'product-04.jpg',p:29000,cat:'베이스'},
+  '5':{n:'Mood Flush Blush',s:'로즈 핑크',img:'product-05.jpg',p:19000,cat:'치크'},
+  '6':{n:'Cream Cheek Pot',s:'멜팅 코랄',img:'product-06.jpg',p:20000,w:24000,cat:'치크'},
+  '7':{n:'Rose Mauve Shadow Quad',s:'데일리 로즈',img:'product-07.jpg',p:26000,cat:'아이'},
+  '8':{n:'Nine Mood Palette',s:'로즈 모브',img:'product-08.jpg',p:34000,cat:'아이'},
+  '9':{n:'Lift Curl Mascara',s:'딥 브라운',img:'product-09.jpg',p:18000,cat:'아이'},
+  '10':{n:'Graphite Gel Liner',s:'롱웨어 라인',img:'product-10.jpg',p:15000,cat:'아이'},
+  '11':{n:'Brow Set Gel',s:'클리어 픽스',img:'product-11.jpg',p:16000,cat:'아이'},
+  '12':{n:'Prism Highlighter',s:'소프트 베일',img:'product-12.jpg',p:24000,cat:'베이스'},
+  '13':{n:'Shade Contour Duo',s:'내추럴 쉐이드',img:'product-13.jpg',p:23000,cat:'베이스'},
+  '14':{n:'Blur Fixing Powder',s:'라이트 베일',img:'product-14.jpg',p:22000,cat:'베이스'},
+  '15':{n:'Vinyl Nail Color',s:'로지 글로스',img:'product-15.jpg',p:12000,cat:'네일'},
+  '16':{n:'Loose Glow Pigment',s:'샴페인 펄',img:'product-16.jpg',p:18000,cat:'아이'}
+};
+(function(){
+  function money(v){return v.toLocaleString('ko-KR')+'원';}
+  var pid=new URLSearchParams(location.search).get('id');
+  var d=PRODUCTS[pid]||PRODUCTS['1'];
+  if(!d)return;
+  var src='assets/images/'+d.img;
+  var mp=document.querySelector('.main-photo img'); if(mp){mp.src=src;mp.alt=d.n;}
+  var t0=document.querySelector('.thumbs button:first-child img'); if(t0){t0.src=src;t0.alt=d.n;}
+  var h1=document.querySelector('.summary h1'); if(h1){h1.textContent=d.n;}
+  var desc=document.querySelector('.summary .desc'); if(desc){desc.textContent=d.s+'. 맑은 발색과 가벼운 밀착감으로 데일리 색조 메이크업에 잘 어울리는 '+d.n+'입니다.';}
+  var cat=document.querySelector('.breadcrumb span:nth-of-type(3)'); if(cat){cat.textContent=d.cat;}
+  var bcName=document.querySelector('.breadcrumb b'); if(bcName){bcName.textContent=d.n;}
+  var saleEl=document.querySelector('.price-main .sale');
+  var priceEl=document.querySelector('.price-main .price');
+  var delEl=document.querySelector('.price-main del');
+  if(priceEl){priceEl.textContent=money(d.p);}
+  if(d.w&&d.w>d.p){
+    if(saleEl){saleEl.textContent=Math.round((d.w-d.p)/d.w*100)+'%';saleEl.style.display='';}
+    if(delEl){delEl.textContent=money(d.w);delEl.style.display='';}
+  }else{
+    if(saleEl){saleEl.style.display='none';}
+    if(delEl){delEl.style.display='none';}
+  }
+  document.title=d.n+' - Fluttery';
+}());
 
 /* 썸네일 클릭 → 메인 이미지 전환 */
 var mainPhoto=document.querySelector('.main-photo img');
