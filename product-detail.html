@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>상품상세 - URBAN CHROMA</title>
+<title>상품상세 - Fluttery</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 :root{--point:#e94378;--main:#111;--sub:#6f666a;--bg:#fff;--soft:#fff7fa;--surface:#fff;--line:#eee6e9;--font-ko:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif;--font-en:Archivo,Arial,sans-serif;--max:1500px;--space-xs:10px;--space-sm:18px;--space-md:32px;--space-lg:56px;--space-xl:92px;--fs-xs:12px;--fs-sm:14px;--fs-md:16px;--fs-lg:22px;--fs-xl:42px;--fw-r:400;--fw-m:600;--fw-b:800;--radius:8px}
@@ -109,7 +109,7 @@ section{padding:var(--space-xl) 0}
 <body>
 <header class="top">
   <div class="wrap head">
-    <a class="logo" href="index.html">URBAN CHROMA</a>
+    <a class="logo" href="index.html">Fluttery</a>
     <nav class="nav"><a href="products.html">SHOP</a><a href="products.html">NEW</a><a href="notice.html">NOTICE</a><a href="review-board.html">REVIEW</a><a href="qna.html">Q&A</a></nav>
     <div class="icons"><a href="login.html" aria-label="로그인"><i class="fa-regular fa-user"></i></a><a href="cart.html" aria-label="장바구니"><i class="fa-solid fa-bag-shopping"></i></a><a class="mobile" href="products.html" aria-label="메뉴"><i class="fa-solid fa-bars"></i></a></div>
   </div>
@@ -218,9 +218,40 @@ section{padding:var(--space-xl) 0}
   </section>
 </main>
 
-<footer class="foot"><div class="wrap"><div><a class="logo" href="index.html">URBAN CHROMA</a><p>색조 화장품 쇼핑몰 스킨 샘플<br>구매, 결제, 로그인 기능은 카페24 모듈 영역입니다.</p></div><p>Company 000-00-00000<br>Customer 10:00-17:00<br>Instagram / Kakao / Naver</p></div></footer>
+<footer class="foot"><div class="wrap"><div><a class="logo" href="index.html">Fluttery</a><p>색조 화장품 쇼핑몰 스킨 샘플<br>구매, 결제, 로그인 기능은 카페24 모듈 영역입니다.</p></div><p>Company 000-00-00000<br>Customer 10:00-17:00<br>Instagram / Kakao / Naver</p></div></footer>
 <script>
 document.querySelectorAll('.fade').forEach(function(el){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.12}).observe(el)});
+
+/* 썸네일 클릭 → 메인 이미지 전환 */
+var mainPhoto=document.querySelector('.main-photo img');
+var thumbBtns=document.querySelectorAll('.thumbs button');
+thumbBtns.forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var img=btn.querySelector('img');
+    if(mainPhoto&&img){mainPhoto.src=img.src;}
+    thumbBtns.forEach(function(b){b.style.borderColor='var(--line)';});
+    btn.style.borderColor='var(--point)';
+  });
+});
+
+/* 컬러 스와치 선택 */
+var optLabel=document.querySelector('.option-title .muted');
+var swatches=document.querySelectorAll('.swatches .swatch');
+swatches.forEach(function(sw){
+  sw.addEventListener('click',function(){
+    swatches.forEach(function(s){s.style.borderColor='var(--line)';s.style.color='';});
+    sw.style.borderColor='var(--point)';sw.style.color='var(--point)';
+    if(optLabel){optLabel.textContent=sw.textContent.trim();}
+  });
+});
+
+/* 장바구니 버튼 → 장바구니 페이지 이동 (결제/구매는 카페24 모듈) */
+var cartBtn=document.querySelector('.actions .btn.sub');
+if(cartBtn){cartBtn.addEventListener('click',function(){location.href='cart.html';});}
+
+/* 상세 탭 활성 표시 */
+var tabLinks=document.querySelectorAll('.tabs a');
+tabLinks.forEach(function(t){t.addEventListener('click',function(){tabLinks.forEach(function(x){x.classList.remove('on');});t.classList.add('on');});});
 </script>
 </body>
 </html>

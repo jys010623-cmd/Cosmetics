@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>상품목록 - URBAN CHROMA</title>
+<title>상품목록 - Fluttery</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 :root{--point:#e94378;--main:#111;--sub:#6f666a;--bg:#fff;--soft:#fff7fa;--surface:#fff;--line:#eee6e9;--font-ko:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif;--font-en:Archivo,Arial,sans-serif;--max:1500px;--space-md:32px;--fs-sm:14px;--fs-xl:42px;--fw-m:600;--fw-b:800;--radius:8px}
@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap head"><a class="logo" href="index.html">URBAN CHROMA</a><nav class="nav"><a href="products.html">SHOP</a><a href="products.html">NEW</a><a href="notice.html">NOTICE</a><a href="review-board.html">REVIEW</a><a href="qna.html">Q&A</a></nav><div class="icons"><a href="login.html" aria-label="로그인"><i class="fa-regular fa-user"></i></a><a href="cart.html" aria-label="장바구니"><i class="fa-solid fa-bag-shopping"></i></a><a class="mobile" href="products.html" aria-label="메뉴"><i class="fa-solid fa-bars"></i></a></div></div></header>
+<header class="top"><div class="wrap head"><a class="logo" href="index.html">Fluttery</a><nav class="nav"><a href="products.html">SHOP</a><a href="products.html">NEW</a><a href="notice.html">NOTICE</a><a href="review-board.html">REVIEW</a><a href="qna.html">Q&A</a></nav><div class="icons"><a href="login.html" aria-label="로그인"><i class="fa-regular fa-user"></i></a><a href="cart.html" aria-label="장바구니"><i class="fa-solid fa-bag-shopping"></i></a><a class="mobile" href="products.html" aria-label="메뉴"><i class="fa-solid fa-bars"></i></a></div></div></header>
 <main class="page fade"><div class="wrap">
 <div class="title"><div><span class="eyebrow">ALL PRODUCTS</span><h1>컬러 컬렉션</h1></div><div class="sort"><span>총 16개</span><select><option>신상품순</option><option>인기순</option><option>낮은가격순</option></select></div></div>
 <ul class="products">
@@ -34,7 +34,24 @@
 </ul>
 <div class="paging"><a class="on" href="#">1</a><a href="#">2</a><a href="#"><i class="fa-solid fa-angle-right"></i></a></div>
 </div></main>
-<footer class="foot"><div class="wrap"><div><a class="logo" href="index.html">URBAN CHROMA</a><p>색조 화장품 쇼핑몰 스킨 샘플<br>구매, 결제, 로그인 기능은 카페24 모듈 영역입니다.</p></div><p>Company 000-00-00000<br>Customer 10:00-17:00<br>Instagram / Kakao / Naver</p></div></footer>
-<script>document.querySelectorAll('.fade').forEach(function(el){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.12}).observe(el)});</script>
+<footer class="foot"><div class="wrap"><div><a class="logo" href="index.html">Fluttery</a><p>색조 화장품 쇼핑몰 스킨 샘플<br>구매, 결제, 로그인 기능은 카페24 모듈 영역입니다.</p></div><p>Company 000-00-00000<br>Customer 10:00-17:00<br>Instagram / Kakao / Naver</p></div></footer>
+<script>
+document.querySelectorAll('.fade').forEach(function(el){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.12}).observe(el)});
+
+/* 정렬 셀렉트 (신상품순 / 인기순 / 낮은가격순) */
+var sortSel=document.querySelector('.sort select');
+var listEl=document.querySelector('.products');
+if(sortSel&&listEl){
+  var original=Array.prototype.slice.call(listEl.children);
+  function itemPrice(li){var p=li.querySelector('.price');var node=(p.firstChild&&p.firstChild.nodeType===3)?p.firstChild.textContent:p.textContent;return parseInt(node.replace(/[^0-9]/g,''),10)||0;}
+  sortSel.addEventListener('change',function(){
+    var v=sortSel.selectedIndex;
+    var arr=original.slice();
+    if(v===2){arr.sort(function(a,b){return itemPrice(a)-itemPrice(b);});}
+    else if(v===1){arr.sort(function(a,b){var ba=a.querySelector('.badge')?1:0,bb=b.querySelector('.badge')?1:0;return bb-ba;});}
+    arr.forEach(function(li){listEl.appendChild(li);});
+  });
+}
+</script>
 </body>
 </html>
