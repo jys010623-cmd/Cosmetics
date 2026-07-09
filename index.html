@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URBAN CHROMA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root{
+      --point:#e94378;
+      --main:#111111;
+      --sub:#6f666a;
+      --bg:#ffffff;
+      --soft:#fff7fa;
+      --surface:#ffffff;
+      --line:#eee6e9;
+      --font-ko:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif;
+      --font-en:Archivo,Arial,sans-serif;
+      --max:1500px;
+      --space-xs:10px;
+      --space-sm:18px;
+      --space-md:32px;
+      --space-lg:56px;
+      --space-xl:92px;
+      --fs-xs:12px;
+      --fs-sm:14px;
+      --fs-md:16px;
+      --fs-lg:22px;
+      --fs-xl:36px;
+      --fs-hero:58px;
+      --fw-r:400;
+      --fw-m:600;
+      --fw-b:800;
+      --radius:8px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--font-ko);color:var(--main);background:var(--bg);word-break:keep-all}
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%;height:auto}
+    button,input,select{font:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--space-md)}
+    .top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+    .head{height:78px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .logo{font-family:var(--font-en);font-size:25px;font-weight:900;letter-spacing:0}
+    .nav,.icons{display:flex;align-items:center;gap:28px}
+    .nav a{font-size:var(--fs-sm);font-weight:var(--fw-b)}
+    .nav a:hover,.icons a:hover{color:var(--point)}
+    .icons{gap:17px;font-size:18px}
+    .mobile{display:none}
+    .hero{padding:0;background:#fff}
+    .swiper{overflow:hidden}
+    .swiper-wrapper{display:flex}
+    .swiper-slide{position:relative;min-width:100%}
+    .hero img{height:clamp(560px,42vw,820px);object-fit:cover}
+    .hero-copy{position:absolute;inset:0;display:flex;align-items:center}
+    .hero-copy .wrap{width:100%}
+    .eyebrow{font-family:var(--font-en);font-size:var(--fs-xs);font-weight:900;color:var(--point);letter-spacing:.16em}
+    .hero h1{margin:14px 0 18px;max-width:560px;font-size:clamp(38px,4vw,var(--fs-hero));line-height:1.06;font-weight:900;letter-spacing:0}
+    .hero p{max-width:440px;margin:0 0 28px;color:#4b4447;font-size:17px;line-height:1.7}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:48px;padding:0 24px;border:1px solid var(--main);border-radius:var(--radius);background:var(--main);color:#fff;font-weight:var(--fw-b);cursor:pointer}
+    .btn:hover{background:var(--point);border-color:var(--point)}
+    .btn.light{background:#fff;color:var(--main);border-color:var(--line)}
+    .btn.light:hover{background:var(--point);border-color:var(--point);color:#fff}
+    section{padding:var(--space-xl) 0}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}
+    h2{margin:0;font-size:var(--fs-xl);line-height:1.16;letter-spacing:0}
+    .muted{color:var(--sub);line-height:1.65}
+    .quick{border-bottom:1px solid var(--line);background:#fff}
+    .quick-list{display:grid;grid-template-columns:repeat(4,1fr);gap:0;list-style:none;margin:0;padding:0}
+    .quick-list li{padding:18px 22px;border-right:1px solid var(--line)}
+    .quick-list li:last-child{border-right:0}
+    .quick-list strong{display:block;margin-bottom:4px;font-size:15px}
+    .quick-list span{font-size:13px;color:var(--sub)}
+    .cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+    .cat{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+    .cat img{aspect-ratio:1/1;object-fit:cover;background:var(--soft)}
+    .cat strong{display:block;padding:15px 10px;text-align:center;font-size:15px}
+    .products{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;list-style:none;margin:0;padding:0}
+    .item{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);transition:transform .25s ease,border-color .25s ease}
+    .item:hover{transform:translateY(-3px);border-color:#eac7d4}
+    .item img{aspect-ratio:1/1;object-fit:cover;background:var(--soft)}
+    .info{padding:17px 16px 18px}
+    .name{min-height:44px;font-weight:var(--fw-m);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .price{margin-top:10px;color:var(--point);font-weight:var(--fw-b)}
+    .price del{margin-left:8px;color:#aaa;font-weight:var(--fw-r)}
+    .badge{position:absolute;top:12px;left:12px;z-index:2;padding:6px 10px;border-radius:var(--radius);background:var(--point);color:#fff;font-size:var(--fs-xs);font-weight:900}
+    .promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .promo{position:relative;overflow:hidden;min-height:260px;border-radius:var(--radius);border:1px solid var(--line);background:var(--soft)}
+    .promo img{height:100%;min-height:260px;object-fit:cover}
+    .promo .txt{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:42px;color:var(--main)}
+    .promo h3{margin:9px 0 12px;font-size:30px;line-height:1.15}
+    .popup-area{position:fixed;right:22px;bottom:22px;z-index:60;display:grid;gap:10px;width:340px;max-width:calc(100vw - 32px)}
+    .pop{position:relative;overflow:hidden;border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);background:#fff;box-shadow:0 12px 38px rgba(0,0,0,.13)}
+    .pop img{height:118px;object-fit:cover}
+    .pop .pbody{padding:14px 16px}
+    .pop strong{font-size:15px}
+    .pop button{position:absolute;top:10px;right:10px;width:30px;height:30px;border:0;border-radius:50%;background:#fff;cursor:pointer}
+    .foot{margin-top:var(--space-xl);padding:56px 0;background:#111;color:#eee}
+    .foot .wrap{display:flex;justify-content:space-between;gap:40px}
+    .foot p{color:#aaa;line-height:1.75}
+    .fade{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .fade.show{opacity:1;transform:none}
+    @media(max-width:900px){
+      .wrap{padding:0 18px}
+      .head{height:68px}
+      .nav{display:none}
+      .mobile{display:block}
+      .hero img{height:560px}
+      .hero h1{font-size:39px}
+      .quick-list{grid-template-columns:repeat(2,1fr)}
+      .quick-list li{border-bottom:1px solid var(--line)}
+      .cat-grid{grid-template-columns:repeat(3,1fr);gap:12px}
+      .products{grid-template-columns:repeat(2,1fr);gap:14px}
+      .promo-grid{grid-template-columns:1fr}
+      .section-head{display:block}
+      .popup-area{display:none}
+      .foot .wrap{display:block}
+      section{padding:64px 0}
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap head">
+      <a class="logo" href="index.html">URBAN CHROMA</a>
+      <nav class="nav">
+        <a href="products.html">SHOP</a>
+        <a href="products.html">NEW</a>
+        <a href="notice.html">NOTICE</a>
+        <a href="review-board.html">REVIEW</a>
+        <a href="qna.html">Q&A</a>
+      </nav>
+      <div class="icons">
+        <a href="login.html" aria-label="로그인"><i class="fa-regular fa-user"></i></a>
+        <a href="cart.html" aria-label="장바구니"><i class="fa-solid fa-bag-shopping"></i></a>
+        <a class="mobile" href="products.html" aria-label="메뉴"><i class="fa-solid fa-bars"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="assets/images/hero-01.jpg" alt="로즈 글로우 색조 컬렉션">
+            <div class="hero-copy">
+              <div class="wrap">
+                <span class="eyebrow">NEW COLOR EDIT</span>
+                <h1>Clean Color, Daily Glow</h1>
+                <p>맑은 로즈, 코랄, 모브 톤으로 완성하는 요즘 K-뷰티 색조 루틴.</p>
+                <a class="btn" href="products.html">신상품 보기 <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="assets/images/hero-02.jpg" alt="데일리 로즈 모브 메이크업">
+            <div class="hero-copy">
+              <div class="wrap">
+                <span class="eyebrow">ROSE MAUVE</span>
+                <h1>Soft Shades For Every Day</h1>
+                <p>립, 치크, 아이 컬러를 차분하게 연결하는 데일리 색조 컬렉션.</p>
+                <a class="btn" href="products.html">컬렉션 쇼핑</a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="assets/images/hero-03.jpg" alt="글로우 틴트와 치크 캠페인">
+            <div class="hero-copy">
+              <div class="wrap">
+                <span class="eyebrow">GLOW ROUTINE</span>
+                <h1>Tint, Cheek, Shine</h1>
+                <p>깨끗한 피부 위에 얇게 얹는 생기와 광채. 지금 가장 손이 가는 색조.</p>
+                <a class="btn" href="products.html">베스트 보기</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick">
+      <div class="wrap">
+        <ul class="quick-list">
+          <li><strong>무료배송</strong><span>3만원 이상 구매 시</span></li>
+          <li><strong>신상 컬러</strong><span>매주 업데이트</span></li>
+          <li><strong>베스트 리뷰</strong><span>실구매 후기 중심</span></li>
+          <li><strong>카페24 호환</strong><span>기능은 모듈 연동</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="fade">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">CATEGORY</span>
+            <h2>Shop By Mood</h2>
+          </div>
+          <p class="muted">립, 치크, 아이, 베이스를 색조 무드별로 빠르게 탐색하세요.</p>
+        </div>
+        <div class="cat-grid">
+          <a class="cat" href="products.html"><img src="assets/images/category-01.jpg" alt="립 틴트"><strong>Lip Tint</strong></a>
+          <a class="cat" href="products.html"><img src="assets/images/category-02.jpg" alt="글로스"><strong>Gloss</strong></a>
+          <a class="cat" href="products.html"><img src="assets/images/category-03.jpg" alt="치크"><strong>Cheek</strong></a>
+          <a class="cat" href="products.html"><img src="assets/images/category-04.jpg" alt="아이"><strong>Eye</strong></a>
+          <a class="cat" href="products.html"><img src="assets/images/category-05.jpg" alt="팔레트"><strong>Palette</strong></a>
+          <a class="cat" href="products.html"><img src="assets/images/category-06.jpg" alt="글로우"><strong>Glow</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="fade">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">RECOMMENDED</span>
+            <h2>Today’s Color Picks</h2>
+          </div>
+          <a class="muted" href="products.html">전체보기</a>
+        </div>
+        <ul class="products">
+          <li class="item"><a href="product-detail.html"><span class="badge">NEW</span><img src="assets/images/product-01.jpg" alt="Velvet Ink Tint"><div class="info"><div class="name">Velvet Ink Tint / 로즈 베리 컬러</div><div class="price">18,000원 <del>22,000원</del></div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-02.jpg" alt="Glass Lip Lacquer"><div class="info"><div class="name">Glass Lip Lacquer / 클리어 글로우</div><div class="price">17,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><span class="badge">BEST</span><img src="assets/images/product-03.jpg" alt="Soft Matte Lipstick"><div class="info"><div class="name">Soft Matte Lipstick / 무드 누드</div><div class="price">21,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-04.jpg" alt="Urban Cushion Compact"><div class="info"><div class="name">Urban Cushion Compact / 세미 매트</div><div class="price">29,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-05.jpg" alt="Mood Flush Blush"><div class="info"><div class="name">Mood Flush Blush / 로즈 핑크</div><div class="price">19,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><span class="badge">15%</span><img src="assets/images/product-06.jpg" alt="Cream Cheek Pot"><div class="info"><div class="name">Cream Cheek Pot / 멜팅 코랄</div><div class="price">20,000원 <del>24,000원</del></div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-07.jpg" alt="Chrome Shadow Quad"><div class="info"><div class="name">Rose Mauve Shadow Quad</div><div class="price">26,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-08.jpg" alt="Nine Mood Palette"><div class="info"><div class="name">Nine Mood Palette / 데일리 로즈</div><div class="price">34,000원</div></div></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="fade">
+      <div class="wrap promo-grid">
+        <a class="promo" href="products.html">
+          <img src="assets/images/promo-01.jpg" alt="틴트 기획전 배너">
+          <div class="txt">
+            <span class="eyebrow">COLOR EVENT</span>
+            <h3>Rose Tint Week</h3>
+            <p>맑은 립 컬러와 치크를 함께 구성한 데일리 에디션</p>
+          </div>
+        </a>
+        <a class="promo" href="products.html">
+          <img src="assets/images/promo-02.jpg" alt="글로우 룩북 배너">
+          <div class="txt">
+            <span class="eyebrow">LOOKBOOK</span>
+            <h3>Mauve Glow Routine</h3>
+            <p>차분한 로즈 모브와 은은한 광을 한 번에</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="fade">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">NEW ARRIVAL</span>
+            <h2>Fresh Updates</h2>
+          </div>
+          <p class="muted">최근 입고된 색조 아이템</p>
+        </div>
+        <ul class="products">
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-09.jpg" alt="Lift Curl Mascara"><div class="info"><div class="name">Lift Curl Mascara / 딥 브라운</div><div class="price">18,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-10.jpg" alt="Graphite Gel Liner"><div class="info"><div class="name">Graphite Gel Liner / 롱웨어 라인</div><div class="price">15,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-11.jpg" alt="Brow Set Gel"><div class="info"><div class="name">Brow Set Gel / 클리어 픽스</div><div class="price">16,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-12.jpg" alt="Prism Highlighter"><div class="info"><div class="name">Prism Highlighter / 소프트 베일</div><div class="price">24,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-13.jpg" alt="Shade Contour Duo"><div class="info"><div class="name">Shade Contour Duo / 내추럴 쉐이드</div><div class="price">23,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-14.jpg" alt="Blur Fixing Powder"><div class="info"><div class="name">Blur Fixing Powder / 라이트 베일</div><div class="price">22,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-15.jpg" alt="Vinyl Nail Color"><div class="info"><div class="name">Vinyl Nail Color / 로지 글로스</div><div class="price">12,000원</div></div></a></li>
+          <li class="item"><a href="product-detail.html"><img src="assets/images/product-16.jpg" alt="Loose Glow Pigment"><div class="info"><div class="name">Loose Glow Pigment / 샴페인 펄</div><div class="price">18,000원</div></div></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div class="popup-area">
+    <div class="pop">
+      <button aria-label="닫기">×</button>
+      <img src="assets/images/popup-01.jpg" alt="신상 컬러 팝업">
+      <div class="pbody"><strong>신상 컬러 런칭</strong><p class="muted">오늘만 전 상품 10% 쿠폰</p></div>
+    </div>
+    <div class="pop">
+      <button aria-label="닫기">×</button>
+      <img src="assets/images/popup-02.jpg" alt="메이크업 세트 팝업">
+      <div class="pbody"><strong>로즈 글로우 세트</strong><p class="muted">립+치크 추천 조합</p></div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div>
+        <a class="logo" href="index.html">URBAN CHROMA</a>
+        <p>색조 화장품 쇼핑몰 스킨 샘플<br>구매, 결제, 로그인 기능은 카페24 모듈 영역입니다.</p>
+      </div>
+      <p>Company 000-00-00000<br>Customer 10:00-17:00<br>Instagram / Kakao / Naver</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('.swiper',{loop:true,autoplay:{delay:3800},speed:700});
+    document.querySelectorAll('.fade').forEach(function(el){
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){ if(entry.isIntersecting) entry.target.classList.add('show'); });
+      },{threshold:.12}).observe(el);
+    });
+    document.querySelectorAll('.pop button').forEach(function(btn){
+      btn.addEventListener('click',function(){ btn.closest('.pop').style.display='none'; });
+    });
+  </script>
+</body>
+</html>

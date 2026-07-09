@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>상품상세 - URBAN CHROMA</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--point:#e94378;--main:#111;--sub:#6f666a;--bg:#fff;--soft:#fff7fa;--surface:#fff;--line:#eee6e9;--font-ko:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif;--font-en:Archivo,Arial,sans-serif;--max:1500px;--space-xs:10px;--space-sm:18px;--space-md:32px;--space-lg:56px;--space-xl:92px;--fs-xs:12px;--fs-sm:14px;--fs-md:16px;--fs-lg:22px;--fs-xl:42px;--fw-r:400;--fw-m:600;--fw-b:800;--radius:8px}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font-ko);color:var(--main);background:var(--bg);word-break:keep-all}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;height:auto}
+button,input,select{font:inherit}
+.wrap{max-width:var(--max);margin:auto;padding:0 var(--space-md)}
+.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.head{height:78px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.logo{font-family:var(--font-en);font-size:25px;font-weight:900;letter-spacing:0}
+.nav,.icons{display:flex;align-items:center;gap:28px}
+.nav a{font-size:var(--fs-sm);font-weight:var(--fw-b)}
+.nav a:hover,.icons a:hover{color:var(--point)}
+.icons{gap:17px;font-size:18px}
+.mobile{display:none}
+.page{padding:52px 0 110px}
+.breadcrumb{display:flex;gap:8px;margin-bottom:24px;color:var(--sub);font-size:13px}
+.breadcrumb b{color:var(--main)}
+.detail-hero{display:grid;grid-template-columns:minmax(0,1fr) 500px;gap:64px;align-items:start}
+.gallery{display:grid;grid-template-columns:88px minmax(0,1fr);gap:18px}
+.thumbs{display:grid;gap:12px;align-content:start}
+.thumbs button{overflow:hidden;padding:0;border:1px solid var(--line);border-radius:var(--radius);background:#fff;cursor:pointer}
+.thumbs button:first-child{border-color:var(--point)}
+.thumbs img{aspect-ratio:1/1;object-fit:cover;background:var(--soft)}
+.main-photo{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,#fff 0%,#fff7fa 100%)}
+.main-photo img{aspect-ratio:1/1;object-fit:cover}
+.summary{position:sticky;top:104px}
+.eyebrow{font-family:var(--font-en);font-size:var(--fs-xs);font-weight:900;color:var(--point);letter-spacing:.16em}
+.summary h1{margin:10px 0 12px;font-size:42px;line-height:1.12;letter-spacing:0}
+.summary .desc{margin:0;color:var(--sub);line-height:1.75}
+.rating{display:flex;align-items:center;gap:10px;margin:18px 0 24px;font-size:14px}
+.stars{color:var(--point);letter-spacing:1px}
+.price-box{padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.price-main{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.sale{font-size:20px;font-weight:900;color:var(--point)}
+.price{font-size:30px;font-weight:900}
+.price del{font-size:16px;color:#aaa;font-weight:400}
+.benefit-line{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{display:inline-flex;align-items:center;height:30px;padding:0 11px;border-radius:999px;background:var(--soft);color:#8a4d61;font-size:13px;font-weight:700}
+.option-block{padding:22px 0;border-bottom:1px solid var(--line)}
+.option-title{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:800}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.swatch{display:flex;align-items:center;gap:8px;height:42px;padding:0 13px;border:1px solid var(--line);border-radius:999px;background:#fff}
+.dot{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.dot.rose{background:#d94f78}.dot.nude{background:#b9796f}.dot.mauve{background:#9b6379}
+.qty{display:flex;align-items:center;gap:10px}
+.qty input{width:86px;height:42px;border:1px solid var(--line);border-radius:var(--radius);padding:0 12px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.btn{height:54px;border-radius:var(--radius);border:1px solid var(--main);background:var(--main);color:#fff;font-weight:900;cursor:pointer}
+.btn.sub{background:#fff;color:var(--main);border-color:var(--line)}
+.btn:hover{background:var(--point);border-color:var(--point);color:#fff}
+.quick-info{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.quick-info div{padding:15px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+.quick-info strong{display:block;margin-bottom:4px;font-size:14px}
+.quick-info span{font-size:13px;color:var(--sub)}
+section{padding:var(--space-xl) 0}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px}
+.section-head h2{margin:8px 0 0;font-size:36px;line-height:1.16}
+.modules{display:grid;grid-template-columns:1.15fr .85fr;gap:24px}
+.campaign{position:relative;overflow:hidden;min-height:420px;border-radius:var(--radius);background:var(--soft);border:1px solid var(--line)}
+.campaign img{height:100%;min-height:420px;object-fit:cover}
+.campaign-copy{position:absolute;left:38px;bottom:36px;max-width:360px}
+.campaign-copy h3{margin:8px 0 10px;font-size:34px;line-height:1.12}
+.cards{display:grid;gap:14px}
+.info-card{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+.info-card b{display:block;margin-bottom:8px;color:var(--point);font-size:22px}
+.info-card p{margin:0;color:var(--sub);line-height:1.7}
+.shade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.shade-card{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+.shade-card img{aspect-ratio:1/1;object-fit:cover;background:var(--soft)}
+.shade-card div{padding:16px}
+.shade-card strong{display:block;margin-bottom:6px}
+.shade-card span{font-size:13px;color:var(--sub)}
+.review-wrap{display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:start}
+.score{padding:32px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;text-align:center}
+.score strong{display:block;font-size:52px;line-height:1;color:var(--point)}
+.review-list{display:grid;gap:12px}
+.review{padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+.review p{margin:8px 0 0;color:var(--sub);line-height:1.65}
+.tabs{position:sticky;top:78px;z-index:20;display:flex;justify-content:center;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+.tabs a{padding:18px 34px;font-weight:900}
+.tabs a:hover,.tabs a.on{color:var(--point)}
+.detail-img{max-width:800px;margin:46px auto 0}
+.detail-img img{display:block;width:100%;height:auto}
+.foot{margin-top:var(--space-xl);padding:56px 0;background:#111;color:#eee}
+.foot .wrap{display:flex;justify-content:space-between;gap:40px}
+.foot p{color:#aaa;line-height:1.75}
+.fade{opacity:0;transform:translateY(24px);transition:.7s}
+.fade.show{opacity:1;transform:none}
+@media(max-width:900px){
+  .wrap{padding:0 18px}.head{height:68px}.nav{display:none}.mobile{display:block}
+  .detail-hero,.gallery,.modules,.review-wrap{grid-template-columns:1fr}
+  .summary{position:static}.thumbs{grid-template-columns:repeat(4,1fr)}
+  .actions,.quick-info{grid-template-columns:1fr}
+  .shade-grid{grid-template-columns:repeat(2,1fr)}
+  .section-head{display:block}.tabs{overflow:auto;justify-content:flex-start}.tabs a{white-space:nowrap}
+  .foot .wrap{display:block}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap head">
+    <a class="logo" href="index.html">URBAN CHROMA</a>
+    <nav class="nav"><a href="products.html">SHOP</a><a href="products.html">NEW</a><a href="notice.html">NOTICE</a><a href="review-board.html">REVIEW</a><a href="qna.html">Q&A</a></nav>
+    <div class="icons"><a href="login.html" aria-label="로그인"><i class="fa-regular fa-user"></i></a><a href="cart.html" aria-label="장바구니"><i class="fa-solid fa-bag-shopping"></i></a><a class="mobile" href="products.html" aria-label="메뉴"><i class="fa-solid fa-bars"></i></a></div>
+  </div>
+</header>
+<main class="page">
+  <div class="wrap">
+    <div class="breadcrumb"><span>Home</span><span>/</span><span>립</span><span>/</span><b>Velvet Ink Tint</b></div>
+    <section class="detail-hero">
+      <div class="gallery">
+        <div class="thumbs">
+          <button><img src="assets/images/product-01.jpg" alt="틴트 썸네일"></button>
+          <button><img src="assets/images/product-02.jpg" alt="글로스 썸네일"></button>
+          <button><img src="assets/images/product-05.jpg" alt="치크 썸네일"></button>
+          <button><img src="assets/images/product-07.jpg" alt="섀도우 썸네일"></button>
+        </div>
+        <div class="main-photo"><img src="assets/images/product-01.jpg" alt="Velvet Ink Tint"></div>
+      </div>
+      <aside class="summary">
+        <span class="eyebrow">NEW COLOR EDIT</span>
+        <h1>Velvet Ink Tint</h1>
+        <p class="desc">맑은 로즈 베리 컬러가 얇게 밀착되는 데일리 립 틴트. 투명한 패키지와 깨끗한 발색으로 립과 치크를 자연스럽게 연결합니다.</p>
+        <div class="rating"><span class="stars">★★★★★</span><b>4.9</b><span class="muted">리뷰 128개</span></div>
+        <div class="price-box">
+          <div class="price-main"><span class="sale">18%</span><span class="price">18,000원</span><del>22,000원</del></div>
+          <div class="benefit-line"><span class="chip">신상 컬러</span><span class="chip">3만원 이상 무료배송</span><span class="chip">오늘 출고 가능</span></div>
+        </div>
+        <div class="option-block">
+          <div class="option-title"><span>컬러 선택</span><span class="muted">01 Rose Berry</span></div>
+          <div class="swatches">
+            <button class="swatch"><span class="dot rose"></span>01 로즈 베리</button>
+            <button class="swatch"><span class="dot nude"></span>02 누드 브릭</button>
+            <button class="swatch"><span class="dot mauve"></span>03 딥 모브</button>
+          </div>
+        </div>
+        <div class="option-block">
+          <div class="option-title"><span>수량</span></div>
+          <div class="qty"><input type="number" value="1" min="1"><span class="muted">최소 주문 수량 1개</span></div>
+        </div>
+        <div class="actions"><button class="btn">구매하기</button><button class="btn sub">장바구니</button></div>
+        <div class="quick-info">
+          <div><strong>배송</strong><span>평균 1-2일</span></div>
+          <div><strong>적립</strong><span>최대 5%</span></div>
+          <div><strong>교환</strong><span>수령 후 7일</span></div>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <nav class="tabs"><a class="on" href="#point">포인트</a><a href="#shade">컬러</a><a href="#review">리뷰</a><a href="#detail">상세정보</a><a href="#qna">문의</a></nav>
+
+  <section id="point" class="fade">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">PRODUCT POINT</span><h2>요즘 색조몰다운 구매 포인트</h2></div><p class="muted">이미지 한 장보다 빠르게 읽히는 모듈형 상세 구조입니다.</p></div>
+      <div class="modules">
+        <div class="campaign"><img src="assets/images/hero-01.jpg" alt="로즈 글로우 캠페인"><div class="campaign-copy"><span class="eyebrow">ROSE GLOW</span><h3>맑은 컬러, 얇은 광</h3><p class="muted">립, 치크, 아이를 같은 톤으로 연결하는 클린 K-뷰티 루틴.</p></div></div>
+        <div class="cards">
+          <article class="info-card"><b>01</b><h3>탁하지 않은 발색</h3><p>처음 올린 컬러가 맑게 유지되어 데일리 메이크업에 부담 없이 어울립니다.</p></article>
+          <article class="info-card"><b>02</b><h3>가벼운 밀착감</h3><p>입술 위에 얇게 고정되는 텍스처로 여러 번 덧발라도 무겁지 않습니다.</p></article>
+          <article class="info-card"><b>03</b><h3>톤온톤 조합</h3><p>치크와 아이 컬러를 함께 매치하기 쉬운 로즈·코랄·모브 계열입니다.</p></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="shade" class="fade">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">SHADE GUIDE</span><h2>함께 쓰기 좋은 컬러</h2></div><p class="muted">상세페이지 안에서 바로 추천 조합을 보여줍니다.</p></div>
+      <div class="shade-grid">
+        <article class="shade-card"><img src="assets/images/product-01.jpg" alt=""><div><strong>Rose Berry</strong><span>생기 있는 로즈 틴트</span></div></article>
+        <article class="shade-card"><img src="assets/images/product-05.jpg" alt=""><div><strong>Flush Cheek</strong><span>맑은 로즈 핑크 치크</span></div></article>
+        <article class="shade-card"><img src="assets/images/product-07.jpg" alt=""><div><strong>Mauve Shadow</strong><span>차분한 데일리 음영</span></div></article>
+        <article class="shade-card"><img src="assets/images/product-12.jpg" alt=""><div><strong>Soft Veil</strong><span>은은한 하이라이트</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="review" class="fade">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">REVIEW SUMMARY</span><h2>실구매 리뷰 요약</h2></div><a class="muted" href="review-board.html">전체 리뷰 보기</a></div>
+      <div class="review-wrap">
+        <div class="score"><strong>4.9</strong><div class="stars">★★★★★</div><p class="muted">128개 리뷰 기준</p></div>
+        <div class="review-list">
+          <article class="review"><b>맑은 로즈 컬러가 예뻐요</b><p>너무 진하지 않고 얼굴이 환해 보이는 컬러라 데일리로 손이 많이 갑니다.</p></article>
+          <article class="review"><b>패키지가 깔끔해요</b><p>투명한 패키지라 상품 이미지와 실제 제품 분위기가 잘 맞아요.</p></article>
+          <article class="review"><b>치크랑 같이 쓰기 좋습니다</b><p>로즈 계열 치크와 같이 바르면 메이크업이 자연스럽게 연결됩니다.</p></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="detail" class="fade">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">DETAIL IMAGE</span><h2>상세 이미지</h2></div><p class="muted">카페24 상품상세 영역에 맞춘 800px 이미지입니다.</p></div>
+      <div class="detail-img"><img src="assets/images/detail-description-01.png?v=4" alt="상품 상세 설명"></div>
+    </div>
+  </section>
+
+  <section id="qna" class="fade">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">Q&A</span><h2>상품 문의</h2></div><a class="muted" href="qna.html">문의하러 가기</a></div>
+      <div class="review-list">
+        <article class="review"><b>답변완료 · 웜톤에게 어울리나요?</b><p>01 로즈 베리는 뉴트럴한 로즈 컬러로 웜톤과 쿨톤 모두 사용하기 좋습니다.</p></article>
+        <article class="review"><b>대기 · 재입고 일정 문의</b><p>품절 컬러는 입고 일정 확인 후 공지사항으로 안내됩니다.</p></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap"><div><a class="logo" href="index.html">URBAN CHROMA</a><p>색조 화장품 쇼핑몰 스킨 샘플<br>구매, 결제, 로그인 기능은 카페24 모듈 영역입니다.</p></div><p>Company 000-00-00000<br>Customer 10:00-17:00<br>Instagram / Kakao / Naver</p></div></footer>
+<script>
+document.querySelectorAll('.fade').forEach(function(el){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.12}).observe(el)});
+</script>
+</body>
+</html>
